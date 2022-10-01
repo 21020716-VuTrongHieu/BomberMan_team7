@@ -6,7 +6,8 @@ import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import javafx.application.Application;
 import javafx.stage.Stage;
-
+import BomberMan.Menu.gameMenu;
+import BomberMan.Menu.mainMenu;
 import static BomberMan.constValue.constValue.*;
 
 public class gameMain extends GameApplication {
@@ -21,18 +22,18 @@ public class gameMain extends GameApplication {
         gameSettings.setFullScreenFromStart(true);
         gameSettings.setGameMenuEnabled(true);
 //        gameSettings.setFontUI(GAME_FONT_UI);
-        gameSettings.setSceneFactory(new SceneFactory() {
-            @Override
-            public FXGLMenu newMainMenu() {
-                return new MainMenu();
-            }
-
-            @Override
-            public FXGLMenu newGameMenu() {
-                return new GameMenu();
-            }
-
-        });
+//        gameSettings.setSceneFactory(new SceneFactory() {
+//            @Override
+//            public FXGLMenu newMainMenu() {
+//                return new mainMenu();
+//            }
+//
+//            @Override
+//            public FXGLMenu newGameMenu() {
+//                return new gameMenu();
+//            }
+//
+//        });
 
     }
 
