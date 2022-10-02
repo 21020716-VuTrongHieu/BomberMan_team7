@@ -1,6 +1,6 @@
 package Map;
 
-import BomberMan.constValue.constValue;
+import static BomberMan.constValue.constValue.*;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -19,8 +19,8 @@ public class Map {
                                                  Constant.ENTITY_SIZE,
                                               true, true);*/
     private final Image tileMap_2 = new Image("file:readme/wall.png",
-                                                 constValue.ENTITY_SIZE,
-                                                 constValue.ENTITY_SIZE,
+                                                 ENTITY_SIZE,
+                                                 ENTITY_SIZE,
                                               true, true);
 
     private int[][] mapTitle = new int[20][40];
@@ -63,8 +63,8 @@ public class Map {
         int x_pos = 0;
         int y_pos = 30;
 
-        int width =(int) constValue.FRAME_SIZE;
-        int hight =(int) constValue.FRAME_SIZE;
+        int width =(int) FRAME_SIZE;
+        int hight =(int) FRAME_SIZE;
 
         for (int i = 0; i < 20; i++) {
             x_pos = 0;
