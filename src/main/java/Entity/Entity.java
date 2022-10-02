@@ -14,7 +14,8 @@ public abstract class Entity {
 
     protected Image entityImage;
 
-    public Entity() {}
+    public Entity() {
+    }
 
     public Entity(Image entityImage) {
         this.entityImage = entityImage;
@@ -31,7 +32,7 @@ public abstract class Entity {
     }
 
     public void move(Point2D vector) {
-        this.position =this.position.add(vector);
+        this.position = this.position.add(vector);
     }
 
     public Image getEntityImage() {
