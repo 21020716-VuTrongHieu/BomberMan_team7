@@ -1,8 +1,7 @@
 package BomberMan;
 
-import Entity.Entity;
-import Map.Map;
-import javafx.animation.AnimationTimer;
+import BomberMan.Entity.Entity;
+import BomberMan.Map.Map;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -13,8 +12,6 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static BomberMan.constValue.constValue.*;
 
 public class gameMain extends Application {
 
@@ -40,6 +37,8 @@ public class gameMain extends Application {
 
         stage.setScene(scene);
         stage.setTitle("Perry");
+        stage.setFullScreen(false);
+        stage.setResizable(false); // khoá kích thước cửa sổ
         stage.show();
 
         Map a = new Map();

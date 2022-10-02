@@ -1,4 +1,4 @@
-package Map;
+package BomberMan.Map;
 
 import static BomberMan.constValue.constValue.*;
 import javafx.scene.canvas.GraphicsContext;
