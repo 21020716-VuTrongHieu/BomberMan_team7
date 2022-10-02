@@ -27,18 +27,18 @@ public class gameMain extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        canvas = new Canvas(1080, 720);
+        canvas = new Canvas(1280, 720);
         gc = canvas.getGraphicsContext2D();
 
         Group root = new Group();
         root.getChildren().add(canvas);
 
-        Scene scene = new Scene(root, Color.LIGHTSKYBLUE);
+        Scene scene = new Scene(root, Color.BLACK);
 
         stage.setScene(scene);
         stage.setTitle("Perry");
         stage.setFullScreen(false);
-        stage.setResizable(false); // khoá kích thước cửa sổ
+//        stage.setResizable(false); // khoá kích thước cửa sổ
         stage.show();
 
         Map a = new Map();
