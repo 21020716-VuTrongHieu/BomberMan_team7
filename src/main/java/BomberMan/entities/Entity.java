@@ -4,12 +4,14 @@ import BomberMan.constValue.constValue;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import BomberMan.graphics.Sprite;
+
 public abstract class Entity {
     protected double x; // vi tri nhan vat
     protected double y;
     protected Image image;
-    public Entity() {
-    }
+
+    //    public Entity() {
+    //    }
 
     public Entity( int xUnit, int yUnit, Image image) {
         this.x = xUnit * Sprite.SCALED_SIZE;
