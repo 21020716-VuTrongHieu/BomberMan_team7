@@ -57,19 +57,19 @@ public class Map {
     }
 
     public void DrawMap(GraphicsContext mainGraphic) {
-        int x_pos = 100;
-        int y_pos = 180;
+        int posX = 100;
+        int posY = 180;
 
         int width =(int) FRAME_SIZE;
         int hight =(int) FRAME_SIZE;
 
         for (int i = 0; i < 13; i++) {
-            x_pos = 60;
+            posX = 60;
             for (int j = 0; j < 29; j++) {
-                mainGraphic.drawImage(imagesMap[i][j],x_pos,y_pos);
-                x_pos = x_pos + width;
+                mainGraphic.drawImage(imagesMap[i][j],posX,posY);
+                posX = posX + width;
             }
-            y_pos = y_pos + hight;
+            posY = posY + hight;
         }
     }
 
