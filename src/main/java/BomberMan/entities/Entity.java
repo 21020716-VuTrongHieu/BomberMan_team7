@@ -1,15 +1,55 @@
 package BomberMan.entities;
 
+import BomberMan.constValue.State;
 import BomberMan.constValue.constValue;
+import com.almasb.fxgl.texture.AnimatedTexture;
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import BomberMan.graphics.Sprite;
+
 public abstract class Entity {
-    protected double x; // vi tri nhan vat
+    protected Point2D position; // vi tri nhan vat
+    protected double width;
+    protected double height;
+    protected AnimatedTexture texture;
+
+    protected Image entityImage;
+
+    public Entity() {}
+
+    public Entity(Image entityImage) {
+        this.entityImage = entityImage;
+        this.width = constValue.ENTITY_SIZE;
+        this.height = constValue.ENTITY_SIZE;
+    }
+
+    public Point2D getPosition() {
+        return this.position;
+    }
+
+    public void setPosition(float x_pos, float y_pos) {
+        this.position = new Point2D(x_pos, y_pos);
+    }
+
+    public void move(Point2D vector) {
+        this.position =this.position.add(vector);
+    }
+
+    public Image getEntityImage() {
+        return this.entityImage;
+    }
+    public void upDate(State sta){}
+
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    /*protected double x; // vi tri nhan vat
     protected double y;
     protected Image image;
-    public Entity() {
-    }
+
+    //    public Entity() {
+    //    }
 
     public Entity( int xUnit, int yUnit, Image image) {
         this.x = xUnit * Sprite.SCALED_SIZE;
@@ -20,12 +60,13 @@ public abstract class Entity {
     /**
      * render entity.
      * @param gc
-     */
+     *
     public void render(GraphicsContext gc) {
         gc.drawImage(image, x, y);
     }
     /**
         * update trạng thái của thực thể trong vòng lặp game.
-     */
-    public abstract void update();
+     *
+    public abstract void update();*/
+
 }
