@@ -15,6 +15,11 @@ public class Bomber extends Character {
         state = State.STOP;
         isMoving = true;
     }
+
+    /**
+     * hàm này return true tạm đã rồi sau làm xong check va chạm thì dùng.
+     * @return
+     */
     public boolean canMove() {
         return true;
     }

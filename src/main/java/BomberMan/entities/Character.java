@@ -13,6 +13,10 @@ public class Character extends Entity {
         super(image);
     }
 
+    /**
+     * is moving.
+     * @param isMoving
+     */
     public void setIsMoving(boolean isMoving) {
         this.isMoving = isMoving;
     }
