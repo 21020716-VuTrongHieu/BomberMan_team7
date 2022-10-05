@@ -83,30 +83,21 @@ public class gameMain extends Application {
                     man.setIsMoving(false);
 
                 }
-                mainScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-                    @Override
-                    public void handle(KeyEvent keyEvent_up) {
-                        if ( keyEvent_down.getCode() == null  ) {
-                            man.setIsMoving(false);
-                            mainState[0] = State.STOP;
-                        }
-                    }
 
-                });
+
             }
 
         });
 
-        /*mainScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+        mainScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent_up) {
                 if ( keyEvent_up.getCode() != null  ) {
-                    //man.setIsMoving(false);
-                    mainState[0] = State.STOP;
+                    man.setIsMoving(false);
                 }
             }
 
-        });*/
+        });
 
 
         AnimationTimer timer = new AnimationTimer() {
