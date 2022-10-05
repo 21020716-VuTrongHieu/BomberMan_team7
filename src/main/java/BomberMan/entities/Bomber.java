@@ -7,23 +7,19 @@ import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class Bomber extends Entity {
-    private State state;
-
-    private static int frame = 0;
-    private boolean isMoving = true;
+public class Bomber extends Character {
 
     public Bomber(Image image){
         super(image);
         frame = 0;
         state = State.STOP;
+        isMoving = true;
     }
-
+    public boolean canMove() {
+        return true;
+    }
     public void setFrame(int val) {
         frame = val;
-    }
-    public void setIsMoving(boolean isMoving) {
-        this.isMoving = isMoving;
     }
     public void update(State sta) {
         state = sta;
