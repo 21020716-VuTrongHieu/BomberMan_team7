@@ -20,7 +20,7 @@ public class Bomber extends Entity {
     }
 
 
-    public void upDate(State sta) {
+    public void update(State sta) {
         state = sta;
 
         switch (state) {

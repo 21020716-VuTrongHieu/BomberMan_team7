@@ -4,9 +4,7 @@ import BomberMan.constValue.State;
 import BomberMan.constValue.constValue;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import javafx.geometry.Point2D;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import BomberMan.graphics.Sprite;
 
 public abstract class Entity {
     protected Point2D position; // vi tri nhan vat
@@ -39,7 +37,7 @@ public abstract class Entity {
     public Image getEntityImage() {
         return this.entityImage;
     }
-    public void upDate(State sta){}
+    public void update(State sta){}
 
 
 

@@ -4,7 +4,6 @@ import BomberMan.Map.Map;
 import BomberMan.constValue.State;
 import BomberMan.constValue.constValue;
 import BomberMan.entities.Bomber;
-import com.almasb.fxgl.app.GameApplication;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -16,10 +15,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import BomberMan.entities.Entity;
-import BomberMan.entities.Wall;
 import BomberMan.graphics.Sprite;
-import javafx.scene.control.Spinner;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 import java.io.FileNotFoundException;
@@ -41,6 +37,8 @@ public class gameMain extends Application {
     private Group root;
     private Stage mainStage;
     private State[] mainState = new State[1];
+
+    private boolean isQuit = false;
 
 
 
@@ -73,6 +71,9 @@ public class gameMain extends Application {
                     mainState[0] = State.LEFT;
                 } else if (keyEvent.getCode() == KeyCode.RIGHT) {
                     mainState[0] = State.RIGHT;
+                } else if (keyEvent.getCode() == KeyCode.Q) {
+                    isQuit = true;
+
                 } else {
                     mainState[0] = State.STOP;
                 }
@@ -91,12 +92,9 @@ public class gameMain extends Application {
         });
 
 
-
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-
-
                 mainGc.setFill(Color.GREEN);
                 mainGc.fillRect(0,0, constValue.GAME_WIDTH,constValue.GAME_HEIGHT);
                 try {
@@ -108,7 +106,10 @@ public class gameMain extends Application {
 
 
                 man.drawBomMan(mainGc);
-                man.upDate(mainState[0]);
+                man.update(mainState[0]);
+                if (isQuit) {
+                    mainStage.close();
+                }
 
 
             }
