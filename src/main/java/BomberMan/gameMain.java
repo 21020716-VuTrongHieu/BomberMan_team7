@@ -46,7 +46,7 @@ public class gameMain extends Application {
     public void start(Stage stage) throws IOException {
 
         root = new Group();
-        mainCanvas = new Canvas(constValue.GAME_WIDTH,constValue.GAME_HEIGHT);
+        mainCanvas = new Canvas(constValue.FRAME_SIZE * 29, constValue.FRAME_SIZE * 13);
         mainGc = mainCanvas.getGraphicsContext2D();
         mainScene =new Scene(root);
         mainState[0] = State.STOP;
@@ -56,7 +56,7 @@ public class gameMain extends Application {
 
 
         Bomber man = new Bomber(Sprite.player_down.getFxImage());
-        man.setPosition(30,50);
+        man.setPosition(constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
 
 
 
@@ -65,17 +65,22 @@ public class gameMain extends Application {
             public void handle(KeyEvent keyEvent) {
                 if (keyEvent.getCode() == KeyCode.DOWN) {
                     mainState[0] = State.DOWN;
+                    man.setIsMoving(true);
                 } else if (keyEvent.getCode() == KeyCode.UP) {
+                    man.setIsMoving(true);
                     mainState[0] = State.UP;
                 } else if (keyEvent.getCode() == KeyCode.LEFT) {
+                    man.setIsMoving(true);
                     mainState[0] = State.LEFT;
                 } else if (keyEvent.getCode() == KeyCode.RIGHT) {
+                    man.setIsMoving(true);
                     mainState[0] = State.RIGHT;
                 } else if (keyEvent.getCode() == KeyCode.Q) {
                     isQuit = true;
 
                 } else {
-                    mainState[0] = State.STOP;
+                    man.setIsMoving(false);
+
                 }
             }
 
@@ -85,7 +90,7 @@ public class gameMain extends Application {
             @Override
             public void handle(KeyEvent keyEvent) {
                 if ( keyEvent.getCode() != null ) {
-                    mainState[0] = State.STOP;
+                    man.setIsMoving(false);
                 }
             }
 
@@ -103,15 +108,11 @@ public class gameMain extends Application {
                     throw new RuntimeException(e);
                 }
                 map.DrawMap(mainGc);
-
-
                 man.drawBomMan(mainGc);
                 man.update(mainState[0]);
                 if (isQuit) {
                     mainStage.close();
                 }
-
-
             }
 
         }; timer.start();

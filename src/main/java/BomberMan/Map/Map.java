@@ -80,7 +80,7 @@ public class Map {
 
     public void DrawMap(GraphicsContext mainGraphic) {
         int x_pos = 0;
-        int y_pos = 30;
+        int y_pos = 0;
 
         int width =(int) constValue.FRAME_SIZE;
         int hight =(int) constValue.FRAME_SIZE;

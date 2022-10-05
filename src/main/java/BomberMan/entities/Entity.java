@@ -26,7 +26,7 @@ public abstract class Entity {
         return this.position;
     }
 
-    public void setPosition(float x_pos, float y_pos) {
+    public void setPosition(double x_pos, double y_pos) {
         this.position = new Point2D(x_pos, y_pos);
     }
 
