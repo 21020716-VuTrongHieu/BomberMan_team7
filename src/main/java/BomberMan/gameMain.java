@@ -62,54 +62,68 @@ public class gameMain extends Application {
 
         mainScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
-            public void handle(KeyEvent keyEvent) {
-                if (keyEvent.getCode() == KeyCode.DOWN) {
+            public void handle(KeyEvent keyEvent_down) {
+
+                if (keyEvent_down.getCode() == KeyCode.DOWN) {
                     mainState[0] = State.DOWN;
                     man.setIsMoving(true);
-                } else if (keyEvent.getCode() == KeyCode.UP) {
+                } else if (keyEvent_down.getCode() == KeyCode.UP) {
                     man.setIsMoving(true);
                     mainState[0] = State.UP;
-                } else if (keyEvent.getCode() == KeyCode.LEFT) {
+                } else if (keyEvent_down.getCode() == KeyCode.LEFT) {
                     man.setIsMoving(true);
                     mainState[0] = State.LEFT;
-                } else if (keyEvent.getCode() == KeyCode.RIGHT) {
+                } else if (keyEvent_down.getCode() == KeyCode.RIGHT) {
                     man.setIsMoving(true);
                     mainState[0] = State.RIGHT;
-                } else if (keyEvent.getCode() == KeyCode.Q) {
+                } else if (keyEvent_down.getCode() == KeyCode.Q) {
                     isQuit = true;
 
                 } else {
                     man.setIsMoving(false);
 
                 }
+                mainScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent keyEvent_up) {
+                        if ( keyEvent_down.getCode() == null  ) {
+                            man.setIsMoving(false);
+                            mainState[0] = State.STOP;
+                        }
+                    }
+
+                });
             }
 
         });
 
-        mainScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+        /*mainScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
-            public void handle(KeyEvent keyEvent) {
-                if ( keyEvent.getCode() != null ) {
-                    man.setIsMoving(false);
+            public void handle(KeyEvent keyEvent_up) {
+                if ( keyEvent_up.getCode() != null  ) {
+                    //man.setIsMoving(false);
+                    mainState[0] = State.STOP;
                 }
             }
 
-        });
+        });*/
 
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 mainGc.setFill(Color.GREEN);
-                mainGc.fillRect(0,0, constValue.GAME_WIDTH,constValue.GAME_HEIGHT);
+                //mainGc.fillRect(0,0, constValue.GAME_WIDTH,constValue.GAME_HEIGHT);
+                mainGc.fillRect(0,0, 1392,624);
+
                 try {
                     map.LoadMap(0);
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }
                 map.DrawMap(mainGc);
-                man.drawBomMan(mainGc);
                 man.update(mainState[0]);
+                man.drawBomMan(mainGc);
                 if (isQuit) {
                     mainStage.close();
                 }
