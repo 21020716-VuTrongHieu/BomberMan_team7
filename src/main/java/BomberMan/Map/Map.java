@@ -27,7 +27,7 @@ public class Map {
     private List<Entity> stillObjects = new ArrayList<>();
 
 
-    private int[][] mapTitle = new int[13][29];
+    public static int[][] mapTitle = new int[13][29];
     private Image[][] imagesMap = new Image[13][29];
 
     public void LoadMap(int level) throws FileNotFoundException {
@@ -43,9 +43,9 @@ public class Map {
         for (int i = 0; i < 13; i++) {
             for (int j = 0; j < 29; j++) {
                 switch (mapTitle[i][j]) {
-                    //case 0:
-                    //    imagesMap[i][j] = Sprite.brick.getFxImage();
-                    //    break;
+                    case 0:
+                        imagesMap[i][j] = Sprite.brick.getFxImage();
+                        break;
                     //case 1:
                     //    imagesMap[i][j] = Sprite.;
                     //    break;
@@ -82,8 +82,8 @@ public class Map {
         int x_pos = 0;
         int y_pos = 0;
 
-        int width =(int) constValue.FRAME_SIZE;
-        int hight =(int) constValue.FRAME_SIZE;
+        int width =(int) ENTITY_SIZE;
+        int hight =(int) ENTITY_SIZE;
 
         for (int i = 0; i < 13; i++) {
             x_pos = 0;

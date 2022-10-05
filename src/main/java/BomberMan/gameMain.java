@@ -46,7 +46,7 @@ public class gameMain extends Application {
     public void start(Stage stage) throws IOException {
 
         root = new Group();
-        mainCanvas = new Canvas(constValue.FRAME_SIZE * 29, constValue.FRAME_SIZE * 13);
+        mainCanvas = new Canvas(constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 13);
         mainGc = mainCanvas.getGraphicsContext2D();
         mainScene =new Scene(root);
         mainState[0] = State.STOP;
@@ -94,6 +94,7 @@ public class gameMain extends Application {
             public void handle(KeyEvent keyEvent_up) {
                 if ( keyEvent_up.getCode() != null  ) {
                     man.setIsMoving(false);
+                    //mainState[0] = State.STOP;
                 }
             }
 
@@ -113,8 +114,8 @@ public class gameMain extends Application {
                     throw new RuntimeException(e);
                 }
                 map.DrawMap(mainGc);
-                man.update(mainState[0]);
                 man.drawBomMan(mainGc);
+                man.update(mainState[0]);
                 if (isQuit) {
                     mainStage.close();
                 }
