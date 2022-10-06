@@ -14,10 +14,10 @@ public abstract class Entity {
 
     protected Image entityImage;
 
-    public Entity() {}
+    //public Entity() {}
 
-    public Entity(Image entityImage) {
-        this.entityImage = entityImage;
+    public Entity() {
+        //this.entityImage = entityImage;
         this.width = constValue.ENTITY_SIZE;
         this.height = constValue.ENTITY_SIZE;
     }

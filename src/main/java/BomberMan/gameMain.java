@@ -3,7 +3,9 @@ package BomberMan;
 import BomberMan.Map.Map;
 import BomberMan.constValue.State;
 import BomberMan.constValue.constValue;
+import BomberMan.entities.Bom;
 import BomberMan.entities.Bomber;
+import BomberMan.entities.Brick;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -31,6 +33,8 @@ public class gameMain extends Application {
     private List<Entity> entities = new ArrayList<>();
     private List<Entity> stillObjects = new ArrayList<>();
 
+    private List<Brick> brickList = new ArrayList<>();
+
     private Canvas mainCanvas;
     private GraphicsContext mainGc;
     private Scene mainScene;
@@ -53,10 +57,21 @@ public class gameMain extends Application {
         ///////////////////////////////////////////////////////////////////////////////
         //      tao NV            //
         Map map = new Map();
+        try {
+            map.LoadMap(0);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
 
-        Bomber man = new Bomber(Sprite.player_down.getFxImage());
+        Bomber man = new Bomber();
         man.setPosition(constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
+
+        Bom[] bom = new Bom[1];
+        for (int i = 0; i < Brick.amountBrick; i++) {
+            Brick brick = new Brick();
+            brickList.add(brick);
+        }
 
 
 
@@ -79,12 +94,14 @@ public class gameMain extends Application {
                 } else if (keyEvent_down.getCode() == KeyCode.Q) {
                     isQuit = true;
 
+                } else if (keyEvent_down.getCode() == KeyCode.SPACE && (bom[0] == null || !bom[0].getIsPut())) {
+                    bom[0] = new Bom(man.getPositionBom());
+                    bom[0].setIsPut(true);//Bom.isPut = true;
+                    bom[0].setIsExplode(false);//Bom.isExplode = false;
                 } else {
                     man.setIsMoving(false);
 
                 }
-
-
             }
 
         });
@@ -94,7 +111,6 @@ public class gameMain extends Application {
             public void handle(KeyEvent keyEvent_up) {
                 if ( keyEvent_up.getCode() != null  ) {
                     man.setIsMoving(false);
-                    //mainState[0] = State.STOP;
                 }
             }
 
@@ -106,16 +122,21 @@ public class gameMain extends Application {
             public void handle(long now) {
                 mainGc.setFill(Color.GREEN);
                 //mainGc.fillRect(0,0, constValue.GAME_WIDTH,constValue.GAME_HEIGHT);
-                mainGc.fillRect(0,0, 1392,624);
+                mainGc.fillRect(0,0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 13);
 
-                try {
-                    map.LoadMap(0);
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-                map.DrawMap(mainGc);
-                man.drawBomMan(mainGc);
                 man.update(mainState[0]);
+                man.drawBomMan(mainGc);
+                //bricks.drawBrick(mainGc);
+                if (bom[0] != null){
+                    if (bom[0].getIsPut()) {
+                        bom[0].drawBom(mainGc);
+                        if (bom[0].getIsExplode()){
+                            map.checkWithBom(bom[0].getPosition());
+                        }
+                    }
+                }
+                map.loadImage();
+                map.DrawMap(mainGc, brickList);
                 if (isQuit) {
                     mainStage.close();
                 }

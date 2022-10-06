@@ -4,6 +4,7 @@ import static BomberMan.constValue.constValue.*;
 
 import BomberMan.constValue.constValue;
 import BomberMan.entities.Entity;
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -37,15 +38,19 @@ public class Map {
             for (int j = 0; j < 29; j++) {
                 int a = input.nextInt();
                 mapTitle[i][j] = a;
+                if (a == 0) {
+                    Brick.amountBrick++;
+                }
             }
         }
-
+    }
+    public void loadImage(){
         for (int i = 0; i < 13; i++) {
             for (int j = 0; j < 29; j++) {
                 switch (mapTitle[i][j]) {
-                    case 0:
-                        imagesMap[i][j] = Sprite.brick.getFxImage();
-                        break;
+                    //case 0:
+                    //    imagesMap[i][j] = Sprite.brick.getFxImage();
+                    //    break;
                     //case 1:
                     //    imagesMap[i][j] = Sprite.;
                     //    break;
@@ -78,21 +83,60 @@ public class Map {
 
     }
 
-    public void DrawMap(GraphicsContext mainGraphic) {
+    public void DrawMap(GraphicsContext mainGraphic, List<Brick> brickList) {
         int x_pos = 0;
         int y_pos = 0;
 
         int width =(int) ENTITY_SIZE;
         int hight =(int) ENTITY_SIZE;
 
+        int x = 0;
+
         for (int i = 0; i < 13; i++) {
             x_pos = 0;
             for (int j = 0; j < 29; j++) {
                 mainGraphic.drawImage(imagesMap[i][j],x_pos,y_pos);
+                if (mapTitle[i][j] == 0) {
+                    brickList.get(x).setPosition(x_pos,y_pos);
+                    brickList.get(x).drawBrick(mainGraphic);
+                    x++;
+                } else if (mapTitle[i][j] == 3) {
+                    brickList.get(x).setIsExploded(true);
+                    brickList.get(x).setPosition(x_pos,y_pos);
+                    brickList.get(x).drawBrick(mainGraphic);
+                    if (!brickList.get(x).getIsExploded()){
+                        mapTitle[i][j] = 1;
+                    }
+                    //mapTitle[i][j] = 1;
+                    //System.out.println(x);
+                    x++;
+                }
                 x_pos = x_pos + width;
             }
             y_pos = y_pos + hight;
         }
+    }
+
+    public void checkWithBom(Point2D positionBom){
+
+        int x = (int) (positionBom.getX() / constValue.ENTITY_SIZE);
+        int y = (int) (positionBom.getY() / constValue.ENTITY_SIZE);
+        //System.out.println(y + " " + x);
+
+        if (mapTitle[y][x-1] == 0) {
+            mapTitle[y][x-1] = 3;
+        }
+        if (mapTitle[y][x+1] == 0) {
+            mapTitle[y][x+1] = 3;
+        }
+        if (mapTitle[y+1][x] == 0) {
+            mapTitle[y+1][x] = 3;
+        }
+        if (mapTitle[y-1][x] == 0) {
+            mapTitle[y-1][x] = 3;
+        }
+
+
     }
 
 //    public void DrawMap(GraphicsContext mainGraphic) {

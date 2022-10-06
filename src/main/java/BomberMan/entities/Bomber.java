@@ -8,10 +8,16 @@ import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class Bomber extends Character {
+public class Bomber extends Entity {
 
-    public Bomber(Image image){
-        super(image);
+
+    protected boolean isMoving = true;
+
+    protected static int frame = 0;
+
+    protected State state;
+    public Bomber(){
+        super();
         frame = 0;
         state = State.STOP;
         isMoving = true;
@@ -138,14 +144,14 @@ public class Bomber extends Character {
         int y2 = 0;
 
         x1 = (int) ((this.getPosition().getX()) / constValue.ENTITY_SIZE);
-        x2 = (int) ((this.getPosition().getX() + constValue.FRAME_SIZE -12) / constValue.ENTITY_SIZE);
+        x2 = (int) ((this.getPosition().getX() + constValue.FRAME_SIZE - 10) / constValue.ENTITY_SIZE);
 
         y1 = (int) ((this.getPosition().getY()) / constValue.ENTITY_SIZE);
-        y2 = (int) ((this.getPosition().getY() + constValue.FRAME_SIZE -5) / constValue.ENTITY_SIZE);
+        y2 = (int) ((this.getPosition().getY() + constValue.FRAME_SIZE - 5) / constValue.ENTITY_SIZE);
 
         if (moveXY.getX() > 0) {
             if (Map.mapTitle[y2][x2] != 1 || Map.mapTitle[y1][x2] != 1) {
-                this.setPosition((float) (x1 * constValue.ENTITY_SIZE + constValue.ENTITY_SIZE - constValue.FRAME_SIZE + 11), (float) (this.getPosition().getY()));
+                this.setPosition((float) (x1 * constValue.ENTITY_SIZE + constValue.ENTITY_SIZE - constValue.FRAME_SIZE + 9), (float) (this.getPosition().getY()));
                 moveXY = new Point2D(0,0);
             }
         } else if (moveXY.getX() < 0) {
@@ -169,6 +175,17 @@ public class Bomber extends Character {
         }
 
 
+    }
+
+    public Point2D getPositionBom() {
+        int x1 = (int) ((this.getPosition().getX()+constValue.FRAME_SIZE/2) / constValue.ENTITY_SIZE);
+        int y1 = (int) ((this.getPosition().getY()+constValue.FRAME_SIZE/2) / constValue.ENTITY_SIZE);
+        Point2D p = new Point2D(x1*constValue.ENTITY_SIZE,y1*constValue.ENTITY_SIZE);
+        return p;
+    }
+
+    public void setIsMoving(boolean isMoving) {
+        this.isMoving = isMoving;
     }
 
     /*private State state;
