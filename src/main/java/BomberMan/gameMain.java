@@ -83,8 +83,16 @@ public class gameMain extends Application {
                     man.setIsMoving(false);
 
                 }
-
-
+//                mainScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+//                    @Override
+//                    public void handle(KeyEvent keyEvent_up) {
+//                        if ( keyEvent_down.getCode() == null  ) {
+//                            man.setIsMoving(false);
+//                            mainState[0] = State.STOP;
+//                        }
+//                    }
+//
+//                });
             }
 
         });
@@ -94,7 +102,6 @@ public class gameMain extends Application {
             public void handle(KeyEvent keyEvent_up) {
                 if ( keyEvent_up.getCode() != null  ) {
                     man.setIsMoving(false);
-                    //mainState[0] = State.STOP;
                 }
             }
 
@@ -106,7 +113,7 @@ public class gameMain extends Application {
             public void handle(long now) {
                 mainGc.setFill(Color.GREEN);
                 //mainGc.fillRect(0,0, constValue.GAME_WIDTH,constValue.GAME_HEIGHT);
-                mainGc.fillRect(0,0, 1392,624);
+                mainGc.fillRect(0,0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 13);
 
                 try {
                     map.LoadMap(0);
@@ -114,8 +121,8 @@ public class gameMain extends Application {
                     throw new RuntimeException(e);
                 }
                 map.DrawMap(mainGc);
-                man.drawBomMan(mainGc);
                 man.update(mainState[0]);
+                man.drawBomMan(mainGc);
                 if (isQuit) {
                     mainStage.close();
                 }

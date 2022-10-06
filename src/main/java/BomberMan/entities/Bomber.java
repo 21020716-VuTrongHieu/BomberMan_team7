@@ -138,10 +138,10 @@ public class Bomber extends Character {
         int y2 = 0;
 
         x1 = (int) ((this.getPosition().getX()) / constValue.ENTITY_SIZE);
-        x2 = (int) ((this.getPosition().getX() + constValue.FRAME_SIZE -12) / constValue.ENTITY_SIZE);
+        x2 = (int) ((this.getPosition().getX() + constValue.FRAME_SIZE - 12) / constValue.ENTITY_SIZE);
 
         y1 = (int) ((this.getPosition().getY()) / constValue.ENTITY_SIZE);
-        y2 = (int) ((this.getPosition().getY() + constValue.FRAME_SIZE -5) / constValue.ENTITY_SIZE);
+        y2 = (int) ((this.getPosition().getY() + constValue.FRAME_SIZE - 5) / constValue.ENTITY_SIZE);
 
         if (moveXY.getX() > 0) {
             if (Map.mapTitle[y2][x2] != 1 || Map.mapTitle[y1][x2] != 1) {
