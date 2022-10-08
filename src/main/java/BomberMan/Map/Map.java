@@ -49,7 +49,7 @@ public class Map {
             for (int j = 0; j < 29; j++) {
                 switch (mapTitle[i][j]) {
                     //case 0:
-                    //    imagesMap[i][j] = Sprite.brick.getFxImage();
+                    ///    imagesMap[i][j] = Sprite.brick.getFxImage();
                     //    break;
                     //case 1:
                     //    imagesMap[i][j] = Sprite.;

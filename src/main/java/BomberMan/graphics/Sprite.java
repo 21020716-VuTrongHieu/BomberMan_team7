@@ -4,7 +4,7 @@ import javafx.scene.image.*;
 import BomberMan.graphics.SpriteSheet;
 
 /**
- * Lưu trữ thông tin các pixel của 1 sprite (hình ảnh game)
+ * Lưu trữ thông tin các pixel của 1 sprite (hình ảnh game) chim
  */
 public class Sprite {
     public static final int DEFAULT_SIZE = 48;

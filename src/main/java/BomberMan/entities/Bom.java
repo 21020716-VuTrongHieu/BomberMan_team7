@@ -8,7 +8,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 
 public class Bom extends Entity{
-
+//chim chim
 
     public boolean isExplode = false;
     public boolean isPut = false;

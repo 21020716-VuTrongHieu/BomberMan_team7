@@ -3,7 +3,7 @@ package BomberMan.entities;
 import BomberMan.constValue.constValue;
 import BomberMan.graphics.Sprite;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
+
 
 public class Brick extends Entity {
     private int frame;

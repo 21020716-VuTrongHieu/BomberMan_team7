@@ -54,7 +54,7 @@ public class gameMain extends Application {
         mainGc = mainCanvas.getGraphicsContext2D();
         mainScene =new Scene(root);
         mainState[0] = State.STOP;
-        ///////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////
         //      tao NV            //
         Map map = new Map();
         try {

@@ -26,7 +26,7 @@ public class Bomber extends Entity {
     private Point2D moveXY = new Point2D(0,0);
 
     /**
-     * hàm này return true tạm đã rồi sau làm xong check va chạm thì dùng.
+     * hàm này return true tạm đã rồi sau làm xong check va chạm thì chim dùng.
      * @return
      */
     public boolean canMove() {

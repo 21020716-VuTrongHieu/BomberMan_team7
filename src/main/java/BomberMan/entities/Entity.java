@@ -14,7 +14,7 @@ public abstract class Entity {
 
     protected Image entityImage;
 
-    //public Entity() {}
+    //public Entity() chim{}
 
     public Entity() {
         //this.entityImage = entityImage;
