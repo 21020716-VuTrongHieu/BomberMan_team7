@@ -71,7 +71,7 @@ public class Bomber extends Entity {
 
     public void drawBomMan(GraphicsContext gc) {
         frame++;
-        if(frame>=15) frame = 0;
+        if(frame>=9) frame = 0;
         if (!isMoving) {
             switch (state) {
                 case STOP:
@@ -89,6 +89,15 @@ public class Bomber extends Entity {
                 case RIGHT:
                     gc.drawImage(Sprite.player_right.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.FRAME_SIZE, constValue.FRAME_SIZE);
                     break;
+                case DIE:
+                    if (frame >=0 && frame < 3){
+                        gc.drawImage(Sprite.player_dead1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
+                    } else if (frame >= 3 && frame < 6) {
+                        gc.drawImage(Sprite.player_dead2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
+                    } else if (frame >= 6 && frame < 9) {
+                        gc.drawImage(Sprite.player_dead3.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
+                    }
+                    break;
             }
         } else {
             switch (state) {
@@ -96,41 +105,50 @@ public class Bomber extends Entity {
                     gc.drawImage(Sprite.bomber.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
                     break;
                 case UP:
-                    if (frame >=0 && frame < 5){
+                    if (frame >=0 && frame < 3){
                         gc.drawImage(Sprite.player_up.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-                    } else if (frame >= 5 && frame < 10) {
+                    } else if (frame >= 3 && frame <6) {
                         gc.drawImage(Sprite.player_up_1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-                    } else if (frame >=10 && frame < 15) {
+                    } else if (frame >=6 && frame < 9) {
                         gc.drawImage(Sprite.player_up_2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
                     }
                     break;
                 case DOWN:
-                    if (frame >=0 && frame < 5){
+                    if (frame >=0 && frame < 3){
                         gc.drawImage(Sprite.player_down.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-                    } else if (frame >= 5 && frame < 10) {
+                    } else if (frame >= 3 && frame < 6) {
                         gc.drawImage(Sprite.player_down_1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-                    } else if (frame >=10 && frame < 15) {
+                    } else if (frame >= 6 && frame < 9) {
                         gc.drawImage(Sprite.player_down_2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
                     }
                     break;
                 case LEFT:
-                    if (frame >=0 && frame < 5){
+                    if (frame >=0 && frame < 3){
                         gc.drawImage(Sprite.player_left.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-                    } else if (frame >= 5 && frame < 10) {
+                    } else if (frame >= 3 && frame < 6) {
                         gc.drawImage(Sprite.player_left_1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-                    } else if (frame >=10 && frame < 15) {
+                    } else if (frame >=6 && frame < 9) {
                         gc.drawImage(Sprite.player_left_2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
                     }
                     break;
                 case RIGHT:
-                    if (frame >=0 && frame < 5){
+                    if (frame >=0 && frame < 3){
                         gc.drawImage(Sprite.player_right.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-                    } else if (frame >= 5 && frame < 10) {
+                    } else if (frame >= 3 && frame < 6) {
                         gc.drawImage(Sprite.player_right_1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-                    } else if (frame >=10 && frame < 15) {
+                    } else if (frame >= 6 && frame < 9) {
                         gc.drawImage(Sprite.player_right_2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
                     }
                     break;
+                case DIE:
+                    if (frame >=0 && frame < 3){
+                        gc.drawImage(Sprite.player_dead1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
+                    } else if (frame >= 3 && frame < 6) {
+                        gc.drawImage(Sprite.player_dead2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
+                    } else if (frame >= 6 && frame < 9) {
+                        gc.drawImage(Sprite.player_dead3.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
+                    }
+                    break;    
             }
         }
 
@@ -150,12 +168,12 @@ public class Bomber extends Entity {
         y2 = (int) ((this.getPosition().getY() + constValue.FRAME_SIZE - 5) / constValue.ENTITY_SIZE);
 
         if (moveXY.getX() > 0) {
-            if (Map.mapTitle[y2][x2] != 1 || Map.mapTitle[y1][x2] != 1) {
+            if (Map.mapTitle[y2][x2] != constValue.GLASS || Map.mapTitle[y1][x2] != constValue.GLASS) {
                 this.setPosition((float) (x1 * constValue.ENTITY_SIZE + constValue.ENTITY_SIZE - constValue.FRAME_SIZE + 9), (float) (this.getPosition().getY()));
                 moveXY = new Point2D(0,0);
             }
         } else if (moveXY.getX() < 0) {
-            if (Map.mapTitle[y1][x1] != 1 || Map.mapTitle[y2][x1] != 1){
+            if (Map.mapTitle[y1][x1] != constValue.GLASS || Map.mapTitle[y2][x1] != constValue.GLASS){
                 this.setPosition((float) ((x1+1) * constValue.ENTITY_SIZE), (float) (this.getPosition().getY()));
                 moveXY = new Point2D(0,0);
             }
@@ -163,12 +181,12 @@ public class Bomber extends Entity {
 
 
         else if (moveXY.getY() > 0) {
-            if (Map.mapTitle[y2][x1] != 1 || Map.mapTitle[y2][x2] != 1) {
+            if (Map.mapTitle[y2][x1] != constValue.GLASS || Map.mapTitle[y2][x2] != constValue.GLASS) {
                 this.setPosition((float) (this.getPosition().getX()), (float) (y1*constValue.ENTITY_SIZE + constValue.ENTITY_SIZE - constValue.FRAME_SIZE));
                 moveXY = new Point2D(0,0);
             }
         } else if (moveXY.getY() < 0) {
-            if (Map.mapTitle[y1][x1] != 1 || Map.mapTitle[y1][x2] != 1){
+            if (Map.mapTitle[y1][x1] != constValue.GLASS || Map.mapTitle[y1][x2] != constValue.GLASS){
                 this.setPosition((float) (this.getPosition().getX()), (float) ((y1+1)*constValue.ENTITY_SIZE));
                 moveXY = new Point2D(0,0);
             }

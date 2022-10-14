@@ -1,5 +1,8 @@
 package BomberMan;
 
+import BomberMan.Item.Item;
+import BomberMan.Item.ItemSpeed;
+import BomberMan.Item.ItemSuperBom;
 import BomberMan.Map.Map;
 import BomberMan.constValue.State;
 import BomberMan.constValue.constValue;
@@ -33,7 +36,7 @@ public class gameMain extends Application {
     private List<Entity> entities = new ArrayList<>();
     private List<Entity> stillObjects = new ArrayList<>();
 
-    private List<Brick> brickList = new ArrayList<>();
+
 
     private Canvas mainCanvas;
     private GraphicsContext mainGc;
@@ -43,6 +46,9 @@ public class gameMain extends Application {
     private State[] mainState = new State[1];
 
     private boolean isQuit = false;
+
+    private List<Brick> brickList = new ArrayList<>();
+    private List<Item> itemList = new ArrayList<>();
 
 
 
@@ -73,34 +79,40 @@ public class gameMain extends Application {
             brickList.add(brick);
         }
 
+        Item itemSpeed = new ItemSpeed();
+        Item itemSuperBom = new ItemSuperBom();
+        itemList.add(itemSpeed);
+        itemList.add(itemSuperBom);
+
 
 
         mainScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent_down) {
+                if (mainState[0] != State.DIE) {
+                    if (keyEvent_down.getCode() == KeyCode.DOWN) {
+                        mainState[0] = State.DOWN;
+                        man.setIsMoving(true);
+                    } else if (keyEvent_down.getCode() == KeyCode.UP) {
+                        man.setIsMoving(true);
+                        mainState[0] = State.UP;
+                    } else if (keyEvent_down.getCode() == KeyCode.LEFT) {
+                        man.setIsMoving(true);
+                        mainState[0] = State.LEFT;
+                    } else if (keyEvent_down.getCode() == KeyCode.RIGHT) {
+                        man.setIsMoving(true);
+                        mainState[0] = State.RIGHT;
+                    } else if (keyEvent_down.getCode() == KeyCode.Q) {
+                        isQuit = true;
 
-                if (keyEvent_down.getCode() == KeyCode.DOWN) {
-                    mainState[0] = State.DOWN;
-                    man.setIsMoving(true);
-                } else if (keyEvent_down.getCode() == KeyCode.UP) {
-                    man.setIsMoving(true);
-                    mainState[0] = State.UP;
-                } else if (keyEvent_down.getCode() == KeyCode.LEFT) {
-                    man.setIsMoving(true);
-                    mainState[0] = State.LEFT;
-                } else if (keyEvent_down.getCode() == KeyCode.RIGHT) {
-                    man.setIsMoving(true);
-                    mainState[0] = State.RIGHT;
-                } else if (keyEvent_down.getCode() == KeyCode.Q) {
-                    isQuit = true;
+                    } else if (keyEvent_down.getCode() == KeyCode.SPACE && (bom[0] == null || !bom[0].getIsPut())) {
+                        bom[0] = new Bom(man.getPositionBom());
+                        bom[0].setIsPut(true);//Bom.isPut = true;
+                        bom[0].setIsExplode(false);//Bom.isExplode = false;
+                    } else {
+                        man.setIsMoving(false);
 
-                } else if (keyEvent_down.getCode() == KeyCode.SPACE && (bom[0] == null || !bom[0].getIsPut())) {
-                    bom[0] = new Bom(man.getPositionBom());
-                    bom[0].setIsPut(true);//Bom.isPut = true;
-                    bom[0].setIsExplode(false);//Bom.isExplode = false;
-                } else {
-                    man.setIsMoving(false);
-
+                    }
                 }
             }
 
@@ -109,7 +121,7 @@ public class gameMain extends Application {
         mainScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent_up) {
-                if ( keyEvent_up.getCode() != null  ) {
+                if ( mainState[0] != State.DIE) {
                     man.setIsMoving(false);
                 }
             }
@@ -132,11 +144,16 @@ public class gameMain extends Application {
                         bom[0].drawBom(mainGc);
                         if (bom[0].getIsExplode()){
                             map.checkWithBom(bom[0].getPosition());
+                            if (bom[0].checkWithBomMan(man.getPosition())) {
+                                System.out.println("DIE");
+                                mainState[0] = State.DIE;
+                            }
                         }
                     }
                 }
                 map.loadImage();
-                map.DrawMap(mainGc, brickList);
+                map.DrawMap(mainGc, brickList,itemList,man.getPosition());
+                System.out.println("DI");
                 if (isQuit) {
                     mainStage.close();
                 }
@@ -153,24 +170,6 @@ public class gameMain extends Application {
         mainStage.setTitle(constValue.GAME_TITLE);
         mainStage.show();
 
-
-
-
-        /*root.getChildren().add(canvasMap);
-
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        Image icon = new Image("file:src/main/resources/icon.png");
-        stage.getIcons().add(icon);
-        stage.setTitle("Perry");
-        stage.setFullScreen(false);
-        stage.setResizable(false); // khoá kích thước cửa sổ
-        stage.show();
-
-        Map map = new Map();
-
-        map.LoadMap(1);
-        map.render(graphicsContextMap, canvasMap);*/
 
     }
     public static void main(String[] args) {
