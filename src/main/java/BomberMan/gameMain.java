@@ -29,7 +29,7 @@ public class gameMain extends Application {
     public static final int WIDTH = 29;
     public static final int HEIGHT = 13;
 
-    private List<Entity> entities = new ArrayList<>();
+    private List<Enemy> enemies = new ArrayList<>();
     private List<Entity> stillObjects = new ArrayList<>();
 
 
@@ -69,9 +69,14 @@ public class gameMain extends Application {
         Bomber man = new Bomber();
         man.setPosition(constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
 
-        Enemy1 enemy1 = new Enemy1();
-        enemy1.setPosition(27*constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-
+        enemies.add(new Enemy1());
+        enemies.get(0).setPosition(27*constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
+        enemies.add(new Enemy1());
+        enemies.get(1).setPosition(8 * constValue.ENTITY_SIZE, 5 * constValue.ENTITY_SIZE);
+        enemies.add(new Enemy1());
+        enemies.get(2).setPosition(5 * constValue.ENTITY_SIZE, 11 * constValue.ENTITY_SIZE);
+        enemies.add(new Enemy1());
+        enemies.get(3).setPosition(15 * constValue.ENTITY_SIZE, 11 * constValue.ENTITY_SIZE);
         Bom[] bom = new Bom[1];
         for (int i = 0; i < Brick.amountBrick; i++) {
             Brick brick = new Brick();
@@ -169,13 +174,20 @@ public class gameMain extends Application {
                 man.update(mainState[0]);
                 man.drawBomMan(mainGc);
 
-                enemy1.update();
-//                if (!enemy1.isAlive) {
-//                    enemy1.drawEnemy1Die(mainGc);
-//                } else {
-//                    enemy1.drawEnemy1(mainGc);
-//                }
-                enemy1.drawEnemy(mainGc);
+                for (Enemy e : enemies) {
+                    e.update();
+                }
+
+                for (Enemy e : enemies) {
+                    e.drawEnemy(mainGc);
+                }
+//                enemy1.update();
+////                if (!enemy1.isAlive) {
+////                    enemy1.drawEnemy1Die(mainGc);
+////                } else {
+////                    enemy1.drawEnemy1(mainGc);
+////                }
+//                enemy1.drawEnemy(mainGc);
 
                 //bricks.drawBrick(mainGc);
                 if (bom[0] != null){
@@ -187,9 +199,12 @@ public class gameMain extends Application {
                                 System.out.println("DIE");
 //                                mainState[0] = State.DIE;
                             }
-                            if (bom[0].checkWithBomMan(enemy1.getPosition())) {
-                                System.out.println("Enemy1 DIE");
-                                enemy1.setState(State.DIE);
+                            for (Enemy e : enemies) {
+                                if (bom[0].checkWithBomMan(e.getPosition())) {
+                                    System.out.println("Enemy1 DIE");
+                                    e.setState(State.DIE);
+                                }
+
                             }
                         }
                     }
