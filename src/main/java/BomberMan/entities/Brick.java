@@ -20,12 +20,12 @@ public class Brick extends Entity {
 
         if (this.isExploded) {
             frame++;
-            if (frame > 30) frame = 0;
-            if (frame >= 0 && frame < 10) {
+            if (frame > 24) frame = 0;
+            if (frame >= 0 && frame < 8) {
                 gc.drawImage(Sprite.brick_exploded.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE );
-            } else if (frame >= 10 && frame < 20) {
+            } else if (frame >= 8 && frame < 16) {
                 gc.drawImage(Sprite.brick_exploded1.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE );
-            } else if (frame >= 20 && frame < 30) {
+            } else if (frame >= 16 && frame < 24) {
                 gc.drawImage(Sprite.brick_exploded2.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE );
             } else {
                 isExploded = false;
