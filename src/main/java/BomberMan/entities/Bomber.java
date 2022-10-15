@@ -10,7 +10,6 @@ import javafx.scene.image.Image;
 
 public class Bomber extends Entity {
 
-
     protected boolean isMoving = true;
 
     protected static int frame = 0;

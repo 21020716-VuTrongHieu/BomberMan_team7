@@ -171,7 +171,11 @@ public class gameMain extends Application {
                 man.drawBomMan(mainGc);
 
                 enemy1.update();
-                enemy1.drawEnemy1(mainGc);
+                if (!enemy1.isAlive) {
+                    enemy1.drawEnemy1Die(mainGc);
+                } else {
+                    enemy1.drawEnemy1(mainGc);
+                }
 
                 //bricks.drawBrick(mainGc);
                 if (bom[0] != null){

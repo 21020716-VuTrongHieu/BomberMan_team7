@@ -57,6 +57,19 @@ public class Enemy1 extends Entity {
         this.state = state;
     }
 
+    public void drawEnemy1Die(GraphicsContext gc) { // Ve quai luc chet
+        frame++;
+        if (frame >= 0 && frame < 8) {
+            gc.drawImage(Sprite.balloom_dead.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
+        } else if (frame >= 8 && frame < 16) {
+            gc.drawImage(Sprite.mob_dead1.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
+        } else if (frame >= 16 && frame < 24) {
+            gc.drawImage(Sprite.mob_dead2.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
+        } else if (frame >= 24 && frame < 32) {
+            gc.drawImage(Sprite.mob_dead3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
+        }
+    }
+
     public void drawEnemy1(GraphicsContext gc) {
         frame++;
         if(frame>=9) frame = 0;
@@ -104,15 +117,15 @@ public class Enemy1 extends Entity {
                 }
                 break;
             case DIE:
-                if (frame >=0 && frame < 2){
-                    gc.drawImage(Sprite.balloom_dead.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-                } else if (frame >= 2 && frame < 4) {
-                    gc.drawImage(Sprite.mob_dead1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-                } else if (frame >= 4 && frame < 6) {
-                    gc.drawImage(Sprite.mob_dead2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-                } else if (frame >= 6) {
-                    gc.drawImage(Sprite.mob_dead3.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-                }
+//                if (frame >=0 && frame < 2){
+//                    gc.drawImage(Sprite.balloom_dead.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
+//                } else if (frame >= 2 && frame < 4) {
+//                    gc.drawImage(Sprite.mob_dead1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
+//                } else if (frame >= 4 && frame < 6) {
+//                    gc.drawImage(Sprite.mob_dead2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
+//                } else if (frame >= 6) {
+//                    gc.drawImage(Sprite.mob_dead3.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
+//                }
                 isAlive = false;
                 break;
         }
@@ -144,7 +157,7 @@ public class Enemy1 extends Entity {
                 moveXY = new Point2D(0, 0);
             }
         }
-        if (moveXY.getX() == 0 && moveXY.getY() == 0) {
+        if (moveXY.getX() == 0 && moveXY.getY() == 0) { // Random vi tri di chuyen
             Random generator = new Random();
             int cal = generator.nextInt();
             switch (cal % 4) {
