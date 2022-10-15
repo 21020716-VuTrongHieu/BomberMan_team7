@@ -18,7 +18,6 @@ public class ItemSuperBom extends Item {
     @Override
     public void checkPickUp() {
         if (this.getPickUp()) {
-            //constValue.SPEED = 8;
             Bom.superBom = true;
         }
     }

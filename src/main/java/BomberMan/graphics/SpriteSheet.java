@@ -4,7 +4,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
-// chim
+//
 public class SpriteSheet {
     private String _path;
     public final int SIZE;

@@ -12,7 +12,7 @@ public abstract class Item extends Entity {
 
 
     public abstract void drawItem(GraphicsContext gc) ;
-        //gc.drawImage(Sprite.powerup_speed.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
+        ///gc.drawImage(Sprite.powerup_speed.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
 
 
     public void checkWithBomMan(Point2D positionBomMan) {

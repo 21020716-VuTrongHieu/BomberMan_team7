@@ -14,7 +14,6 @@ public abstract class Entity {
     protected Image entityImage;
     public boolean isAlive = true;
 
-    //public Entity() chim{}
 
     public Entity() {
         //this.entityImage = entityImage;

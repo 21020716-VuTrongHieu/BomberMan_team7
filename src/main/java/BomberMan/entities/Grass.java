@@ -8,7 +8,7 @@ public class Grass extends Entity {
     }
 
     /*@Override
-    public void update() {chim
+    public void update() {chim/
 
     }*/
 }

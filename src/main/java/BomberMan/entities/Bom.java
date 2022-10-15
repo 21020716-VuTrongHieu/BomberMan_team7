@@ -150,7 +150,6 @@ public class Bom extends Entity{
                     gc.drawImage(Sprite.explosion_horizontal_right_last2.getFxImage(), this.getPosition().getX() + 2 * constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
 
-                //Map.mapTitle[y][x] = constValue.GLASS;
             } else {
                 Map.mapTitle[y][x] = constValue.GLASS;
                 isPut = false;

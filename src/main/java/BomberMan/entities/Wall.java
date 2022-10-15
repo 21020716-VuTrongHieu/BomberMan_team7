@@ -9,7 +9,7 @@ public class Wall extends Entity {
     }
 
     /*@Override
-    public void update() chim{
+    public void update() chim/{
 
     }*/
 }

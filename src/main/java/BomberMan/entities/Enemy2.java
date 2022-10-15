@@ -114,7 +114,6 @@ public class Enemy2 extends Enemy {
                 break;
             case DIE:
                 frame = 0;
-//                drawEnemy1Die(gc);
                 isAlive = false;
                 break;
         }

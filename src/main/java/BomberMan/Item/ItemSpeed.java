@@ -2,7 +2,6 @@ package BomberMan.Item;
 
 import BomberMan.constValue.constValue;
 import BomberMan.graphics.Sprite;
-//import com.example.demo.graphics.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 
 public class ItemSpeed extends Item {
