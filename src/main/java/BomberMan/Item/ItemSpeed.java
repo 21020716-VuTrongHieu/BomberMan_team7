@@ -15,7 +15,7 @@ public class ItemSpeed extends Item {
     @Override
     public void checkPickUp() {
         if (this.getPickUp()) {
-            constValue.SPEED = 12;
+            constValue.SPEED = 8;
         }
     }
 
