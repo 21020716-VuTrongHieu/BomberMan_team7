@@ -97,7 +97,7 @@ public class Enemy1 extends Enemy {
                 } else if (frame >= 4 && frame < 8) {
                     gc.drawImage(Sprite.balloom_left2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
                 } else if (frame >=8 && frame < 12) {
-                    gc.drawImage(Sprite.oneal_left3.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
+                    gc.drawImage(Sprite.balloom_left3.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
                 }
                 break;
             case RIGHT:
