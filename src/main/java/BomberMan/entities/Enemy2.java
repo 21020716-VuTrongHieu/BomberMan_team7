@@ -57,24 +57,11 @@ public class Enemy2 extends Enemy {
         this.state = state;
     }
 
-    public void drawEnemy1Die(GraphicsContext gc) { // Ve quai luc chet
-        frame++;
-        if (frame >= 0 && frame < 15) {
-            gc.drawImage(Sprite.balloom_dead.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-        } else if (frame >= 15 && frame < 30) {
-            gc.drawImage(Sprite.mob_dead1.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-        } else if (frame >= 30 && frame < 45) {
-            gc.drawImage(Sprite.mob_dead2.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-        } else if (frame >= 45 && frame < 60) {
-            gc.drawImage(Sprite.mob_dead3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-        }
-    }
-
     public void drawEnemy(GraphicsContext gc) {
         frame++;
         if (!isAlive) {
             if (frame >= 0 && frame < 15) {
-                gc.drawImage(Sprite.balloom_dead.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
+                gc.drawImage(Sprite.oneal_dead.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
             } else if (frame >= 15 && frame < 30) {
                 gc.drawImage(Sprite.mob_dead1.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
             } else if (frame >= 30 && frame < 45) {
@@ -87,42 +74,42 @@ public class Enemy2 extends Enemy {
         if(frame>=12) frame = 0;
         switch (state) {
             case STOP:
-                gc.drawImage(Sprite.balloom_left1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
+                gc.drawImage(Sprite.oneal_left1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
                 break;
             case UP:
                 if (frame >= 0 && frame < 4) {
-                    gc.drawImage(Sprite.balloom_left1.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
+                    gc.drawImage(Sprite.oneal_left1.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 } else if (frame >= 4 && frame < 8) {
-                    gc.drawImage(Sprite.balloom_left2.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
+                    gc.drawImage(Sprite.oneal_left2.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 } else if (frame >= 8 && frame < 12) {
-                    gc.drawImage(Sprite.balloom_left3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
+                    gc.drawImage(Sprite.oneal_left3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
                 break;
             case DOWN:
                 if (frame >= 0 && frame < 4) {
-                    gc.drawImage(Sprite.balloom_right1.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
+                    gc.drawImage(Sprite.oneal_right1.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 } else if (frame >= 4 && frame < 8) {
-                    gc.drawImage(Sprite.balloom_right2.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
+                    gc.drawImage(Sprite.oneal_right2.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 } else if (frame >= 8 && frame < 12) {
-                    gc.drawImage(Sprite.balloom_right3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
+                    gc.drawImage(Sprite.oneal_right3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
                 break;
             case LEFT:
                 if (frame >=0 && frame < 4){
-                    gc.drawImage(Sprite.balloom_left1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
+                    gc.drawImage(Sprite.oneal_left1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
                 } else if (frame >= 4 && frame < 8) {
-                    gc.drawImage(Sprite.balloom_left2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
+                    gc.drawImage(Sprite.oneal_left2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
                 } else if (frame >=8 && frame < 12) {
-                    gc.drawImage(Sprite.balloom_left3.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
+                    gc.drawImage(Sprite.oneal_left3.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
                 }
                 break;
             case RIGHT:
                 if (frame >=0 && frame < 4){
-                    gc.drawImage(Sprite.balloom_right1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
+                    gc.drawImage(Sprite.oneal_right1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
                 } else if (frame >= 4 && frame < 8) {
-                    gc.drawImage(Sprite.balloom_right2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
+                    gc.drawImage(Sprite.oneal_right2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
                 } else if (frame >= 8 && frame < 12) {
-                    gc.drawImage(Sprite.balloom_right3.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
+                    gc.drawImage(Sprite.oneal_right3.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
                 }
                 break;
             case DIE:
