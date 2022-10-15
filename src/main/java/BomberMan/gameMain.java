@@ -17,7 +17,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import BomberMan.graphics.Sprite;
 import javafx.scene.paint.Color;
 
 import java.io.FileNotFoundException;
@@ -171,11 +170,12 @@ public class gameMain extends Application {
                 man.drawBomMan(mainGc);
 
                 enemy1.update();
-                if (!enemy1.isAlive) {
-                    enemy1.drawEnemy1Die(mainGc);
-                } else {
-                    enemy1.drawEnemy1(mainGc);
-                }
+//                if (!enemy1.isAlive) {
+//                    enemy1.drawEnemy1Die(mainGc);
+//                } else {
+//                    enemy1.drawEnemy1(mainGc);
+//                }
+                enemy1.drawEnemy(mainGc);
 
                 //bricks.drawBrick(mainGc);
                 if (bom[0] != null){
