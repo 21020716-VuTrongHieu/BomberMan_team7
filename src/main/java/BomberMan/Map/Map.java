@@ -179,24 +179,32 @@ public class Map {
             } else if (mapTitle[y - 1][x] == ITEM) {
                 mapTitle[y - 1][x] = ITEM_WAIT;
             }
-            if (mapTitle[y][x - 1] != WALL && mapTitle[y][x - 2] == BRICK) {
+            if (mapTitle[y][x - 1] != WALL && mapTitle[y][x - 1] != BRICK
+                    && mapTitle[y][x - 1] != BRICK_EXP && mapTitle[y][x - 2] == BRICK) {
                 mapTitle[y][x - 2] = BRICK_EXP;
-            } else if (mapTitle[y][x - 1] != WALL && mapTitle[y][x - 2] == ITEM) {
+            } else if (mapTitle[y][x - 1] != WALL && mapTitle[y][x - 1] != BRICK
+                    && mapTitle[y][x - 1] != BRICK_EXP && mapTitle[y][x - 2] == ITEM) {
                 mapTitle[y][x - 2] = ITEM_WAIT;
             }
-            if (mapTitle[y][x + 1] != WALL && mapTitle[y][x + 2] == BRICK) {
+            if (mapTitle[y][x + 1] != WALL && mapTitle[y][x + 1] != BRICK
+                    && mapTitle[y][x + 1] != BRICK_EXP && mapTitle[y][x + 2] == BRICK) {
                 mapTitle[y][x + 2] = BRICK_EXP;
-            } else if (mapTitle[y][x + 1] != WALL && mapTitle[y][x + 2] == ITEM) {
+            } else if (mapTitle[y][x + 1] != WALL && mapTitle[y][x + 1] != BRICK
+                    && mapTitle[y][x + 1] != BRICK_EXP&& mapTitle[y][x + 2] == ITEM) {
                 mapTitle[y][x + 2] = ITEM_WAIT;
             }
-            if (mapTitle[y + 1][x] != WALL && mapTitle[y + 2][x] == BRICK) {
+            if (mapTitle[y + 1][x] != WALL && mapTitle[y + 1][x] != BRICK
+                    && mapTitle[y + 1][x] != BRICK_EXP && mapTitle[y + 2][x] == BRICK) {
                 mapTitle[y + 2][x] = BRICK_EXP;
-            } else if (mapTitle[y + 1][x] != WALL && mapTitle[y + 2][x] == ITEM) {
+            } else if (mapTitle[y + 1][x] != WALL && mapTitle[y + 1][x] != BRICK
+                    && mapTitle[y + 1][x] != BRICK_EXP&& mapTitle[y + 2][x] == ITEM) {
                 mapTitle[y + 2][x] = ITEM_WAIT;
             }
-            if (mapTitle[y - 1][x] != WALL && mapTitle[y - 2][x] == BRICK) {
+            if (mapTitle[y - 1][x] != WALL && mapTitle[y - 1][x] != BRICK
+                    && mapTitle[y - 1][x] != BRICK_EXP && mapTitle[y - 2][x] == BRICK) {
                 mapTitle[y - 2][x] = BRICK_EXP;
-            } else if (mapTitle[y - 1][x] != WALL && mapTitle[y - 2][x] == ITEM) {
+            } else if (mapTitle[y - 1][x] != WALL && mapTitle[y - 1][x] != BRICK
+                    && mapTitle[y - 1][x] != BRICK_EXP&& mapTitle[y - 2][x] == ITEM) {
                 mapTitle[y - 2][x] = ITEM_WAIT;
             }
         }

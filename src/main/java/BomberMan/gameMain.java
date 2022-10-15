@@ -29,7 +29,7 @@ public class gameMain extends Application {
     public static final int WIDTH = 29;
     public static final int HEIGHT = 13;
 
-    private List<Enemy> enemies = new ArrayList<>();
+
     private List<Entity> stillObjects = new ArrayList<>();
 
 
@@ -45,6 +45,7 @@ public class gameMain extends Application {
 
     private List<Brick> brickList = new ArrayList<>();
     private List<Item> itemList = new ArrayList<>();
+    private List<Enemy> enemies = new ArrayList<>();
 
 
 
@@ -68,6 +69,8 @@ public class gameMain extends Application {
 
         Bomber man = new Bomber();
         man.setPosition(constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
+
+
 
         enemies.add(new Enemy1());
         enemies.get(0).setPosition(27*constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
@@ -197,14 +200,15 @@ public class gameMain extends Application {
                 if (bom[0] != null){
                     if (bom[0].getIsPut()) {
                         bom[0].drawBom(mainGc);
+                        bom[0].checkWithBomMan(man.getPosition());
                         if (bom[0].getIsExplode()){
                             map.checkWithBom(bom[0].getPosition());
                             if (bom[0].checkWithBomMan(man.getPosition())) {
-                                System.out.println("DIE");
+                                //System.out.println("DIE");
 //                                mainState[0] = State.DIE;
                             }
                             for (Enemy e : enemies) {
-                                if (bom[0].checkWithBomMan(e.getPosition())) {
+                                if (bom[0].checkWithEnemy(e.getPosition())) {
                                     System.out.println("Enemy1 DIE");
                                     e.setState(State.DIE);
                                 }
@@ -215,7 +219,7 @@ public class gameMain extends Application {
                 }
                 map.loadImage();
                 map.DrawMap(mainGc, brickList,itemList,man.getPosition());
-                System.out.println("DI");
+                //System.out.println("DI");
                 if (isQuit) {
                     mainStage.close();
                 }

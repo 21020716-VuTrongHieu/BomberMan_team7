@@ -122,12 +122,12 @@ public class Enemy2 extends Enemy {
 
     public void calculateState() {
         int x1 = (int) ((this.getPosition().getX()) / constValue.ENTITY_SIZE);
-        int x2 = (int) ((this.getPosition().getX() + constValue.ENTITY_SIZE - 5) / constValue.ENTITY_SIZE);
+        int x2 = (int) ((this.getPosition().getX() + constValue.ENTITY_SIZE - 1) / constValue.ENTITY_SIZE);
         int y1 = (int) ((this.getPosition().getY()) / constValue.ENTITY_SIZE);
-        int y2 = (int) ((this.getPosition().getY() + constValue.ENTITY_SIZE - 5) / constValue.ENTITY_SIZE);
+        int y2 = (int) ((this.getPosition().getY() + constValue.ENTITY_SIZE - 1) / constValue.ENTITY_SIZE);
         if (moveXY.getX() > 0) {
             if (Map.mapTitle[y2][x2] != constValue.GLASS || Map.mapTitle[y1][x2] != constValue.GLASS) {
-                this.setPosition((float) (x1 * constValue.ENTITY_SIZE + constValue.ENTITY_SIZE - constValue.ENTITY_SIZE), (float) (this.getPosition().getY()));
+                this.setPosition((float) (x1 * constValue.ENTITY_SIZE ), (float) (this.getPosition().getY()));
                 moveXY = new Point2D(0, 0);
             }
         } else if (moveXY.getX() < 0) {
@@ -135,9 +135,10 @@ public class Enemy2 extends Enemy {
                 this.setPosition((float) ((x1 + 1) * constValue.ENTITY_SIZE), (float) (this.getPosition().getY()));
                 moveXY = new Point2D(0, 0);
             }
-        } else if (moveXY.getY() > 0) {
+        }
+        if (moveXY.getY() > 0) {
             if (Map.mapTitle[y2][x1] != constValue.GLASS || Map.mapTitle[y2][x2] != constValue.GLASS) {
-                this.setPosition((float) (this.getPosition().getX()), (float) (y1 * constValue.ENTITY_SIZE + constValue.ENTITY_SIZE - constValue.ENTITY_SIZE));
+                this.setPosition((float) (this.getPosition().getX()), (float) (y1 * constValue.ENTITY_SIZE));
                 moveXY = new Point2D(0, 0);
             }
         } else if (moveXY.getY() < 0) {
