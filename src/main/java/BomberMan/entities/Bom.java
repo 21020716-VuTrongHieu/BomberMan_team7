@@ -25,7 +25,7 @@ public class Bom extends Entity{
     public void drawBom(GraphicsContext gc) {
         if (!this.superBom) {
             frame++;
-            if (frame > 35) frame = 0;
+            if (frame > 35) frame = 0; //35
             if (frame >= 0 && frame < 5) {
                 gc.drawImage(Sprite.bomb.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
             } else if (frame >= 5 && frame < 10) {

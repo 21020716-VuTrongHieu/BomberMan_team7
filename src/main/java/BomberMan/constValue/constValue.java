@@ -7,6 +7,7 @@ public class constValue {
     public static final double ENTITY_SIZE = 48;
     public static final double FRAME_SIZE = 40;
     public static double SPEED = 8;
+    public static double ENEMY1_SPEED = 4;
 
     public static final int BRICK = 0;
     public static final int GLASS = 1;

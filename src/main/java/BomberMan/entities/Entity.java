@@ -11,7 +11,7 @@ public abstract class Entity {
     protected double width;
     protected double height;
     protected AnimatedTexture texture;
-
+    protected boolean isAlive = true;
     protected Image entityImage;
 
     //public Entity() chim{}
