@@ -49,6 +49,7 @@ public class Enemy1 extends Enemy {
             default:
                 break;
         }
+
         if (state != State.DIE) calculateState();
 //            this.checkToMap();
     }
