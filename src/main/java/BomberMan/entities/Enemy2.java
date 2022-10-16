@@ -120,13 +120,23 @@ public class Enemy2 extends Enemy {
     }
 
     public void calculateState() {
+        Random generator = new Random();
+        int cal = generator.nextInt();
+//        switch (cal % 99) {
+//            case 0 -> {
+//                moveXY = new Point2D(0, 0);
+//                break;
+//            }
+//        }
+
         int x1 = (int) ((this.getPosition().getX()) / constValue.ENTITY_SIZE);
-        int x2 = (int) ((this.getPosition().getX() + constValue.ENTITY_SIZE - 1) / constValue.ENTITY_SIZE);
+        int x2 = (int) ((this.getPosition().getX() + constValue.ENTITY_SIZE - 1) / constValue.ENTITY_SIZE); // Frame_size - 10) / ...
         int y1 = (int) ((this.getPosition().getY()) / constValue.ENTITY_SIZE);
         int y2 = (int) ((this.getPosition().getY() + constValue.ENTITY_SIZE - 1) / constValue.ENTITY_SIZE);
+
         if (moveXY.getX() > 0) {
             if (Map.mapTitle[y2][x2] != constValue.GLASS || Map.mapTitle[y1][x2] != constValue.GLASS) {
-                this.setPosition((float) (x1 * constValue.ENTITY_SIZE ), (float) (this.getPosition().getY()));
+                this.setPosition((float) (x1 * constValue.ENTITY_SIZE), (float) (this.getPosition().getY()));
                 moveXY = new Point2D(0, 0);
             }
         } else if (moveXY.getX() < 0) {
@@ -134,8 +144,7 @@ public class Enemy2 extends Enemy {
                 this.setPosition((float) ((x1 + 1) * constValue.ENTITY_SIZE), (float) (this.getPosition().getY()));
                 moveXY = new Point2D(0, 0);
             }
-        }
-        if (moveXY.getY() > 0) {
+        } else if (moveXY.getY() > 0) {
             if (Map.mapTitle[y2][x1] != constValue.GLASS || Map.mapTitle[y2][x2] != constValue.GLASS) {
                 this.setPosition((float) (this.getPosition().getX()), (float) (y1 * constValue.ENTITY_SIZE));
                 moveXY = new Point2D(0, 0);
@@ -146,28 +155,43 @@ public class Enemy2 extends Enemy {
                 moveXY = new Point2D(0, 0);
             }
         }
+
         if (moveXY.getX() == 0 && moveXY.getY() == 0) { // Random vi tri di chuyen
-            Random generator = new Random();
-            int cal = generator.nextInt();
-            switch (cal % 4) {
-                case 0 -> {
-                    state = State.RIGHT;
-                    break;
-                }
-                case 1 -> {
-                    state = State.DOWN;
-                    break;
-                }
-                case 2 -> {
-                    state = State.LEFT;
-                    break;
-                }
-                case 3 -> {
-                    state = State.UP;
-                    break;
+            State temp = null;
+            while (temp == null) {
+                generator = new Random();
+                cal = generator.nextInt();
+                switch (cal % 4) {
+                    case 0 -> {
+                        if (Map.mapTitle[y2][x1 + 1] == constValue.GLASS || Map.mapTitle[y1][x1 + 1] == constValue.GLASS) {
+                            state = State.RIGHT;
+                            temp = state;
+                            break;
+                        }
+                    }
+                    case 1 -> {
+                        if (Map.mapTitle[y1 + 1][x2] == constValue.GLASS || Map.mapTitle[y1 + 1][x1] == constValue.GLASS) {
+                            state = State.DOWN;
+                            temp = state;
+                            break;
+                        }
+                    }
+                    case 2 -> {
+                        if (Map.mapTitle[y1][x2 - 1] == constValue.GLASS || Map.mapTitle[y2][x2 - 1] == constValue.GLASS) {
+                            state = State.LEFT;
+                            temp = state;
+                            break;
+                        }
+                    }
+                    case 3 -> {
+                        if (Map.mapTitle[y2 - 1][x1] == constValue.GLASS || Map.mapTitle[y2 - 1][x2] == constValue.GLASS) {
+                            state = State.UP;
+                            temp = state;
+                            break;
+                        }
+                    }
                 }
             }
-
         }
     }
 
