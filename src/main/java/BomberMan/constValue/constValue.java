@@ -9,6 +9,8 @@ public class constValue {
     public static double SPEED = 6;
     public static double ENEMY1_SPEED = 4;
 
+    public static int BOMS = 1;
+    public static final int BOM_WAIT = -1;
     public static final int BRICK = 0;
     public static final int GLASS = 1;
     public static final int WALL = 2;

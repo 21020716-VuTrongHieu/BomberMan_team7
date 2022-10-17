@@ -1,6 +1,7 @@
 package BomberMan;
 
 import BomberMan.Item.Item;
+import BomberMan.Item.ItemBomUp;
 import BomberMan.Item.ItemSpeed;
 import BomberMan.Item.ItemSuperBom;
 import BomberMan.Map.Map;
@@ -46,6 +47,7 @@ public class gameMain extends Application {
     private List<Brick> brickList = new ArrayList<>();
     private List<Item> itemList = new ArrayList<>();
     private List<Enemy> enemies = new ArrayList<>();
+    private List<Bom> bomList = new ArrayList<>();
 
 
 
@@ -84,7 +86,11 @@ public class gameMain extends Application {
         enemies.get(4).setPosition(23 * constValue.ENTITY_SIZE, 6 * constValue.ENTITY_SIZE);
         enemies.add(new Enemy2());
         enemies.get(5).setPosition(17 * constValue.ENTITY_SIZE, 6 * constValue.ENTITY_SIZE);
-        Bom[] bom = new Bom[1];
+
+
+        //Bom[] bom = new Bom[1];
+
+
         for (int i = 0; i < Brick.amountBrick; i++) {
             Brick brick = new Brick();
             brickList.add(brick);
@@ -92,8 +98,11 @@ public class gameMain extends Application {
 
         Item itemSpeed = new ItemSpeed();
         Item itemSuperBom = new ItemSuperBom();
+        Item itemBomUp = new ItemBomUp();
         itemList.add(itemSpeed);
         itemList.add(itemSuperBom);
+        itemList.add(itemBomUp);
+
 
 
         boolean[] keyCheck = new boolean[120]; // Check xem con phim nao dang an khong, neu khong con thi moi dung nhan vat.
@@ -126,10 +135,16 @@ public class gameMain extends Application {
                 if (keyEvent_down.getCode() == KeyCode.Q) {
                     isQuit = true;
                 }
-                if (keyEvent_down.getCode() == KeyCode.SPACE && (bom[0] == null || !bom[0].getIsPut())) {
-                    bom[0] = new Bom(man.getPositionBom());
-                    bom[0].setIsPut(true);//Bom.isPut = true;
-                    bom[0].setIsExplode(false);//Bom.isExplode = false;
+                if (keyEvent_down.getCode() == KeyCode.SPACE /*&& (bom[0] == null || !bom[0].getIsPut())*/) {
+                    //bom[0] = new Bom(man.getPositionBom());
+                    //bom[0].setIsPut(true);//Bom.isPut = true;
+                    //bom[0].setIsExplode(false);//Bom.isExplode = false;
+                    if (bomList.size() < constValue.BOMS) {
+                        Bom bom = new Bom(man.getPositionBom());
+                        //bom.setIsPut(true);
+                        bom.setIsExplode(false);
+                        bomList.add(bom);
+                    }
                 }
 
             }
@@ -188,33 +203,34 @@ public class gameMain extends Application {
                 for (Enemy e : enemies) {
                     e.drawEnemy(mainGc);
                 }
-//                enemy1.update();
-////                if (!enemy1.isAlive) {
-////                    enemy1.drawEnemy1Die(mainGc);
-////                } else {
-////                    enemy1.drawEnemy1(mainGc);
-////                }
-//                enemy1.drawEnemy(mainGc);
+//
+                if (!bomList.isEmpty()) {
 
-                //bricks.drawBrick(mainGc);
-                if (bom[0] != null){
-                    if (bom[0].getIsPut()) {
-                        bom[0].drawBom(mainGc);
-                        bom[0].checkWithBomMan(man.getPosition());
-                        if (bom[0].getIsExplode()){
-                            map.checkWithBom(bom[0].getPosition());
-                            if (bom[0].checkWithBomMan(man.getPosition())) {
-                                //System.out.println("DIE");
-//                                mainState[0] = State.DIE;
+                    for (int i = 0; i < bomList.size(); i++) {
+                        bomList.get(i).drawBom(mainGc);
+                        bomList.get(i).checkWithBomMan(man.getPosition());
+                        if (bomList.get(i).getIsExplode()) {
+                            map.checkWithBom(bomList.get(i).getPosition());
+                            if (bomList.get(i).checkWithBomMan(man.getPosition())) {
+                                System.out.println("DIE");
+//                               mainState[0] = State.DIE;
+                            }
+                            for (int j = 0; j < bomList.size(); j++) {
+                                if (j != i) {
+                                    bomList.get(i).checkWithOtherBom(bomList.get(j));
+                                }
                             }
                             for (Enemy e : enemies) {
-                                if (bom[0].checkWithEnemy(e.getPosition())) {
+                                if (bomList.get(i).checkWithEnemy(e.getPosition())) {
                                     System.out.println("Enemy1 DIE");
                                     e.setState(State.DIE);
                                 }
-
                             }
                         }
+                        if (bomList.get(i).getIsExploded()) {
+                            bomList.remove(i);
+                        }
+
                     }
                 }
                 map.loadImage();

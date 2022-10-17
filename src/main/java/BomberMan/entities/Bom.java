@@ -12,21 +12,23 @@ public class Bom extends Entity{
 //chim chim
 
     private boolean isExplode = false;
-    private boolean isPut = false;
+    private boolean isExploded = false;
+    //private boolean isPut = false;
     private int frame = 0;
     public static boolean superBom = false;
     public Bom(Point2D point) {
         super();
         this.position = point;
         frame = 0;
-        this.isPut = false;
+        //this.isPut = false;
         this.isExplode = false;
+        this.isExploded = false;
     }
     public void drawBom(GraphicsContext gc) {
         int x = (int) (this.getPosition().getX() / constValue.ENTITY_SIZE);
         int y = (int) (this.getPosition().getY() / constValue.ENTITY_SIZE);
-        Map.mapTitle[y][x] = -1;
-        if (!this.superBom) {
+        Map.mapTitle[y][x] = constValue.BOM_WAIT;
+        if (!superBom) {
             frame++;
             if (frame > 35) frame = 0; //35
             if (frame >= 0 && frame < 5) {
@@ -39,124 +41,145 @@ public class Bom extends Entity{
                 gc.drawImage(Sprite.bomb_1.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
             } else if (frame >= 20 && frame < 25) {
                 gc.drawImage(Sprite.bomb.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-            } else if (frame >= 25 && frame < 28) {
+            } else if (frame == 25) {
                 isExplode = true;
+            } else if (frame >= 26 && frame < 29) {
                 gc.drawImage(Sprite.bomb_exploded.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_vertical_top_last.getFxImage(), this.getPosition().getX(), this.getPosition().getY() - constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_vertical_down_last.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal_right_last.getFxImage(), this.getPosition().getX() + constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal_left_last.getFxImage(), this.getPosition().getX() - constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
 
-            } else if (frame >= 28 && frame < 31) {
+            } else if (frame >= 29 && frame < 32) {
                 gc.drawImage(Sprite.bomb_exploded1.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_vertical_top_last1.getFxImage(), this.getPosition().getX(), this.getPosition().getY() - constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_vertical_down_last1.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal_right_last1.getFxImage(), this.getPosition().getX() + constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal_left_last1.getFxImage(), this.getPosition().getX() - constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
 
-            } else if (frame >= 31 && frame < 34) {
+            } else if (frame >= 32 && frame < 35) {
                 gc.drawImage(Sprite.bomb_exploded2.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_vertical_top_last2.getFxImage(), this.getPosition().getX(), this.getPosition().getY() - constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_vertical_down_last2.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal_right_last2.getFxImage(), this.getPosition().getX() + constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal_left_last2.getFxImage(), this.getPosition().getX() - constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-                //Map.mapTitle[y][x] = constValue.GLASS;
-            } else {
                 Map.mapTitle[y][x] = constValue.GLASS;
-                isPut = false;
-                //isExplode = false;
+                this.isExploded = true;
             }
         } else {
             frame++;
 
-            if (frame > 35) frame = 0;
+            if (frame > 40) frame = 0;
             if (frame >= 0 && frame < 6) {
                 gc.drawImage(Sprite.bomb.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
             } else if (frame >= 6 && frame < 12) {
                 gc.drawImage(Sprite.bomb_1.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-            } else if (frame >= 12 && frame < 17) {
+            } else if (frame >= 12 && frame < 18) {
                 gc.drawImage(Sprite.bomb_2.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-            } else if (frame >= 17 && frame < 23) {
+            } else if (frame >= 18 && frame < 24) {
                 gc.drawImage(Sprite.bomb_1.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-            } else if (frame >= 23 && frame < 28) {
+            } else if (frame >= 24 && frame < 30) {
                 gc.drawImage(Sprite.bomb.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-            } else if (frame >= 28 && frame < 30) {
+            } else if (frame == 30) {
+                isExplode = true;
+            }  else if (frame >= 31 && frame < 34) {
                 isExplode = true;
                 gc.drawImage(Sprite.bomb_exploded.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_vertical.getFxImage(), this.getPosition().getX(), this.getPosition().getY() - constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_vertical.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal.getFxImage(), this.getPosition().getX() + constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal.getFxImage(), this.getPosition().getX() - constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-                if (Map.mapTitle[y-1][x] != constValue.WALL && Map.mapTitle[y-1][x] != constValue.BRICK
-                    && Map.mapTitle[y-1][x] != constValue.BRICK_EXP) {
+                if (/*Map.mapTitle[y-1][x] != constValue.WALL && Map.mapTitle[y-1][x] != constValue.BRICK
+                    && Map.mapTitle[y-1][x] != constValue.BRICK_EXP*/Map.mapTitle[y-1][x] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_vertical_top_last.getFxImage(), this.getPosition().getX(), this.getPosition().getY() - 2 * constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (Map.mapTitle[y+1][x] != constValue.WALL && Map.mapTitle[y+1][x] != constValue.BRICK
-                    && Map.mapTitle[y+1][x] != constValue.BRICK_EXP) {
+                if (/*Map.mapTitle[y+1][x] != constValue.WALL && Map.mapTitle[y+1][x] != constValue.BRICK
+                    && Map.mapTitle[y+1][x] != constValue.BRICK_EXP*/Map.mapTitle[y+1][x] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_vertical_down_last.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + 2 * constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (Map.mapTitle[y][x-1] != constValue.WALL && Map.mapTitle[y][x-1] != constValue.BRICK
-                    && Map.mapTitle[y][x-1] != constValue.BRICK_EXP) {
+                if (/*Map.mapTitle[y][x-1] != constValue.WALL && Map.mapTitle[y][x-1] != constValue.BRICK
+                    && Map.mapTitle[y][x-1] != constValue.BRICK_EXP*/Map.mapTitle[y][x-1] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_horizontal_left_last.getFxImage(), this.getPosition().getX() - 2 * constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (Map.mapTitle[y][x+1] != constValue.WALL && Map.mapTitle[y][x+1] != constValue.BRICK
-                    && Map.mapTitle[y][x+1] != constValue.BRICK_EXP) {
+                if (/*Map.mapTitle[y][x+1] != constValue.WALL && Map.mapTitle[y][x+1] != constValue.BRICK
+                    && Map.mapTitle[y][x+1] != constValue.BRICK_EXP*/Map.mapTitle[y][x+1] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_horizontal_right_last.getFxImage(), this.getPosition().getX() + 2 * constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
 
-            } else if (frame >= 30 && frame < 32) {
+            } else if (frame >= 34 && frame < 37) {
                 gc.drawImage(Sprite.bomb_exploded1.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_vertical1.getFxImage(), this.getPosition().getX(), this.getPosition().getY() - constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_vertical1.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal1.getFxImage(), this.getPosition().getX() + constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal1.getFxImage(), this.getPosition().getX() - constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-                if (Map.mapTitle[y-1][x] != constValue.WALL && Map.mapTitle[y-1][x] != constValue.BRICK
-                    && Map.mapTitle[y-1][x] != constValue.BRICK_EXP) {
+                if (/*Map.mapTitle[y-1][x] != constValue.WALL && Map.mapTitle[y-1][x] != constValue.BRICK
+                    && Map.mapTitle[y-1][x] != constValue.BRICK_EXP*/Map.mapTitle[y-1][x] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_vertical_top_last1.getFxImage(), this.getPosition().getX(), this.getPosition().getY() - 2 * constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (Map.mapTitle[y+1][x] != constValue.WALL && Map.mapTitle[y+1][x] != constValue.BRICK
-                    && Map.mapTitle[y+1][x] != constValue.BRICK_EXP) {
+                if (/*Map.mapTitle[y+1][x] != constValue.WALL && Map.mapTitle[y+1][x] != constValue.BRICK
+                    && Map.mapTitle[y+1][x] != constValue.BRICK_EXP*/Map.mapTitle[y+1][x] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_vertical_down_last1.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + 2 * constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (Map.mapTitle[y][x-1] != constValue.WALL && Map.mapTitle[y][x-1] != constValue.BRICK
-                    && Map.mapTitle[y][x-1] != constValue.BRICK_EXP) {
+                if (/*Map.mapTitle[y][x-1] != constValue.WALL && Map.mapTitle[y][x-1] != constValue.BRICK
+                    && Map.mapTitle[y][x-1] != constValue.BRICK_EXP*/Map.mapTitle[y][x-1] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_horizontal_left_last1.getFxImage(), this.getPosition().getX() - 2 * constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (Map.mapTitle[y][x+1] != constValue.WALL && Map.mapTitle[y][x+1] != constValue.BRICK
-                    && Map.mapTitle[y][x+1] != constValue.BRICK_EXP) {
+                if (/*Map.mapTitle[y][x+1] != constValue.WALL && Map.mapTitle[y][x+1] != constValue.BRICK
+                    && Map.mapTitle[y][x+1] != constValue.BRICK_EXP*/Map.mapTitle[y][x+1] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_horizontal_right_last1.getFxImage(), this.getPosition().getX() + 2 * constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
 
-            } else if (frame >= 32 && frame < 34) {
+            } else if (frame >= 37 && frame < 40) {
                 gc.drawImage(Sprite.bomb_exploded2.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_vertical2.getFxImage(), this.getPosition().getX(), this.getPosition().getY() - constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_vertical2.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal2.getFxImage(), this.getPosition().getX() + constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal2.getFxImage(), this.getPosition().getX() - constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-                if (Map.mapTitle[y-1][x] != constValue.WALL && Map.mapTitle[y-1][x] != constValue.BRICK
-                    && Map.mapTitle[y-1][x] != constValue.BRICK_EXP) {
+                if (/*Map.mapTitle[y-1][x] != constValue.WALL && Map.mapTitle[y-1][x] != constValue.BRICK
+                    && Map.mapTitle[y-1][x] != constValue.BRICK_EXP*/Map.mapTitle[y-1][x] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_vertical_top_last2.getFxImage(), this.getPosition().getX(), this.getPosition().getY() - 2 * constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (Map.mapTitle[y+1][x] != constValue.WALL && Map.mapTitle[y+1][x] != constValue.BRICK
-                    && Map.mapTitle[y+1][x] != constValue.BRICK_EXP) {
+                if (/*Map.mapTitle[y+1][x] != constValue.WALL && Map.mapTitle[y+1][x] != constValue.BRICK
+                    && Map.mapTitle[y+1][x] != constValue.BRICK_EXP*/Map.mapTitle[y+1][x] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_vertical_down_last2.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + 2 * constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (Map.mapTitle[y][x-1] != constValue.WALL && Map.mapTitle[y][x-1] != constValue.BRICK
-                    && Map.mapTitle[y][x-1] != constValue.BRICK_EXP) {
+                if (/*Map.mapTitle[y][x-1] != constValue.WALL && Map.mapTitle[y][x-1] != constValue.BRICK
+                    && Map.mapTitle[y][x-1] != constValue.BRICK_EXP*/Map.mapTitle[y][x-1] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_horizontal_left_last2.getFxImage(), this.getPosition().getX() - 2 * constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (Map.mapTitle[y][x+1] != constValue.WALL && Map.mapTitle[y][x+1] != constValue.BRICK
-                    && Map.mapTitle[y][x+1] != constValue.BRICK_EXP) {
+                if (/*Map.mapTitle[y][x+1] != constValue.WALL && Map.mapTitle[y][x+1] != constValue.BRICK
+                    && Map.mapTitle[y][x+1] != constValue.BRICK_EXP*/Map.mapTitle[y][x+1] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_horizontal_right_last2.getFxImage(), this.getPosition().getX() + 2 * constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-
-            } else {
+                this.isExploded = true;
                 Map.mapTitle[y][x] = constValue.GLASS;
-                isPut = false;
-                //isExplode = false;
             }
         }
 
+    }
+
+    public void checkWithOtherBom(Bom other) {
+        int x = (int) (this.getPosition().getX() / constValue.ENTITY_SIZE);
+        int y = (int) (this.getPosition().getY() / constValue.ENTITY_SIZE);
+
+        int x_ = (int) (other.getPosition().getX() / constValue.ENTITY_SIZE);
+        int y_ = (int) (other.getPosition().getY() / constValue.ENTITY_SIZE);
+
+        if (this.getIsExplode()) {
+            if (superBom) {
+                if (x_ == x && (y_ >= y - 2 && y_ <= y + 2)) {
+                    other.frame = 25;
+                } else if (y == y_ && (x_ >= x - 2 && x_ < x + 2)) {
+                    other.frame = 25;
+                }
+            } else {
+                if (x_ == x && (y_ >= y - 1 && y_ <= y + 1)) {
+                    other.frame = 30;
+                } else if (y == y_ && (x_ >= x - 1 && x_ < x + 1)) {
+                    other.frame = 30;
+                }
+            }
+        }
     }
 
     public void setIsExplode(boolean a) {
@@ -167,13 +190,21 @@ public class Bom extends Entity{
         return this.isExplode;
     }
 
-    public void setIsPut(boolean a) {
+    public void setIsExploded(boolean a) {
+        this.isExploded = a;
+    }
+
+    public boolean getIsExploded() {
+        return this.isExploded;
+    }
+
+    /*public void setIsPut(boolean a) {
         this.isPut = a;
     }
 
     public boolean getIsPut() {
         return this.isPut;
-    }
+    }*/
 
     public boolean checkWithBomMan(Point2D positionBomMan) {
         int x = (int) (this.getPosition().getX() / constValue.ENTITY_SIZE);

@@ -11,7 +11,7 @@ public class ItemSuperBom extends Item {
 
     @Override
     public void drawItem(GraphicsContext gc) {
-        gc.drawImage(Sprite.powerup_bombs.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
+        gc.drawImage(Sprite.powerup_flames.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
 
     }
 

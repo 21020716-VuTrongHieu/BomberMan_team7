@@ -19,11 +19,11 @@ public abstract class Item extends Entity {
         double x1 = positionBomMan.getX();
         double x2 = positionBomMan.getX() + constValue.FRAME_SIZE - 9;
         double y1 = positionBomMan.getY();
-        double y2 = positionBomMan.getY() + constValue.FRAME_SIZE - 4;
-        if (((x1 >= this.getPosition().getX() && x1 <= this.getPosition().getX() + constValue.ENTITY_SIZE)
-            && (y1 >= this.getPosition().getY() && y1 <= this.getPosition().getY() + constValue.ENTITY_SIZE))
-        ||((x2 >= this.getPosition().getX() && x2 <= this.getPosition().getX() + constValue.ENTITY_SIZE)
-                && (y2 >= this.getPosition().getY() && y2 <= this.getPosition().getY() + constValue.ENTITY_SIZE))) {
+        double y2 = positionBomMan.getY() + constValue.FRAME_SIZE ;
+        if (((x2 >= this.getPosition().getX() && x1 <= this.getPosition().getX() + constValue.ENTITY_SIZE)
+            && (y2 >= this.getPosition().getY() && y1 <= this.getPosition().getY() + constValue.ENTITY_SIZE))
+        /*||((x2 >= this.getPosition().getX() && x2 <= this.getPosition().getX() + constValue.ENTITY_SIZE)
+                && (y2 >= this.getPosition().getY() && y2 <= this.getPosition().getY() + constValue.ENTITY_SIZE))*/) {
             isPickUp = true;
         }
     }
