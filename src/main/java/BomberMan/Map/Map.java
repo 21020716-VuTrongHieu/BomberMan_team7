@@ -135,7 +135,7 @@ public class Map {
 
         int x = (int) (positionBom.getX() / constValue.ENTITY_SIZE);
         int y = (int) (positionBom.getY() / constValue.ENTITY_SIZE);
-        //System.out.println(y + " " + x);
+        ///System.out.println(y + " " + x);
 
         if (!Bom.superBom) {
             if (mapTitle[y][x - 1] == BRICK) {

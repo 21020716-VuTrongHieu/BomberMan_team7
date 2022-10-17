@@ -89,20 +89,16 @@ public class Bom extends Entity{
                 gc.drawImage(Sprite.explosion_vertical.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal.getFxImage(), this.getPosition().getX() + constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal.getFxImage(), this.getPosition().getX() - constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-                if (/*Map.mapTitle[y-1][x] != constValue.WALL && Map.mapTitle[y-1][x] != constValue.BRICK
-                    && Map.mapTitle[y-1][x] != constValue.BRICK_EXP*/Map.mapTitle[y-1][x] == constValue.GLASS) {
+                if (Map.mapTitle[y-1][x] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_vertical_top_last.getFxImage(), this.getPosition().getX(), this.getPosition().getY() - 2 * constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (/*Map.mapTitle[y+1][x] != constValue.WALL && Map.mapTitle[y+1][x] != constValue.BRICK
-                    && Map.mapTitle[y+1][x] != constValue.BRICK_EXP*/Map.mapTitle[y+1][x] == constValue.GLASS) {
+                if (Map.mapTitle[y+1][x] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_vertical_down_last.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + 2 * constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (/*Map.mapTitle[y][x-1] != constValue.WALL && Map.mapTitle[y][x-1] != constValue.BRICK
-                    && Map.mapTitle[y][x-1] != constValue.BRICK_EXP*/Map.mapTitle[y][x-1] == constValue.GLASS) {
+                if (Map.mapTitle[y][x-1] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_horizontal_left_last.getFxImage(), this.getPosition().getX() - 2 * constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (/*Map.mapTitle[y][x+1] != constValue.WALL && Map.mapTitle[y][x+1] != constValue.BRICK
-                    && Map.mapTitle[y][x+1] != constValue.BRICK_EXP*/Map.mapTitle[y][x+1] == constValue.GLASS) {
+                if (Map.mapTitle[y][x+1] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_horizontal_right_last.getFxImage(), this.getPosition().getX() + 2 * constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
 
@@ -112,20 +108,16 @@ public class Bom extends Entity{
                 gc.drawImage(Sprite.explosion_vertical1.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal1.getFxImage(), this.getPosition().getX() + constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal1.getFxImage(), this.getPosition().getX() - constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-                if (/*Map.mapTitle[y-1][x] != constValue.WALL && Map.mapTitle[y-1][x] != constValue.BRICK
-                    && Map.mapTitle[y-1][x] != constValue.BRICK_EXP*/Map.mapTitle[y-1][x] == constValue.GLASS) {
+                if (Map.mapTitle[y-1][x] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_vertical_top_last1.getFxImage(), this.getPosition().getX(), this.getPosition().getY() - 2 * constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (/*Map.mapTitle[y+1][x] != constValue.WALL && Map.mapTitle[y+1][x] != constValue.BRICK
-                    && Map.mapTitle[y+1][x] != constValue.BRICK_EXP*/Map.mapTitle[y+1][x] == constValue.GLASS) {
+                if (Map.mapTitle[y+1][x] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_vertical_down_last1.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + 2 * constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (/*Map.mapTitle[y][x-1] != constValue.WALL && Map.mapTitle[y][x-1] != constValue.BRICK
-                    && Map.mapTitle[y][x-1] != constValue.BRICK_EXP*/Map.mapTitle[y][x-1] == constValue.GLASS) {
+                if (Map.mapTitle[y][x-1] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_horizontal_left_last1.getFxImage(), this.getPosition().getX() - 2 * constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (/*Map.mapTitle[y][x+1] != constValue.WALL && Map.mapTitle[y][x+1] != constValue.BRICK
-                    && Map.mapTitle[y][x+1] != constValue.BRICK_EXP*/Map.mapTitle[y][x+1] == constValue.GLASS) {
+                if (Map.mapTitle[y][x+1] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_horizontal_right_last1.getFxImage(), this.getPosition().getX() + 2 * constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
 
@@ -135,20 +127,16 @@ public class Bom extends Entity{
                 gc.drawImage(Sprite.explosion_vertical2.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal2.getFxImage(), this.getPosition().getX() + constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal2.getFxImage(), this.getPosition().getX() - constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-                if (/*Map.mapTitle[y-1][x] != constValue.WALL && Map.mapTitle[y-1][x] != constValue.BRICK
-                    && Map.mapTitle[y-1][x] != constValue.BRICK_EXP*/Map.mapTitle[y-1][x] == constValue.GLASS) {
+                if (Map.mapTitle[y-1][x] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_vertical_top_last2.getFxImage(), this.getPosition().getX(), this.getPosition().getY() - 2 * constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (/*Map.mapTitle[y+1][x] != constValue.WALL && Map.mapTitle[y+1][x] != constValue.BRICK
-                    && Map.mapTitle[y+1][x] != constValue.BRICK_EXP*/Map.mapTitle[y+1][x] == constValue.GLASS) {
+                if (Map.mapTitle[y+1][x] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_vertical_down_last2.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + 2 * constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (/*Map.mapTitle[y][x-1] != constValue.WALL && Map.mapTitle[y][x-1] != constValue.BRICK
-                    && Map.mapTitle[y][x-1] != constValue.BRICK_EXP*/Map.mapTitle[y][x-1] == constValue.GLASS) {
+                if (Map.mapTitle[y][x-1] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_horizontal_left_last2.getFxImage(), this.getPosition().getX() - 2 * constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (/*Map.mapTitle[y][x+1] != constValue.WALL && Map.mapTitle[y][x+1] != constValue.BRICK
-                    && Map.mapTitle[y][x+1] != constValue.BRICK_EXP*/Map.mapTitle[y][x+1] == constValue.GLASS) {
+                if (Map.mapTitle[y][x+1] == constValue.GLASS) {
                     gc.drawImage(Sprite.explosion_horizontal_right_last2.getFxImage(), this.getPosition().getX() + 2 * constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
                 this.isExploded = true;

@@ -88,7 +88,7 @@ public class gameMain extends Application {
         enemies.get(5).setPosition(17 * constValue.ENTITY_SIZE, 6 * constValue.ENTITY_SIZE);
 
 
-        //Bom[] bom = new Bom[1];
+        ///Bom[] bom = new Bom[1];
 
 
         for (int i = 0; i < Brick.amountBrick; i++) {

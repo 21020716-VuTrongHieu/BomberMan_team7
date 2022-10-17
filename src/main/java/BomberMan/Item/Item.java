@@ -16,14 +16,12 @@ public abstract class Item extends Entity {
 
 
     public void checkWithBomMan(Point2D positionBomMan) {
-        double x1 = positionBomMan.getX();
-        double x2 = positionBomMan.getX() + constValue.FRAME_SIZE - 9;
-        double y1 = positionBomMan.getY();
-        double y2 = positionBomMan.getY() + constValue.FRAME_SIZE ;
+        double x1 = positionBomMan.getX() + 5;
+        double x2 = positionBomMan.getX() + constValue.FRAME_SIZE - 15;
+        double y1 = positionBomMan.getY() + 5;
+        double y2 = positionBomMan.getY() + constValue.FRAME_SIZE - 5;
         if (((x2 >= this.getPosition().getX() && x1 <= this.getPosition().getX() + constValue.ENTITY_SIZE)
-            && (y2 >= this.getPosition().getY() && y1 <= this.getPosition().getY() + constValue.ENTITY_SIZE))
-        /*||((x2 >= this.getPosition().getX() && x2 <= this.getPosition().getX() + constValue.ENTITY_SIZE)
-                && (y2 >= this.getPosition().getY() && y2 <= this.getPosition().getY() + constValue.ENTITY_SIZE))*/) {
+            && (y2 >= this.getPosition().getY() && y1 <= this.getPosition().getY() + constValue.ENTITY_SIZE))) {
             isPickUp = true;
         }
     }

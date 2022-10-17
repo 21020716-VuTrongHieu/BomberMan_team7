@@ -4,7 +4,7 @@ import BomberMan.constValue.constValue;
 import BomberMan.graphics.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 
-//
+
 public class Brick extends Entity {
     private int frame;
     private boolean isExploded;

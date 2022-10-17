@@ -210,7 +210,7 @@ public class Enemy1 extends Enemy {
 //        switch (cal % 99) {
 //            case 0 -> {
 //                moveXY = new Point2D(0, 0);
-//                break;
+///                break;
 //            }
 //        }
 
