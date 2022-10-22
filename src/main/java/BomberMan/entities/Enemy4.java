@@ -71,6 +71,8 @@ public class Enemy4 extends Enemy {
                 gc.drawImage(Sprite.mob_dead2.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
             } else if (frame >= 45 && frame < 60) {
                 gc.drawImage(Sprite.mob_dead3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
+            } else if (frame == 60) {
+                constValue.ENEMIES--;
             }
             return;
         }
