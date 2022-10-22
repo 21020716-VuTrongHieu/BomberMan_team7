@@ -153,22 +153,22 @@ public class Enemy3 extends Enemy {
         int y2 = (int) ((this.getPosition().getY() + constValue.ENTITY_SIZE - 1) / constValue.ENTITY_SIZE);
 
         if (moveXY.getX() > 0) {
-            if (Map.mapTitle[y2][x2] != constValue.GLASS || Map.mapTitle[y1][x2] != constValue.GLASS) {
+            if (Map.mapTitle[y2][x2] != constValue.GRASS || Map.mapTitle[y1][x2] != constValue.GRASS) {
                 this.setPosition((float) (x1 * constValue.ENTITY_SIZE), (float) (this.getPosition().getY()));
                 moveXY = new Point2D(0, 0);
             }
         } else if (moveXY.getX() < 0) {
-            if (Map.mapTitle[y1][x1] != constValue.GLASS || Map.mapTitle[y2][x1] != constValue.GLASS) {
+            if (Map.mapTitle[y1][x1] != constValue.GRASS || Map.mapTitle[y2][x1] != constValue.GRASS) {
                 this.setPosition((float) ((x1 + 1) * constValue.ENTITY_SIZE), (float) (this.getPosition().getY()));
                 moveXY = new Point2D(0, 0);
             }
         } else if (moveXY.getY() > 0) {
-            if (Map.mapTitle[y2][x1] != constValue.GLASS || Map.mapTitle[y2][x2] != constValue.GLASS) {
+            if (Map.mapTitle[y2][x1] != constValue.GRASS || Map.mapTitle[y2][x2] != constValue.GRASS) {
                 this.setPosition((float) (this.getPosition().getX()), (float) (y1 * constValue.ENTITY_SIZE));
                 moveXY = new Point2D(0, 0);
             }
         } else if (moveXY.getY() < 0) {
-            if (Map.mapTitle[y1][x1] != constValue.GLASS || Map.mapTitle[y1][x2] != constValue.GLASS) {
+            if (Map.mapTitle[y1][x1] != constValue.GRASS || Map.mapTitle[y1][x2] != constValue.GRASS) {
                 this.setPosition((float) (this.getPosition().getX()), (float) ((y1 + 1) * constValue.ENTITY_SIZE));
                 moveXY = new Point2D(0, 0);
             }
@@ -181,28 +181,28 @@ public class Enemy3 extends Enemy {
                 cal = generator.nextInt();
                 switch (cal % 4) {
                     case 0 -> {
-                        if (Map.mapTitle[y2][x1 + 1] == constValue.GLASS || Map.mapTitle[y1][x1 + 1] == constValue.GLASS) {
+                        if (Map.mapTitle[y2][x1 + 1] == constValue.GRASS || Map.mapTitle[y1][x1 + 1] == constValue.GRASS) {
                             state = State.RIGHT;
                             temp = state;
                             break;
                         }
                     }
                     case 1 -> {
-                        if (Map.mapTitle[y1 + 1][x2] == constValue.GLASS || Map.mapTitle[y1 + 1][x1] == constValue.GLASS) {
+                        if (Map.mapTitle[y1 + 1][x2] == constValue.GRASS || Map.mapTitle[y1 + 1][x1] == constValue.GRASS) {
                             state = State.DOWN;
                             temp = state;
                             break;
                         }
                     }
                     case 2 -> {
-                        if (Map.mapTitle[y1][x2 - 1] == constValue.GLASS || Map.mapTitle[y2][x2 - 1] == constValue.GLASS) {
+                        if (Map.mapTitle[y1][x2 - 1] == constValue.GRASS || Map.mapTitle[y2][x2 - 1] == constValue.GRASS) {
                             state = State.LEFT;
                             temp = state;
                             break;
                         }
                     }
                     case 3 -> {
-                        if (Map.mapTitle[y2 - 1][x1] == constValue.GLASS || Map.mapTitle[y2 - 1][x2] == constValue.GLASS) {
+                        if (Map.mapTitle[y2 - 1][x1] == constValue.GRASS || Map.mapTitle[y2 - 1][x2] == constValue.GRASS) {
                             state = State.UP;
                             temp = state;
                             break;

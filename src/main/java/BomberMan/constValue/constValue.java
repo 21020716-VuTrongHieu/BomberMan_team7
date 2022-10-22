@@ -12,7 +12,7 @@ public class constValue {
 
     public static final int BOM_WAIT = -1;
     public static final int BRICK = 0;
-    public static final int GLASS = 1;
+    public static final int GRASS = 1;
     public static final int WALL = 2;
     public static final int BRICK_EXP = 3;
     public static final int ITEM = 4;

@@ -30,7 +30,7 @@ public class Map {
 
     public void LoadMap(int level) throws FileNotFoundException {
 
-        Scanner input = new Scanner(new File("src/main/resources/assets/levels/MapGame1.txt"));
+        Scanner input = new Scanner(new File("src/main/resources/assets/levels/MapGame" + level + ".txt"));
         for (int i = 0; i < 14; i++) {
             for (int j = 0; j < 29; j++) {
                 int a = input.nextInt();
@@ -40,6 +40,7 @@ public class Map {
                 }
             }
         }
+
     }
     public void loadImage(){
         for (int i = 0; i < 14; i++) {
@@ -102,7 +103,7 @@ public class Map {
                     brickList.get(x).setPosition(x_pos,y_pos);
                     brickList.get(x).drawBrick(mainGraphic);
                     if (!brickList.get(x).getIsExploded()){
-                        mapTitle[i][j] = GLASS;
+                        mapTitle[i][j] = GRASS;
                     }
                     x++;
                 } else if (mapTitle[i][j] == ITEM_WAIT) {
@@ -121,7 +122,7 @@ public class Map {
                     if (itemList.get(0).getPickUp()){
                         itemList.get(0).checkPickUp();
                         itemList.remove(0);
-                        mapTitle[i][j] = GLASS;
+                        mapTitle[i][j] = GRASS;
                     }
 
                 }

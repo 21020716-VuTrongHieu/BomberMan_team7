@@ -73,7 +73,7 @@ public class Bom extends Entity{
                 gc.drawImage(Sprite.explosion_vertical_down_last2.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal_right_last2.getFxImage(), this.getPosition().getX() + constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal_left_last2.getFxImage(), this.getPosition().getX() - constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-                Map.mapTitle[y][x] = constValue.GLASS;
+                Map.mapTitle[y][x] = constValue.GRASS;
                 this.isExploded = true;
             }
         } else {
@@ -110,16 +110,16 @@ public class Bom extends Entity{
                 gc.drawImage(Sprite.explosion_vertical.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal.getFxImage(), this.getPosition().getX() + constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal.getFxImage(), this.getPosition().getX() - constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-                if (Map.mapTitle[y-1][x] == constValue.GLASS) {
+                if (Map.mapTitle[y-1][x] == constValue.GRASS) {
                     gc.drawImage(Sprite.explosion_vertical_top_last.getFxImage(), this.getPosition().getX(), this.getPosition().getY() - 2 * constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (Map.mapTitle[y+1][x] == constValue.GLASS) {
+                if (Map.mapTitle[y+1][x] == constValue.GRASS) {
                     gc.drawImage(Sprite.explosion_vertical_down_last.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + 2 * constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (Map.mapTitle[y][x-1] == constValue.GLASS) {
+                if (Map.mapTitle[y][x-1] == constValue.GRASS) {
                     gc.drawImage(Sprite.explosion_horizontal_left_last.getFxImage(), this.getPosition().getX() - 2 * constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (Map.mapTitle[y][x+1] == constValue.GLASS) {
+                if (Map.mapTitle[y][x+1] == constValue.GRASS) {
                     gc.drawImage(Sprite.explosion_horizontal_right_last.getFxImage(), this.getPosition().getX() + 2 * constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
 
@@ -129,16 +129,16 @@ public class Bom extends Entity{
                 gc.drawImage(Sprite.explosion_vertical1.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal1.getFxImage(), this.getPosition().getX() + constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal1.getFxImage(), this.getPosition().getX() - constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-                if (Map.mapTitle[y-1][x] == constValue.GLASS) {
+                if (Map.mapTitle[y-1][x] == constValue.GRASS) {
                     gc.drawImage(Sprite.explosion_vertical_top_last1.getFxImage(), this.getPosition().getX(), this.getPosition().getY() - 2 * constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (Map.mapTitle[y+1][x] == constValue.GLASS) {
+                if (Map.mapTitle[y+1][x] == constValue.GRASS) {
                     gc.drawImage(Sprite.explosion_vertical_down_last1.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + 2 * constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (Map.mapTitle[y][x-1] == constValue.GLASS) {
+                if (Map.mapTitle[y][x-1] == constValue.GRASS) {
                     gc.drawImage(Sprite.explosion_horizontal_left_last1.getFxImage(), this.getPosition().getX() - 2 * constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (Map.mapTitle[y][x+1] == constValue.GLASS) {
+                if (Map.mapTitle[y][x+1] == constValue.GRASS) {
                     gc.drawImage(Sprite.explosion_horizontal_right_last1.getFxImage(), this.getPosition().getX() + 2 * constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
 
@@ -148,20 +148,20 @@ public class Bom extends Entity{
                 gc.drawImage(Sprite.explosion_vertical2.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal2.getFxImage(), this.getPosition().getX() + constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_horizontal2.getFxImage(), this.getPosition().getX() - constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-                if (Map.mapTitle[y-1][x] == constValue.GLASS) {
+                if (Map.mapTitle[y-1][x] == constValue.GRASS) {
                     gc.drawImage(Sprite.explosion_vertical_top_last2.getFxImage(), this.getPosition().getX(), this.getPosition().getY() - 2 * constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (Map.mapTitle[y+1][x] == constValue.GLASS) {
+                if (Map.mapTitle[y+1][x] == constValue.GRASS) {
                     gc.drawImage(Sprite.explosion_vertical_down_last2.getFxImage(), this.getPosition().getX(), this.getPosition().getY() + 2 * constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (Map.mapTitle[y][x-1] == constValue.GLASS) {
+                if (Map.mapTitle[y][x-1] == constValue.GRASS) {
                     gc.drawImage(Sprite.explosion_horizontal_left_last2.getFxImage(), this.getPosition().getX() - 2 * constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
-                if (Map.mapTitle[y][x+1] == constValue.GLASS) {
+                if (Map.mapTitle[y][x+1] == constValue.GRASS) {
                     gc.drawImage(Sprite.explosion_horizontal_right_last2.getFxImage(), this.getPosition().getX() + 2 * constValue.ENTITY_SIZE, this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 }
                 this.isExploded = true;
-                Map.mapTitle[y][x] = constValue.GLASS;
+                Map.mapTitle[y][x] = constValue.GRASS;
             }
         }
 
@@ -239,7 +239,7 @@ public class Bom extends Entity{
                     && (this.getPosition().getY() + 3*constValue.ENTITY_SIZE) >= positionBomMan.getY()) {
                 return true;
             }
-            //Map.mapTitle[y][x] = constValue.GLASS;
+            //Map.mapTitle[y][x] = constValue.GRASS;
         } else if (!superBom && this.isExplode) {
             if ((this.getPosition().getX() - constValue.ENTITY_SIZE) <= (positionBomMan.getX() + constValue.FRAME_SIZE - 11)
                     && (this.getPosition().getX() + 2*constValue.ENTITY_SIZE) >= positionBomMan.getX()
@@ -252,7 +252,7 @@ public class Bom extends Entity{
                     && (this.getPosition().getY() + 2*constValue.ENTITY_SIZE) >= positionBomMan.getY()) {
                 return true;
             }
-            //Map.mapTitle[y][x] = constValue.GLASS;
+            //Map.mapTitle[y][x] = constValue.GRASS;
         }
 
 
@@ -281,18 +281,18 @@ public class Bom extends Entity{
                 tmp2 = y + 1;
             }
 
-            if ((Map.mapTitle[y][tmp1] == constValue.GLASS) && ((this.getPosition().getX() - 2*constValue.ENTITY_SIZE + 2) <= (positionEnemy.getX() + constValue.ENTITY_SIZE)
+            if ((Map.mapTitle[y][tmp1] == constValue.GRASS) && ((this.getPosition().getX() - 2*constValue.ENTITY_SIZE + 2) <= (positionEnemy.getX() + constValue.ENTITY_SIZE)
                     && (this.getPosition().getX() + 3*constValue.ENTITY_SIZE - 2) >= positionEnemy.getX()
                     && this.getPosition().getY() + 2 <= (positionEnemy.getY() + constValue.ENTITY_SIZE)
                     && (this.getPosition().getY() + constValue.ENTITY_SIZE - 2) >= positionEnemy.getY())) {
                 return true;
-            } else if ((Map.mapTitle[tmp2][x] == constValue.GLASS) && (this.getPosition().getX() + 2 <= (positionEnemy.getX() + constValue.ENTITY_SIZE)
+            } else if ((Map.mapTitle[tmp2][x] == constValue.GRASS) && (this.getPosition().getX() + 2 <= (positionEnemy.getX() + constValue.ENTITY_SIZE)
                     && (this.getPosition().getX() + constValue.ENTITY_SIZE - 2) >= positionEnemy.getX()
                     && (this.getPosition().getY() - 2*constValue.ENTITY_SIZE + 2) <= (positionEnemy.getY() + constValue.ENTITY_SIZE)
                     && (this.getPosition().getY() + 3*constValue.ENTITY_SIZE - 2) >= positionEnemy.getY())) {
                 return true;
             }
-            //Map.mapTitle[y][x] = constValue.GLASS;
+            //Map.mapTitle[y][x] = constValue.GRASS;
         } else if (!superBom && this.isExplode) {
             if ((this.getPosition().getX() - constValue.ENTITY_SIZE + 2) <= (positionEnemy.getX() + constValue.ENTITY_SIZE)
                     && (this.getPosition().getX() + 2*constValue.ENTITY_SIZE - 2) >= positionEnemy.getX()

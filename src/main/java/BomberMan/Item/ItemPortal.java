@@ -4,10 +4,10 @@ import BomberMan.constValue.constValue;
 import BomberMan.graphics.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 
-public class ItemGate extends Item {
+public class ItemPortal extends Item {
     @Override
     public void drawItem(GraphicsContext gc) {
-        gc.drawImage(Sprite.gate.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
+        gc.drawImage(Sprite.portal.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
     }
 
     @Override

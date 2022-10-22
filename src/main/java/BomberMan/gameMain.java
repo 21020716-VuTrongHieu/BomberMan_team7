@@ -49,6 +49,7 @@ public class gameMain extends Application {
     private List<Item> itemList = new ArrayList<>();
     public static List<Enemy> enemies = new ArrayList<>();
     private List<Bom> bomList = new ArrayList<>();
+    int level = 1;
 
     public Text textInGame = new Text();
 
@@ -63,14 +64,14 @@ public class gameMain extends Application {
         mainState[0] = State.STOP;
         ////////////////////////////////////////////////////////////////////////
         // Text //
-        textInGame.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR,50));
+        textInGame.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR,48));
         textInGame.setX(0);
-        textInGame.setY(constValue.ENTITY_SIZE);
+        textInGame.setY(48);
         //////////////////////////////////////////////////////////////////////////
         //      tao NV            //
         Map map = new Map();
         try {
-            map.LoadMap(0);
+            map.LoadMap(level);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -86,43 +87,29 @@ public class gameMain extends Application {
                     Enemy newEnemy = new Enemy1();
                     newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
                     enemies.add(newEnemy);
-                    Map.mapTitle[i][j] = constValue.GLASS;
+                    Map.mapTitle[i][j] = constValue.GRASS;
                     constValue.ENEMIES++;
                 } else if (Map.mapTitle[i][j] == constValue.ENEMY_2) {
                     Enemy newEnemy = new Enemy2();
                     newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
                     enemies.add(newEnemy);
-                    Map.mapTitle[i][j] = constValue.GLASS;
+                    Map.mapTitle[i][j] = constValue.GRASS;
                     constValue.ENEMIES++;
                 } else if (Map.mapTitle[i][j] == constValue.ENEMY_3) {
                     Enemy newEnemy = new Enemy3();
                     newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
                     enemies.add(newEnemy);
-                    Map.mapTitle[i][j] = constValue.GLASS;
+                    Map.mapTitle[i][j] = constValue.GRASS;
                     constValue.ENEMIES++;
                 } else if (Map.mapTitle[i][j] == constValue.ENEMY_4) {
                     Enemy newEnemy = new Enemy4();
                     newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
                     enemies.add(newEnemy);
-                    Map.mapTitle[i][j] = constValue.GLASS;
+                    Map.mapTitle[i][j] = constValue.GRASS;
                     constValue.ENEMIES++;
                 }
             }
         }
-
-        /*enemies.add(new Enemy1());
-        enemies.get(0).setPosition(27*constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-        enemies.add(new Enemy1());
-        enemies.get(1).setPosition(8 * constValue.ENTITY_SIZE, 5 * constValue.ENTITY_SIZE);
-        enemies.add(new Enemy1());
-        enemies.get(2).setPosition(5 * constValue.ENTITY_SIZE, 11 * constValue.ENTITY_SIZE);
-        enemies.add(new Enemy1());
-        enemies.get(3).setPosition(15 * constValue.ENTITY_SIZE, 11 * constValue.ENTITY_SIZE);
-        enemies.add(new Enemy2());
-        enemies.get(4).setPosition(23 * constValue.ENTITY_SIZE, 6 * constValue.ENTITY_SIZE);
-        enemies.add(new Enemy2());
-        enemies.get(5).setPosition(17 * constValue.ENTITY_SIZE, 6 * constValue.ENTITY_SIZE);*/
-
 
         ///Bom[] bom = new Bom[1];
 
@@ -132,8 +119,8 @@ public class gameMain extends Application {
             brickList.add(brick);
         }
 
-        Item itemGate = new ItemGate();
-        itemGate.setPosition(constValue.ENTITY_SIZE, 2*constValue.ENTITY_SIZE);
+        Item itemPortal = new ItemPortal();
+        itemPortal.setPosition(constValue.ENTITY_SIZE, 2*constValue.ENTITY_SIZE);
         Item itemSpeed = new ItemSpeed();
         Item itemSuperBom = new ItemSuperBom();
         Item itemBomUp = new ItemBomUp();
@@ -231,24 +218,25 @@ public class gameMain extends Application {
                 mainGc.fillRect(0,0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 13);
 
                 ////text////
-                textInGame.setText("🚩 " + constValue.LEVEL + "    💜 " + constValue.LIFE + "    💵 " + constValue.SCORE
+                textInGame.setText("🚩 " + constValue.LEVEL + "    ❤ " + constValue.LIFE + "    💵 " + constValue.SCORE
                 + "    🔥 " + constValue.FLAME + "    👟 " + constValue.SPEED + "     💣 " + constValue.BOMS
                         + "    👻 " + constValue.ENEMIES + "    ⏰ " + constValue.TIME);
 
 
-                ///Gate///
+                ///Portal///
                 if (constValue.ENEMIES == 0) {
-                    itemGate.drawItem(mainGc);
-                    itemGate.setPickUp(itemGate.checkWithBomMan(man.getPosition()));
-                    itemGate.checkPickUp();
+                    itemPortal.drawItem(mainGc);
+                    itemPortal.setPickUp(itemPortal.checkWithBomMan(man.getPosition()));
+                    itemPortal.checkPickUp();
                 }
                 ///Bom Man///
                 man.update(mainState[0]);
-                man.drawBomMan(mainGc);
 
                 for (Enemy e : enemies) {
+                    man.checkwithEnemy(e);
                     e.update();
                 }
+                man.drawBomMan(mainGc);
 
                 for (Enemy e : enemies) {
                     e.drawEnemy(mainGc);
