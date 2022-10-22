@@ -56,7 +56,7 @@ public class Enemy4 extends Enemy {
         }
 
         if (state != State.DIE) calculateState();
-//            this.checkToMap();
+///            this.checkToMap();
     }
 
     @Override
