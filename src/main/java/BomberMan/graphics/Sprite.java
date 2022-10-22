@@ -77,27 +77,27 @@ public class Sprite {
 
     public static Sprite oneal_dead = new Sprite(DEFAULT_SIZE, 11, 3, SpriteSheet.tiles, 48, 48);
 
-    //Doll
-    public static Sprite doll_left1 = new Sprite(DEFAULT_SIZE, 13, 0, SpriteSheet.tiles, 48, 48);
-    public static Sprite doll_left2 = new Sprite(DEFAULT_SIZE, 13, 1, SpriteSheet.tiles, 48, 48);
-    public static Sprite doll_left3 = new Sprite(DEFAULT_SIZE, 13, 2, SpriteSheet.tiles, 48, 48);
+    //Dahl
+    public static Sprite dahl_left1 = new Sprite(DEFAULT_SIZE, 13, 0, SpriteSheet.tiles, 48, 48);
+    public static Sprite dahl_left2 = new Sprite(DEFAULT_SIZE, 13, 1, SpriteSheet.tiles, 48, 48);
+    public static Sprite dahl_left3 = new Sprite(DEFAULT_SIZE, 13, 2, SpriteSheet.tiles, 48, 48);
 
-    public static Sprite doll_right1 = new Sprite(DEFAULT_SIZE, 14, 0, SpriteSheet.tiles, 48, 48);
-    public static Sprite doll_right2 = new Sprite(DEFAULT_SIZE, 14, 1, SpriteSheet.tiles, 48, 48);
-    public static Sprite doll_right3 = new Sprite(DEFAULT_SIZE, 14, 2, SpriteSheet.tiles, 48, 48);
+    public static Sprite dahl_right1 = new Sprite(DEFAULT_SIZE, 14, 0, SpriteSheet.tiles, 48, 48);
+    public static Sprite dahl_right2 = new Sprite(DEFAULT_SIZE, 14, 1, SpriteSheet.tiles, 48, 48);
+    public static Sprite dahl_right3 = new Sprite(DEFAULT_SIZE, 14, 2, SpriteSheet.tiles, 48, 48);
 
-    public static Sprite doll_dead = new Sprite(DEFAULT_SIZE, 13, 3, SpriteSheet.tiles, 48, 48);
+    public static Sprite dahl_dead = new Sprite(DEFAULT_SIZE, 13, 3, SpriteSheet.tiles, 48, 48);
 
-    //Minvo
-    public static Sprite minvo_left1 = new Sprite(DEFAULT_SIZE, 8, 5, SpriteSheet.tiles, 48, 48);
-    public static Sprite minvo_left2 = new Sprite(DEFAULT_SIZE, 8, 6, SpriteSheet.tiles, 48, 48);
-    public static Sprite minvo_left3 = new Sprite(DEFAULT_SIZE, 8, 7, SpriteSheet.tiles, 48, 48);
+    //Pass
+    public static Sprite pass_left1 = new Sprite(DEFAULT_SIZE, 4, 5, SpriteSheet.tiles, 48, 48);
+    public static Sprite pass_left2 = new Sprite(DEFAULT_SIZE, 4, 6, SpriteSheet.tiles, 48, 48);
+    public static Sprite pass_left3 = new Sprite(DEFAULT_SIZE, 4, 7, SpriteSheet.tiles, 48, 48);
 
-    public static Sprite minvo_right1 = new Sprite(DEFAULT_SIZE, 9, 5, SpriteSheet.tiles, 48, 48);;
-    public static Sprite minvo_right2 = new Sprite(DEFAULT_SIZE, 9, 6, SpriteSheet.tiles, 48, 48);
-    public static Sprite minvo_right3 = new Sprite(DEFAULT_SIZE, 9, 7, SpriteSheet.tiles, 48, 48);
+    public static Sprite pass_right1 = new Sprite(DEFAULT_SIZE, 5, 5, SpriteSheet.tiles, 48, 48);;
+    public static Sprite pass_right2 = new Sprite(DEFAULT_SIZE, 5, 6, SpriteSheet.tiles, 48, 48);
+    public static Sprite pass_right3 = new Sprite(DEFAULT_SIZE, 5, 7, SpriteSheet.tiles, 48, 48);
 
-    public static Sprite minvo_dead = new Sprite(DEFAULT_SIZE, 8, 8, SpriteSheet.tiles, 48, 48);
+    public static Sprite pass_dead = new Sprite(DEFAULT_SIZE, 4, 8, SpriteSheet.tiles, 48, 48);
 
     //Kondoria
     public static Sprite kondoria_left1 = new Sprite(DEFAULT_SIZE, 10, 5, SpriteSheet.tiles, 48, 48);

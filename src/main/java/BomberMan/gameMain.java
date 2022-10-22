@@ -46,7 +46,7 @@ public class gameMain extends Application {
 
     private List<Brick> brickList = new ArrayList<>();
     private List<Item> itemList = new ArrayList<>();
-    private List<Enemy> enemies = new ArrayList<>();
+    public static List<Enemy> enemies = new ArrayList<>();
     private List<Bom> bomList = new ArrayList<>();
 
 
@@ -63,7 +63,7 @@ public class gameMain extends Application {
         //      tao NV            //
         Map map = new Map();
         try {
-            map.LoadMap(0);
+            map.LoadMap(1);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -74,18 +74,18 @@ public class gameMain extends Application {
 
 
 
-        enemies.add(new Enemy1());
-        enemies.get(0).setPosition(27*constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-        enemies.add(new Enemy1());
-        enemies.get(1).setPosition(8 * constValue.ENTITY_SIZE, 5 * constValue.ENTITY_SIZE);
-        enemies.add(new Enemy1());
-        enemies.get(2).setPosition(5 * constValue.ENTITY_SIZE, 11 * constValue.ENTITY_SIZE);
-        enemies.add(new Enemy1());
-        enemies.get(3).setPosition(15 * constValue.ENTITY_SIZE, 11 * constValue.ENTITY_SIZE);
-        enemies.add(new Enemy2());
-        enemies.get(4).setPosition(23 * constValue.ENTITY_SIZE, 6 * constValue.ENTITY_SIZE);
-        enemies.add(new Enemy2());
-        enemies.get(5).setPosition(17 * constValue.ENTITY_SIZE, 6 * constValue.ENTITY_SIZE);
+//        enemies.add(new Enemy1());
+//        enemies.get(0).setPosition(27*constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
+//        enemies.add(new Enemy1());
+//        enemies.get(1).setPosition(8 * constValue.ENTITY_SIZE, 5 * constValue.ENTITY_SIZE);
+//        enemies.add(new Enemy1());
+//        enemies.get(2).setPosition(5 * constValue.ENTITY_SIZE, 11 * constValue.ENTITY_SIZE);
+//        enemies.add(new Enemy1());
+//        enemies.get(3).setPosition(15 * constValue.ENTITY_SIZE, 11 * constValue.ENTITY_SIZE);
+//        enemies.add(new Enemy2());
+//        enemies.get(4).setPosition(23 * constValue.ENTITY_SIZE, 6 * constValue.ENTITY_SIZE);
+//        enemies.add(new Enemy2());
+//        enemies.get(5).setPosition(17 * constValue.ENTITY_SIZE, 6 * constValue.ENTITY_SIZE);
 
 
         ///Bom[] bom = new Bom[1];
@@ -213,7 +213,7 @@ public class gameMain extends Application {
                             map.checkWithBom(bomList.get(i).getPosition());
                             if (bomList.get(i).checkWithBomMan(man.getPosition())) {
                                 System.out.println("DIE");
-//                               mainState[0] = State.DIE;
+//                                mainState[0] = State.DIE;
                             }
                             for (int j = 0; j < bomList.size(); j++) {
                                 if (j != i) {
