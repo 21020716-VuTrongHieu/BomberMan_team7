@@ -1,7 +1,6 @@
 package BomberMan.Map;
 
 import static BomberMan.constValue.constValue.*;
-import static BomberMan.gameMain.enemies;
 
 import BomberMan.Item.Item;
 import BomberMan.constValue.constValue;
@@ -26,13 +25,13 @@ public class Map {
     private List<Entity> stillObjects = new ArrayList<>();
 
 
-    public static int[][] mapTitle = new int[13][29];
-    private Image[][] imagesMap = new Image[13][29];
+    public static int[][] mapTitle = new int[14][29];
+    private Image[][] imagesMap = new Image[14][29];
 
     public void LoadMap(int level) throws FileNotFoundException {
 
-        Scanner input = new Scanner(new File("src/main/resources/assets/levels/MapGame" + level + ".txt"));
-        for (int i = 0; i < 13; i++) {
+        Scanner input = new Scanner(new File("src/main/resources/assets/levels/MapGame1.txt"));
+        for (int i = 0; i < 14; i++) {
             for (int j = 0; j < 29; j++) {
                 int a = input.nextInt();
                 mapTitle[i][j] = a;
@@ -41,36 +40,9 @@ public class Map {
                 }
             }
         }
-        String s;
-        while (input.hasNext()) {
-            s = input.nextLine();
-            String[] arr = s.split(" ");
-            switch (arr[0]) {
-                case "ENEMY1":
-                    Enemy1 em1 = new Enemy1();
-                    em1.setPosition(Integer.parseInt(arr[1]) * ENTITY_SIZE, Integer.parseInt(arr[2]) * ENTITY_SIZE);
-                    enemies.add(em1);
-                    break;
-                case "ENEMY2":
-                    Enemy2 em2 = new Enemy2();
-                    em2.setPosition(Integer.parseInt(arr[1]) * ENTITY_SIZE, Integer.parseInt(arr[2]) * ENTITY_SIZE);
-                    enemies.add(em2);
-                    break;
-                case "ENEMY3":
-                    Enemy3 em3 = new Enemy3();
-                    em3.setPosition(Integer.parseInt(arr[1]) * ENTITY_SIZE, Integer.parseInt(arr[2]) * ENTITY_SIZE);
-                    enemies.add(em3);
-                    break;
-                case "ENEMY4":
-                    Enemy4 em4 = new Enemy4();
-                    em4.setPosition(Integer.parseInt(arr[1]) * ENTITY_SIZE, Integer.parseInt(arr[2]) * ENTITY_SIZE);
-                    enemies.add(em4);
-                    break;
-            }
-        }
     }
     public void loadImage(){
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < 14; i++) {
             for (int j = 0; j < 29; j++) {
                 switch (mapTitle[i][j]) {
                     //case 0:
@@ -117,7 +89,7 @@ public class Map {
 
         int x = 0;
 
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < 14; i++) {
             x_pos = 0;
             for (int j = 0; j < 29; j++) {
                 mainGraphic.drawImage(imagesMap[i][j],x_pos,y_pos);

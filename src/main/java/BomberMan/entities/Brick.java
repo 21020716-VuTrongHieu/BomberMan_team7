@@ -29,6 +29,7 @@ public class Brick extends Entity {
                 gc.drawImage(Sprite.brick_exploded2.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE );
             } else {
                 isExploded = false;
+                constValue.SCORE = constValue.SCORE + 10;
             }
         } else {
             gc.drawImage(Sprite.brick.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE );

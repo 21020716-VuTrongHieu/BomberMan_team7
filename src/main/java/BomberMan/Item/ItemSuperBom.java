@@ -19,6 +19,7 @@ public class ItemSuperBom extends Item {
     public void checkPickUp() {
         if (this.getPickUp()) {
             Bom.superBom = true;
+            constValue.FLAME++;
         }
     }
 

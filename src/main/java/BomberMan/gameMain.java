@@ -17,6 +17,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 
@@ -49,43 +53,78 @@ public class gameMain extends Application {
     public static List<Enemy> enemies = new ArrayList<>();
     private List<Bom> bomList = new ArrayList<>();
 
+    public Text textInGame = new Text();
 
 
     @Override
     public void start(Stage stage) throws IOException {
 
         root = new Group();
-        mainCanvas = new Canvas(constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 13);
+        mainCanvas = new Canvas(constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
         mainGc = mainCanvas.getGraphicsContext2D();
         mainScene =new Scene(root);
         mainState[0] = State.STOP;
+        ////////////////////////////////////////////////////////////////////////
+        // Text //
+        textInGame.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR,50));
+        textInGame.setX(0);
+        textInGame.setY(constValue.ENTITY_SIZE);
         //////////////////////////////////////////////////////////////////////////
         //      tao NV            //
         Map map = new Map();
         try {
-            map.LoadMap(1);
+            map.LoadMap(0);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
 
 
         Bomber man = new Bomber();
-        man.setPosition(constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
+        man.setPosition(constValue.ENTITY_SIZE, 2*constValue.ENTITY_SIZE);
 
 
+        for (int i = 0; i < 14; i++) {
+            for (int j = 0; j < 29; j++) {
+                if (Map.mapTitle[i][j] == constValue.ENEMY_1) {
+                    Enemy newEnemy = new Enemy1();
+                    newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
+                    enemies.add(newEnemy);
+                    Map.mapTitle[i][j] = constValue.GLASS;
+                    constValue.ENEMIES++;
+                } else if (Map.mapTitle[i][j] == constValue.ENEMY_2) {
+                    Enemy newEnemy = new Enemy2();
+                    newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
+                    enemies.add(newEnemy);
+                    Map.mapTitle[i][j] = constValue.GLASS;
+                    constValue.ENEMIES++;
+                } else if (Map.mapTitle[i][j] == constValue.ENEMY_3) {
+                    Enemy newEnemy = new Enemy3();
+                    newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
+                    enemies.add(newEnemy);
+                    Map.mapTitle[i][j] = constValue.GLASS;
+                    constValue.ENEMIES++;
+                } else if (Map.mapTitle[i][j] == constValue.ENEMY_4) {
+                    Enemy newEnemy = new Enemy4();
+                    newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
+                    enemies.add(newEnemy);
+                    Map.mapTitle[i][j] = constValue.GLASS;
+                    constValue.ENEMIES++;
+                }
+            }
+        }
 
-//        enemies.add(new Enemy1());
-//        enemies.get(0).setPosition(27*constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-//        enemies.add(new Enemy1());
-//        enemies.get(1).setPosition(8 * constValue.ENTITY_SIZE, 5 * constValue.ENTITY_SIZE);
-//        enemies.add(new Enemy1());
-//        enemies.get(2).setPosition(5 * constValue.ENTITY_SIZE, 11 * constValue.ENTITY_SIZE);
-//        enemies.add(new Enemy1());
-//        enemies.get(3).setPosition(15 * constValue.ENTITY_SIZE, 11 * constValue.ENTITY_SIZE);
-//        enemies.add(new Enemy2());
-//        enemies.get(4).setPosition(23 * constValue.ENTITY_SIZE, 6 * constValue.ENTITY_SIZE);
-//        enemies.add(new Enemy2());
-//        enemies.get(5).setPosition(17 * constValue.ENTITY_SIZE, 6 * constValue.ENTITY_SIZE);
+        /*enemies.add(new Enemy1());
+        enemies.get(0).setPosition(27*constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
+        enemies.add(new Enemy1());
+        enemies.get(1).setPosition(8 * constValue.ENTITY_SIZE, 5 * constValue.ENTITY_SIZE);
+        enemies.add(new Enemy1());
+        enemies.get(2).setPosition(5 * constValue.ENTITY_SIZE, 11 * constValue.ENTITY_SIZE);
+        enemies.add(new Enemy1());
+        enemies.get(3).setPosition(15 * constValue.ENTITY_SIZE, 11 * constValue.ENTITY_SIZE);
+        enemies.add(new Enemy2());
+        enemies.get(4).setPosition(23 * constValue.ENTITY_SIZE, 6 * constValue.ENTITY_SIZE);
+        enemies.add(new Enemy2());
+        enemies.get(5).setPosition(17 * constValue.ENTITY_SIZE, 6 * constValue.ENTITY_SIZE);*/
 
 
         ///Bom[] bom = new Bom[1];
@@ -190,16 +229,19 @@ public class gameMain extends Application {
             @Override
             public void handle(long now) {
                 mainGc.setFill(Color.GREEN);
-                //mainGc.fillRect(0,0, constValue.GAME_WIDTH,constValue.GAME_HEIGHT);
                 mainGc.fillRect(0,0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 13);
 
+                ////text////
+                textInGame.setText("🚩 " + constValue.LEVEL + "    💜 " + constValue.LIFE + "    💵 " + constValue.SCORE
+                + "    🔥 " + constValue.FLAME + "    👟 " + constValue.SPEED + "     💣 " + constValue.BOMS
+                        + "    👻 " + constValue.ENEMIES + "    ⏰ " + constValue.TIME);
+
                 man.update(mainState[0]);
+                man.drawBomMan(mainGc);
 
                 for (Enemy e : enemies) {
-                    man.checkwithEnemy(e);
                     e.update();
                 }
-                man.drawBomMan(mainGc);
 
                 for (Enemy e : enemies) {
                     e.drawEnemy(mainGc);
@@ -214,7 +256,7 @@ public class gameMain extends Application {
                             map.checkWithBom(bomList.get(i).getPosition());
                             if (bomList.get(i).checkWithBomMan(man.getPosition())) {
                                 System.out.println("DIE");
-//                                mainState[0] = State.DIE;
+//                               mainState[0] = State.DIE;
                             }
                             for (int j = 0; j < bomList.size(); j++) {
                                 if (j != i) {
@@ -225,6 +267,8 @@ public class gameMain extends Application {
                                 if (bomList.get(i).checkWithEnemy(e.getPosition())) {
                                     System.out.println("Enemy1 DIE");
                                     e.setState(State.DIE);
+
+                                    //enemies.remove(e);
                                 }
                             }
                         }
@@ -245,7 +289,7 @@ public class gameMain extends Application {
         }; timer.start();
 
 
-        root.getChildren().addAll(mainGc.getCanvas());
+        root.getChildren().addAll(mainGc.getCanvas(),textInGame);
 
         mainScene.setFill(Color.GREEN);
         mainStage =new Stage();
