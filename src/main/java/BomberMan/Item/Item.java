@@ -15,7 +15,7 @@ public abstract class Item extends Entity {
         ///gc.drawImage(Sprite.powerup_speed.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
 
 
-    public void checkWithBomMan(Point2D positionBomMan) {
+    public boolean checkWithBomMan(Point2D positionBomMan) {
         double x1 = positionBomMan.getX() + 5;
         double x2 = positionBomMan.getX() + constValue.FRAME_SIZE - 15;
         double y1 = positionBomMan.getY() + 5;
@@ -23,7 +23,9 @@ public abstract class Item extends Entity {
         if (((x2 >= this.getPosition().getX() && x1 <= this.getPosition().getX() + constValue.ENTITY_SIZE)
             && (y2 >= this.getPosition().getY() && y1 <= this.getPosition().getY() + constValue.ENTITY_SIZE))) {
             isPickUp = true;
+            return true;
         }
+        return false;
     }
 
     public void setPickUp(boolean a) {

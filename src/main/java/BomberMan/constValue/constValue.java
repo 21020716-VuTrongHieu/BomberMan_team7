@@ -35,4 +35,6 @@ public class constValue {
     public static double SPEED = 6;
     public static int ENEMIES = 0;
     public static double TIME = 300;
+
+    public static boolean WIN_LEVEL = false;
 }

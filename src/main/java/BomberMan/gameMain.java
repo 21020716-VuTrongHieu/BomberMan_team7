@@ -1,9 +1,6 @@
 package BomberMan;
 
-import BomberMan.Item.Item;
-import BomberMan.Item.ItemBomUp;
-import BomberMan.Item.ItemSpeed;
-import BomberMan.Item.ItemSuperBom;
+import BomberMan.Item.*;
 import BomberMan.Map.Map;
 import BomberMan.constValue.State;
 import BomberMan.constValue.constValue;
@@ -135,6 +132,8 @@ public class gameMain extends Application {
             brickList.add(brick);
         }
 
+        Item itemGate = new ItemGate();
+        itemGate.setPosition(constValue.ENTITY_SIZE, 2*constValue.ENTITY_SIZE);
         Item itemSpeed = new ItemSpeed();
         Item itemSuperBom = new ItemSuperBom();
         Item itemBomUp = new ItemBomUp();
@@ -236,6 +235,14 @@ public class gameMain extends Application {
                 + "    🔥 " + constValue.FLAME + "    👟 " + constValue.SPEED + "     💣 " + constValue.BOMS
                         + "    👻 " + constValue.ENEMIES + "    ⏰ " + constValue.TIME);
 
+
+                ///Gate///
+                if (constValue.ENEMIES == 0) {
+                    itemGate.drawItem(mainGc);
+                    itemGate.setPickUp(itemGate.checkWithBomMan(man.getPosition()));
+                    itemGate.checkPickUp();
+                }
+                ///Bom Man///
                 man.update(mainState[0]);
                 man.drawBomMan(mainGc);
 
@@ -278,10 +285,12 @@ public class gameMain extends Application {
 
                     }
                 }
+
+
                 map.loadImage();
                 map.DrawMap(mainGc, brickList,itemList,man.getPosition());
                 //System.out.println("DI");
-                if (isQuit) {
+                if (isQuit || constValue.WIN_LEVEL) {
                     mainStage.close();
                 }
             }
