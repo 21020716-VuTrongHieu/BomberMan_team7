@@ -198,6 +198,34 @@ public class Bomber extends Entity {
 
     }
 
+    public void checkwithEnemy(Enemy enemy) {
+        if (enemy.isAlive == false || state == State.DIE) {
+            return;
+        }
+        int x1 = (int) (this.getPosition().getX());
+        int y1 = (int) (this.getPosition().getY());
+        int x2 = (int) (this.getPosition().getX() + constValue.FRAME_SIZE - 10);
+        int y2 = (int) (this.getPosition().getY() + constValue.FRAME_SIZE - 5);
+
+        int xx1 = (int) (enemy.getPosition().getX());
+        int yy1 = (int) (enemy.getPosition().getY());
+        int xx2 = (int) (enemy.getPosition().getX() + constValue.ENTITY_SIZE - 1);
+        int yy2 = (int) (enemy.getPosition().getY() + constValue.ENTITY_SIZE - 1);
+
+        if (xx1 >= x1 && xx1 <= x2){
+            if ((yy2 >= y1 && yy2 <= y2) || (yy1 <= y2 && yy1 >= y1) || (yy1 <= y1 && yy2 >= y2)){
+                state = State.DIE;
+            }
+        } else if (xx2 >= x1 && xx2 <= x2){
+            if ((yy2 >= y1 && yy2 <= y2) || (yy1 >= y1 && yy1 <= y2) || (yy1 <= y1 && yy2 >= y2) ) {
+                state = State.DIE;
+            }
+        } else if ((yy2 >= y1 && yy2 <= y2) && (xx1 <= x1 && xx2 >= x2)) {
+            state = State.DIE;
+        } else if ((yy1 >= y2 && yy1 <= y2) && (xx1 <= x1 && xx2 >= x2)) {
+            state = State.DIE;
+        }
+    }
     public Point2D getPositionBom() {
         int x1 = (int) ((this.getPosition().getX()+constValue.FRAME_SIZE/2) / constValue.ENTITY_SIZE);
         int y1 = (int) ((this.getPosition().getY()+constValue.FRAME_SIZE/2) / constValue.ENTITY_SIZE);

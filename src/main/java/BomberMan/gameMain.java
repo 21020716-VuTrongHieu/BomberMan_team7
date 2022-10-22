@@ -194,11 +194,12 @@ public class gameMain extends Application {
                 mainGc.fillRect(0,0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 13);
 
                 man.update(mainState[0]);
-                man.drawBomMan(mainGc);
 
                 for (Enemy e : enemies) {
+                    man.checkwithEnemy(e);
                     e.update();
                 }
+                man.drawBomMan(mainGc);
 
                 for (Enemy e : enemies) {
                     e.drawEnemy(mainGc);
