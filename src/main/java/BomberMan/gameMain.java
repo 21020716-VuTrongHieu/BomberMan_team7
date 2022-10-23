@@ -71,7 +71,7 @@ public class gameMain extends Application {
         //      tao NV            //
         Map map = new Map();
         try {
-            map.LoadMap(0);
+            map.LoadMap(constValue.LEVEL);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

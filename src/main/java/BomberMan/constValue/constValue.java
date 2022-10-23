@@ -8,7 +8,9 @@ public class constValue {
     public static final double FRAME_SIZE = 40;
 
     public static double ENEMY1_SPEED = 4;
-
+    public static double ENEMY2_SPEED = 6;
+    public static double ENEMY3_SPEED = 6;
+    public static double ENEMY4_SPEED = 4;
 
     public static final int BOM_WAIT = -1;
     public static final int BRICK = 0;
@@ -38,4 +40,5 @@ public class constValue {
 
     public static boolean WIN_LEVEL = false;
     public static long winTime = 0;
+    public static long ENEMY4_TIME = 0;
 }

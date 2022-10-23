@@ -41,19 +41,19 @@ public class Enemy2 extends Enemy {
         }
         switch (state) {
             case LEFT:
-                this.moveXY = new Point2D(-constValue.ENEMY1_SPEED, 0);
+                this.moveXY = new Point2D(-constValue.ENEMY2_SPEED, 0);
                 this.move(moveXY);
                 break;
             case RIGHT:
-                this.moveXY = new Point2D(constValue.ENEMY1_SPEED, 0);
+                this.moveXY = new Point2D(constValue.ENEMY2_SPEED, 0);
                 this.move(moveXY);
                 break;
             case UP:
-                this.moveXY = new Point2D(0, -constValue.ENEMY1_SPEED);
+                this.moveXY = new Point2D(0, -constValue.ENEMY2_SPEED);
                 this.move(moveXY);
                 break;
             case DOWN:
-                moveXY = new Point2D(0, constValue.ENEMY1_SPEED);
+                moveXY = new Point2D(0, constValue.ENEMY2_SPEED);
                 this.move(moveXY);
                 break;
             default:

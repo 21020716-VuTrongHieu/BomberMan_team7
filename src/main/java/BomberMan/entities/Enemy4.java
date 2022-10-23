@@ -9,7 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 import java.util.Random;
 
-import static BomberMan.constValue.constValue.SCORE;
+import static BomberMan.constValue.constValue.*;
 import static BomberMan.gameMain.enemies;
 
 public class Enemy4 extends Enemy {
@@ -32,24 +32,30 @@ public class Enemy4 extends Enemy {
         if (!isAlive) {
             return;
         }
+
         Random generator = new Random();
-        int cal = 1 + generator.nextInt() % 4;
+        int cal = 0;
+
+        if (System.currentTimeMillis() - ENEMY4_TIME >= 3000) {
+            ENEMY4_TIME = System.currentTimeMillis();
+            constValue.ENEMY4_SPEED = 5 + generator.nextInt() % 4;
+        }
 
         switch (state) {
             case LEFT:
-                this.moveXY = new Point2D(-(constValue.ENEMY1_SPEED + cal), 0);
+                this.moveXY = new Point2D(-constValue.ENEMY4_SPEED, 0);
                 this.move(moveXY);
                 break;
             case RIGHT:
-                this.moveXY = new Point2D(constValue.ENEMY1_SPEED + cal, 0);
+                this.moveXY = new Point2D(constValue.ENEMY4_SPEED, 0);
                 this.move(moveXY);
                 break;
             case UP:
-                this.moveXY = new Point2D(0, -(constValue.ENEMY1_SPEED + cal));
+                this.moveXY = new Point2D(0, -constValue.ENEMY4_SPEED);
                 this.move(moveXY);
                 break;
             case DOWN:
-                moveXY = new Point2D(0, constValue.ENEMY1_SPEED + cal);
+                moveXY = new Point2D(0, constValue.ENEMY4_SPEED);
                 this.move(moveXY);
                 break;
             default:
