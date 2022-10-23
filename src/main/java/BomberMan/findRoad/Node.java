@@ -9,9 +9,6 @@ public class Node {
     public int gCost;
     public int hCost;
     public int fCost;
-    public boolean start;
-    public boolean goal;
-    public boolean solid;
     public boolean open;
     public boolean checked;
 

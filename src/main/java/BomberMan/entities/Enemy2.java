@@ -159,7 +159,6 @@ public class Enemy2 extends Enemy {
         openList.clear();
         int manX = (int) ((man.getPosition().getX() + constValue.FRAME_SIZE / 2) / constValue.ENTITY_SIZE);
         int manY = (int) ((man.getPosition().getY() + constValue.FRAME_SIZE / 2) / constValue.ENTITY_SIZE);
-        nodes[manY][manX].goal = true;
         goalNode = nodes[manY][manX];
         int thisX = (int) ((this.getPosition().getX() + constValue.ENTITY_SIZE / 2) / constValue.ENTITY_SIZE);
         int thisY = (int) ((this.getPosition().getY() + constValue.ENTITY_SIZE / 2) / constValue.ENTITY_SIZE);
@@ -173,7 +172,6 @@ public class Enemy2 extends Enemy {
             return;
         }
 
-        nodes[thisY][thisX].start = true;
         startNode = nodes[thisY][thisX];
         currentNode = nodes[thisY][thisX];
         //Tinh Cost
@@ -197,15 +195,6 @@ public class Enemy2 extends Enemy {
 
             System.out.print("next step is: ");
             Node nextNode = bestPath.pop();
-
-//            if ( ypos != thisY * constValue.ENTITY_SIZE || xpos != thisX * constValue.ENTITY_SIZE) {
-//
-////                if (Math.abs(xpos - thisX * constValue.ENTITY_SIZE) == 4) {
-////                    this.setPosition(thisX * constValue.ENTITY_SIZE, ypos);
-////                } else if (Math.abs(ypos - thisY * constValue.ENTITY_SIZE) == 4) {
-////                    this.setPosition(xpos, thisY * constValue.ENTITY_SIZE);
-////                } else
-//            }
 
 //                System.out.println((int) this.getPosition().getY() + " " + (int) this.getPosition().getX());
 
@@ -234,7 +223,6 @@ public class Enemy2 extends Enemy {
             }
 
             System.out.println(state);
-//            state = State.STOP;
         }
     }
 
@@ -363,7 +351,6 @@ public class Enemy2 extends Enemy {
 //                int thisY = (int) ((this.getPosition().getY() + constValue.ENTITY_SIZE / 2) / constValue.ENTITY_SIZE);
 ////                System.out.println(thisY + " " + thisX);
 //            }
-
         } else {
             goalReached = false;
         }
