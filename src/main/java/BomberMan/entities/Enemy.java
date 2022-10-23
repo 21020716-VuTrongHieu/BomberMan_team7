@@ -4,7 +4,7 @@ import BomberMan.constValue.State;
 import javafx.scene.canvas.GraphicsContext;
 
 public abstract class Enemy extends Entity {
-    public abstract void update();
+    public abstract void update(Bomber man);
 
     public abstract void drawEnemy(GraphicsContext gc);
 

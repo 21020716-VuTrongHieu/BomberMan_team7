@@ -234,7 +234,7 @@ public class gameMain extends Application {
 
                 for (Enemy e : enemies) {
                     man.checkwithEnemy(e);
-                    e.update();
+                    e.update(man);
                 }
                 man.drawBomMan(mainGc);
 

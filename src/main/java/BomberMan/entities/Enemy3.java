@@ -28,7 +28,7 @@ public class Enemy3 extends Enemy {
         frame = val;
     }
 
-    public void update() {
+    public void update(Bomber man) {
         if (!isAlive) {
             return;
         }
