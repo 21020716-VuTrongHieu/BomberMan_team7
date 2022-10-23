@@ -9,6 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 import java.util.Random;
 
+import static BomberMan.constValue.constValue.SCORE;
 import static BomberMan.gameMain.enemies;
 
 public class Enemy4 extends Enemy {
@@ -72,6 +73,7 @@ public class Enemy4 extends Enemy {
             } else if (frame >= 45 && frame < 60) {
                 gc.drawImage(Sprite.mob_dead3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
             } else if (frame == 60) {
+                SCORE += 200;
                 constValue.ENEMIES--;
             }
             return;

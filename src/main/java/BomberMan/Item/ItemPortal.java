@@ -14,6 +14,9 @@ public class ItemPortal extends Item {
     public void checkPickUp() {
         if (this.getPickUp()) {
             constValue.WIN_LEVEL = true;
+            if (constValue.winTime == 0) {
+                constValue.winTime = System.currentTimeMillis();
+            }
         }
     }
 }

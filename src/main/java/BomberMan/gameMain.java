@@ -71,7 +71,7 @@ public class gameMain extends Application {
         //      tao NV            //
         Map map = new Map();
         try {
-            map.LoadMap(level);
+            map.LoadMap(0);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -135,6 +135,7 @@ public class gameMain extends Application {
             keyCheck[i] = false;
         }
         mainScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
             @Override
             public void handle(KeyEvent keyEvent_down) {
                 if (keyEvent_down.getCode() == KeyCode.DOWN) {
@@ -178,7 +179,7 @@ public class gameMain extends Application {
         mainScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent_up) {
-                if ( mainState[0] != State.DIE) {
+                if (mainState[0] != State.DIE) {
                     if (keyEvent_up.getCode() != KeyCode.SPACE) {
                         {
                             if (keyEvent_up.getCode() == KeyCode.DOWN) {
@@ -194,7 +195,7 @@ public class gameMain extends Application {
                                 keyCheck[KeyCode.RIGHT.getCode()] = false;
                             }
                             boolean isMove = false;
-                            for(int i=0;i<120;i++) {
+                            for (int i = 0; i < 120; i++) {
                                 if (keyCheck[i]) {
                                     isMove = true;
                                     break;
@@ -210,16 +211,15 @@ public class gameMain extends Application {
 
         });
 
-
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 mainGc.setFill(Color.GREEN);
-                mainGc.fillRect(0,0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 13);
+                mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 13);
 
                 ////text////
                 textInGame.setText("🚩 " + constValue.LEVEL + "    ❤ " + constValue.LIFE + "    💵 " + constValue.SCORE
-                + "    🔥 " + constValue.FLAME + "    👟 " + constValue.SPEED + "     💣 " + constValue.BOMS
+                        + "    🔥 " + constValue.FLAME + "    👟 " + constValue.SPEED + "     💣 " + constValue.BOMS
                         + "    👻 " + constValue.ENEMIES + "    ⏰ " + constValue.TIME);
 
 
@@ -230,6 +230,7 @@ public class gameMain extends Application {
                     itemPortal.checkPickUp();
                 }
                 ///Bom Man///
+
                 man.update(mainState[0]);
 
                 for (Enemy e : enemies) {
@@ -238,20 +239,23 @@ public class gameMain extends Application {
                 }
                 man.drawBomMan(mainGc);
 
+                if (mainState[0] == State.DIE) {
+                    mainState[0] = State.STOP;
+                }
+
                 for (Enemy e : enemies) {
                     e.drawEnemy(mainGc);
                 }
 //
                 if (!bomList.isEmpty()) {
-
                     for (int i = 0; i < bomList.size(); i++) {
                         bomList.get(i).drawBom(mainGc);
                         bomList.get(i).checkWithBomMan(man.getPosition());
                         if (bomList.get(i).getIsExplode()) {
                             map.checkWithBom(bomList.get(i).getPosition());
                             if (bomList.get(i).checkWithBomMan(man.getPosition())) {
-                                System.out.println("DIE");
-//                               mainState[0] = State.DIE;
+                                //System.out.println("Main DIE");
+                                mainState[0] = State.DIE;
                             }
                             for (int j = 0; j < bomList.size(); j++) {
                                 if (j != i) {
@@ -276,9 +280,73 @@ public class gameMain extends Application {
 
 
                 map.loadImage();
-                map.DrawMap(mainGc, brickList,itemList,man.getPosition());
+                map.DrawMap(mainGc, brickList, itemList, man.getPosition());
+
                 //System.out.println("DI");
-                if (isQuit || constValue.WIN_LEVEL) {
+                if (constValue.WIN_LEVEL) {
+                    if (System.currentTimeMillis() - constValue.winTime >= 3000) {
+                        constValue.winTime = 0;
+                        constValue.WIN_LEVEL = false;
+                        constValue.LEVEL++;
+                        try {
+                            map.LoadMap(constValue.LEVEL);
+                        } catch (FileNotFoundException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                        brickList = new ArrayList<>();
+                        itemList = new ArrayList<>();
+                        man.setPosition(constValue.ENTITY_SIZE, 2 * constValue.ENTITY_SIZE);
+
+                        for (int i = 0; i < 14; i++) {
+                            for (int j = 0; j < 29; j++) {
+                                if (Map.mapTitle[i][j] == constValue.ENEMY_1) {
+                                    Enemy newEnemy = new Enemy1();
+                                    newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
+                                    enemies.add(newEnemy);
+                                    Map.mapTitle[i][j] = constValue.GRASS;
+                                    constValue.ENEMIES++;
+                                } else if (Map.mapTitle[i][j] == constValue.ENEMY_2) {
+                                    Enemy newEnemy = new Enemy2();
+                                    newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
+                                    enemies.add(newEnemy);
+                                    Map.mapTitle[i][j] = constValue.GRASS;
+                                    constValue.ENEMIES++;
+                                } else if (Map.mapTitle[i][j] == constValue.ENEMY_3) {
+                                    Enemy newEnemy = new Enemy3();
+                                    newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
+                                    enemies.add(newEnemy);
+                                    Map.mapTitle[i][j] = constValue.GRASS;
+                                    constValue.ENEMIES++;
+                                } else if (Map.mapTitle[i][j] == constValue.ENEMY_4) {
+                                    Enemy newEnemy = new Enemy4();
+                                    newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
+                                    enemies.add(newEnemy);
+                                    Map.mapTitle[i][j] = constValue.GRASS;
+                                    constValue.ENEMIES++;
+                                }
+                            }
+                        }
+                        for (int i = 0; i < Brick.amountBrick; i++) {
+                            Brick brick = new Brick();
+                            brickList.add(brick);
+                        }
+
+                        Item itemPortal = new ItemPortal();
+                        itemPortal.setPosition(constValue.ENTITY_SIZE, 2 * constValue.ENTITY_SIZE);
+                        Item itemSpeed = new ItemSpeed();
+                        Item itemSuperBom = new ItemSuperBom();
+                        Item itemBomUp = new ItemBomUp();
+                        itemList.add(itemSpeed);
+                        itemList.add(itemSuperBom);
+                        itemList.add(itemBomUp);
+                    } else {
+                        // render ảnh load map mới
+                    }
+
+                }
+
+                if (isQuit) {
                     mainStage.close();
                 }
             }

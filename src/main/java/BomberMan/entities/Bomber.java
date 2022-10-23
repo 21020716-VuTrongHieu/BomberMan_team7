@@ -7,6 +7,8 @@ import BomberMan.graphics.Sprite;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 
+import static BomberMan.constValue.constValue.LIFE;
+
 
 public class Bomber extends Entity {
 
@@ -64,13 +66,26 @@ public class Bomber extends Entity {
         }
         this.checkToMap();
 
-
     }
-
 
     public void drawBomMan(GraphicsContext gc) {
         frame++;
-        if(frame>=9) frame = 0;
+        if (!isAlive) {
+            if (frame >=0 && frame < 15){
+                gc.drawImage(Sprite.player_dead1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
+            } else if (frame >= 15 && frame < 30) {
+                gc.drawImage(Sprite.player_dead2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
+            } else if (frame >= 30 && frame < 45) {
+                gc.drawImage(Sprite.player_dead3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.FRAME_SIZE, constValue.FRAME_SIZE);
+            } else {
+                LIFE--;
+                this.setPosition(constValue.ENTITY_SIZE, 2 * constValue.ENTITY_SIZE);
+                isAlive = true;
+            }
+            return;
+        }
+
+        if(frame>=10) frame = 0;
         if (!isMoving) {
             switch (state) {
                 case STOP:
@@ -89,13 +104,19 @@ public class Bomber extends Entity {
                     gc.drawImage(Sprite.player_right.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.FRAME_SIZE, constValue.FRAME_SIZE);
                     break;
                 case DIE:
-                    if (frame >=0 && frame < 3){
-                        gc.drawImage(Sprite.player_dead1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-                    } else if (frame >= 3 && frame < 6) {
-                        gc.drawImage(Sprite.player_dead2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-                    } else if (frame >= 6 && frame < 9) {
-                        gc.drawImage(Sprite.player_dead3.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-                    }
+                    frame = 0;
+                    isAlive = false;
+//                    if (frame >=0 && frame < 3){
+//                        gc.drawImage(Sprite.player_dead1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
+//                    } else if (frame >= 3 && frame < 6) {
+//                        gc.drawImage(Sprite.player_dead2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
+//                    } else if (frame >= 6 && frame < 9) {
+//                        gc.drawImage(Sprite.player_dead3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.FRAME_SIZE, constValue.FRAME_SIZE);
+//                    } else {
+//                        gc.drawImage(Sprite.player_dead3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.FRAME_SIZE, constValue.FRAME_SIZE);
+//                        LIFE--;
+//                        this.setPosition(constValue.ENTITY_SIZE, 2 * constValue.ENTITY_SIZE);
+//                    }
                     break;
             }
         } else {
@@ -108,7 +129,7 @@ public class Bomber extends Entity {
                         gc.drawImage(Sprite.player_up.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
                     } else if (frame >= 3 && frame <6) {
                         gc.drawImage(Sprite.player_up_1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-                    } else if (frame >=6 && frame < 9) {
+                    } else if (frame >=6 && frame < 10) {
                         gc.drawImage(Sprite.player_up_2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
                     }
                     break;
@@ -117,7 +138,7 @@ public class Bomber extends Entity {
                         gc.drawImage(Sprite.player_down.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
                     } else if (frame >= 3 && frame < 6) {
                         gc.drawImage(Sprite.player_down_1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-                    } else if (frame >= 6 && frame < 9) {
+                    } else if (frame >= 6 && frame < 10) {
                         gc.drawImage(Sprite.player_down_2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
                     }
                     break;
@@ -126,7 +147,7 @@ public class Bomber extends Entity {
                         gc.drawImage(Sprite.player_left.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
                     } else if (frame >= 3 && frame < 6) {
                         gc.drawImage(Sprite.player_left_1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-                    } else if (frame >=6 && frame < 9) {
+                    } else if (frame >=6 && frame < 10) {
                         gc.drawImage(Sprite.player_left_2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
                     }
                     break;
@@ -135,19 +156,25 @@ public class Bomber extends Entity {
                         gc.drawImage(Sprite.player_right.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
                     } else if (frame >= 3 && frame < 6) {
                         gc.drawImage(Sprite.player_right_1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-                    } else if (frame >= 6 && frame < 9) {
+                    } else if (frame >= 6 && frame < 10) {
                         gc.drawImage(Sprite.player_right_2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
                     }
                     break;
                 case DIE:
-                    if (frame >=0 && frame < 3){
-                        gc.drawImage(Sprite.player_dead1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-                    } else if (frame >= 3 && frame < 6) {
-                        gc.drawImage(Sprite.player_dead2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-                    } else if (frame >= 6 && frame < 9) {
-                        gc.drawImage(Sprite.player_dead3.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-                    }
-                    break;    
+                    frame = 0;
+                    isAlive = false;
+//                    if (frame >=0 && frame < 3){
+//                        gc.drawImage(Sprite.player_dead1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
+//                    } else if (frame >= 3 && frame < 6) {
+//                        gc.drawImage(Sprite.player_dead2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
+//                    } else if (frame >= 6 && frame < 9) {
+//                        gc.drawImage(Sprite.player_dead3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.FRAME_SIZE, constValue.FRAME_SIZE);
+//                    } else {
+//                        gc.drawImage(Sprite.player_dead3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.FRAME_SIZE, constValue.FRAME_SIZE);
+//                        LIFE--;
+//                        this.setPosition(constValue.ENTITY_SIZE, 2 * constValue.ENTITY_SIZE);
+//                    }
+                    break;
             }
         }
 

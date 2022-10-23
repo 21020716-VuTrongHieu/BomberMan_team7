@@ -37,4 +37,5 @@ public class constValue {
     public static double TIME = 300;
 
     public static boolean WIN_LEVEL = false;
+    public static long winTime = 0;
 }
