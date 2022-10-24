@@ -29,16 +29,17 @@ public class constValue {
     public static final String GAME_VERSION = "0.1";
     public static final String GAME_FONT_UI = "game_font.ttf";
 
-    public static int LEVEL = 1;
+    public static int LEVEL = 0;
     public static int BOMS = 1;
     public static int SCORE = 0;
     public static int FLAME = 1;
     public static int LIFE = 3;
     public static double SPEED = 6;
+    public static double speed = 6;
     public static int ENEMIES = 0;
     public static double TIME = 300;
 
-    public static boolean WIN_LEVEL = false;
+    public static boolean WIN_LEVEL = true;
     public static long winTime = 0;
     public static long ENEMY4_TIME = 0;
 }

@@ -15,6 +15,7 @@ public class ItemSpeed extends Item {
     public void checkPickUp() {
         if (this.getPickUp()) {
             constValue.SPEED = 8;
+            constValue.speed = 8;
         }
     }
 

@@ -8,6 +8,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 
 import static BomberMan.constValue.constValue.LIFE;
+import static BomberMan.constValue.constValue.SPEED;
 
 
 public class Bomber extends Entity {
@@ -71,6 +72,7 @@ public class Bomber extends Entity {
     public void drawBomMan(GraphicsContext gc) {
         frame++;
         if (!isAlive) {
+            SPEED = 0;
             if (frame >=0 && frame < 15){
                 gc.drawImage(Sprite.player_dead1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
             } else if (frame >= 15 && frame < 30) {
@@ -78,6 +80,7 @@ public class Bomber extends Entity {
             } else if (frame >= 30 && frame < 45) {
                 gc.drawImage(Sprite.player_dead3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.FRAME_SIZE, constValue.FRAME_SIZE);
             } else {
+                SPEED = constValue.speed;
                 LIFE--;
                 this.setPosition(constValue.ENTITY_SIZE, 2 * constValue.ENTITY_SIZE);
                 isAlive = true;
