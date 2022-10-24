@@ -3,6 +3,7 @@ package BomberMan.entities;
 
 import BomberMan.Map.Map;
 import BomberMan.constValue.constValue;
+import BomberMan.gameSound.soundPlayer;
 import BomberMan.graphics.Sprite;
 //import com.example.demo.graphics.Sprite;
 import javafx.geometry.Point2D;

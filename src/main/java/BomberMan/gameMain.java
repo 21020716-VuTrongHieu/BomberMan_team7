@@ -5,6 +5,7 @@ import BomberMan.Map.Map;
 import BomberMan.constValue.State;
 import BomberMan.constValue.constValue;
 import BomberMan.entities.*;
+import BomberMan.gameSound.soundPlayer;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -14,6 +15,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -72,6 +74,15 @@ public class gameMain extends Application {
         textStage.setX(constValue.ENTITY_SIZE * 29 / 3 + 80);
         textStage.setY(constValue.ENTITY_SIZE * 14 / 2);
         textStage.setFill(Color.GHOSTWHITE);
+
+
+        //////////////////////////////////////////////////////////////////////////
+        //          SOUND Vi du thoiii         //
+
+        soundPlayer.playMusic(soundPlayer.stage_theme, MediaPlayer.INDEFINITE);
+
+        //////////////////////////////////////////////////////////////////////////
+        //      tao NV            //
 
         //////////////////////////////////////////////////////////////////////////
         //      tao NV            //
@@ -173,6 +184,8 @@ public class gameMain extends Application {
                     //bom[0].setIsPut(true);//Bom.isPut = true;
                     //bom[0].setIsExplode(false);//Bom.isExplode = false;
                     if (bomList.size() < constValue.BOMS) {
+                        //sound dat bom
+                        soundPlayer.playSoundEffect(soundPlayer.place_bomb,1);
                         Bom bom = new Bom(man.getPositionBom());
                         //bom.setIsPut(true);
                         bom.setIsExplode(false);
@@ -244,7 +257,6 @@ public class gameMain extends Application {
                         mainGc.setFill(Color.BLACK);
                         mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
                         textStage.setText("STAGE " + (constValue.LEVEL + 1));
-
                         // render ảnh load map mới
                     }
                 } else {
@@ -284,7 +296,6 @@ public class gameMain extends Application {
                         Brick brick = new Brick();
                         brickList.add(brick);
                     }
-
                     Item itemSpeed = new ItemSpeed();
                     Item itemSuperBom = new ItemSuperBom();
                     Item itemBomUp = new ItemBomUp();
@@ -332,6 +343,7 @@ public class gameMain extends Application {
                                 if (bomList.get(i).checkWithBomMan(man.getPosition())) {
                                     //System.out.println("Main DIE");
                                     mainState[0] = State.DIE;
+
                                 }
                                 for (int j = 0; j < bomList.size(); j++) {
                                     if (j != i) {
