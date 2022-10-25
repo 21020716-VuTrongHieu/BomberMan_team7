@@ -127,43 +127,44 @@ public class gameMain extends Application {
 
             @Override
             public void handle(KeyEvent keyEvent_down) {
-                if (keyEvent_down.getCode() == KeyCode.ENTER) {
-                    keyCheck[KeyCode.ENTER.getCode()] = true;
-                }
-                if (keyEvent_down.getCode() == KeyCode.DOWN) {
-                    keyCheck[KeyCode.DOWN.getCode()] = true;
-                    mainState[0] = State.DOWN;
-                    man.setIsMoving(true);
-                }
-                if (keyEvent_down.getCode() == KeyCode.UP) {
-                    keyCheck[KeyCode.UP.getCode()] = true;
-                    mainState[0] = State.UP;
-                    man.setIsMoving(true);
-                }
-                if (keyEvent_down.getCode() == KeyCode.LEFT) {
-                    keyCheck[KeyCode.LEFT.getCode()] = true;
-                    mainState[0] = State.LEFT;
-                    man.setIsMoving(true);
-                }
-                if (keyEvent_down.getCode() == KeyCode.RIGHT) {
-                    keyCheck[KeyCode.RIGHT.getCode()] = true;
-                    mainState[0] = State.RIGHT;
-                    man.setIsMoving(true);
-                }
-                if (keyEvent_down.getCode() == KeyCode.Q) {
-                    isQuit = true;
-                }
-                if (keyEvent_down.getCode() == KeyCode.SPACE && man.isAlive) {
-                    if (bomList.size() < constValue.BOMS) {
-                        //sound dat bom
-                        soundPlayer.playSoundEffect(soundPlayer.place_bomb,1);
-                        Bom bom = new Bom(man.getPositionBom());
-                        //bom.setIsPut(true);
-                        bom.setIsExplode(false);
-                        bomList.add(bom);
+                if(mainState[0] != State.DIE) {
+                    if (keyEvent_down.getCode() == KeyCode.ENTER) {
+                        keyCheck[KeyCode.ENTER.getCode()] = true;
+                    }
+                    if (keyEvent_down.getCode() == KeyCode.DOWN) {
+                        keyCheck[KeyCode.DOWN.getCode()] = true;
+                        mainState[0] = State.DOWN;
+                        man.setIsMoving(true);
+                    }
+                    if (keyEvent_down.getCode() == KeyCode.UP) {
+                        keyCheck[KeyCode.UP.getCode()] = true;
+                        mainState[0] = State.UP;
+                        man.setIsMoving(true);
+                    }
+                    if (keyEvent_down.getCode() == KeyCode.LEFT) {
+                        keyCheck[KeyCode.LEFT.getCode()] = true;
+                        mainState[0] = State.LEFT;
+                        man.setIsMoving(true);
+                    }
+                    if (keyEvent_down.getCode() == KeyCode.RIGHT) {
+                        keyCheck[KeyCode.RIGHT.getCode()] = true;
+                        mainState[0] = State.RIGHT;
+                        man.setIsMoving(true);
+                    }
+                    if (keyEvent_down.getCode() == KeyCode.Q) {
+                        isQuit = true;
+                    }
+                    if (keyEvent_down.getCode() == KeyCode.SPACE && man.isAlive) {
+                        if (bomList.size() < constValue.BOMS) {
+                            //sound dat bom
+                            soundPlayer.playSoundEffect(soundPlayer.place_bomb, 1);
+                            Bom bom = new Bom(man.getPositionBom());
+                            //bom.setIsPut(true);
+                            bom.setIsExplode(false);
+                            bomList.add(bom);
+                        }
                     }
                 }
-
             }
         });
 
