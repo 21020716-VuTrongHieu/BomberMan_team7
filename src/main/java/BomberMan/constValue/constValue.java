@@ -33,7 +33,7 @@ public class constValue {
     public static int BOMS = 1;
     public static int SCORE = 0;
     public static int FLAME = 1;
-    public static int LIFE = 3;
+    public static int LIFE = 4;
     public static double SPEED = 6;
     public static double speed = 6;
     public static int ENEMIES = 0;
@@ -42,6 +42,7 @@ public class constValue {
     public static boolean WIN_LEVEL = true;
     public static final int DEM_MAN = 2;
     public static long winTime = 0;
+    public static long dieTime = 0;
     public static long ENEMY4_TIME = 0;
     public static boolean isWin = false;
     public static boolean isStart = false;

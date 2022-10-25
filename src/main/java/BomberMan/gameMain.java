@@ -44,6 +44,7 @@ public class gameMain extends Application {
     private State[] mainState = new State[1];
 
     private boolean isQuit = false;
+    private boolean gameOver = false;
 
     private List<Brick> brickList = new ArrayList<>();
     private List<Item> itemList = new ArrayList<>();
@@ -57,6 +58,7 @@ public class gameMain extends Application {
     public Text textMenu = new Text();
     public Text textStart = new Text();
     public Text textQuit = new Text();
+    public Text textGameOver = new Text();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -78,13 +80,16 @@ public class gameMain extends Application {
         textStage.setY(constValue.ENTITY_SIZE * 14 / 2);
         textStage.setFill(Color.GHOSTWHITE);
 
-        winGame.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 100));
         winGame.setX(constValue.ENTITY_SIZE * 29 / 3 + 20);
         winGame.setY(constValue.ENTITY_SIZE * 14 / 2);
         winGame.setFill(Color.GHOSTWHITE);
 
+        textGameOver.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 100));
+        textGameOver.setX(constValue.ENTITY_SIZE * 29 / 3);
+        textGameOver.setY(constValue.ENTITY_SIZE * 14 / 2);
+        textGameOver.setFill(Color.GHOSTWHITE);
+
         textMenu.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 100));
-        textMenu.setFont(new Font("src/main/resources/assets/ui.fonts/game_font.ttf",100));
         textMenu.setX(constValue.ENTITY_SIZE * 29 / 3 - 40);
         textMenu.setY(constValue.ENTITY_SIZE * 14 / 4 - 30);
         textMenu.setFill(Color.GHOSTWHITE);
@@ -101,7 +106,7 @@ public class gameMain extends Application {
         //////////////////////////////////////////////////////////////////////////
         //          SOUND Vi du thoiii         //
 
-//        soundPlayer.playMusic(soundPlayer.stage_theme, MediaPlayer.INDEFINITE);
+        //   soundPlayer.playMusic(soundPlayer.stage_theme, MediaPlayer.INDEFINITE);
 
         //////////////////////////////////////////////////////////////////////////
         //      tao NV            //
@@ -148,8 +153,8 @@ public class gameMain extends Application {
                 if (keyEvent_down.getCode() == KeyCode.Q) {
                     isQuit = true;
                 }
-                if (keyEvent_down.getCode() == KeyCode.SPACE /*&& (bom[0] == null || !bom[0].getIsPut())*/) {
-                    if (bomList.size() < constValue.BOMS && man.isAlive) {
+                if (keyEvent_down.getCode() == KeyCode.SPACE && man.isAlive) {
+                    if (bomList.size() < constValue.BOMS) {
                         //sound dat bom
                         soundPlayer.playSoundEffect(soundPlayer.place_bomb,1);
                         Bom bom = new Bom(man.getPositionBom());
@@ -210,195 +215,213 @@ public class gameMain extends Application {
                     mainStage.close();
                 }
 
-                if (!constValue.isStart) {
-                    mainGc.setFill(Color.CADETBLUE);
-                    mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
-                    textMenu.setText("Bomber Man");
-                    textStart.setText("Start");
-                    textQuit.setText("Quit");
-                    if (cnt > 0) {
-                        textQuit.setFill(Color.YELLOW);
-                        if (keyCheck[KeyCode.ENTER.getCode()] == true) {
-                            textMenu.setText("");
-                            textStart.setText("");
-                            textQuit.setText("");
-                            isQuit = true;
-                        }
-                        if (keyCheck[KeyCode.UP.getCode()] == true) {
-                            textQuit.setFill(Color.WHITE);
-                            cnt--;
-                        }
+                if (gameOver) {
+                    if (System.currentTimeMillis() - constValue.dieTime < 7000) {
+                        if (cnt == 0){ soundPlayer.playSoundEffect(soundPlayer.game_over,1);}
+                        mainGc.setFill(Color.BLACK);
+                        mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
+                        textGameOver.setText("GAME OVER!");
+                        cnt++;
                     } else {
-                        textStart.setFill(Color.YELLOW);
-                        if (keyCheck[KeyCode.ENTER.getCode()] == true) {
-                            textMenu.setText("");
-                            textStart.setText("");
-                            textQuit.setText("");
-                            constValue.isStart = true;
-                            soundPlayer.playMusic(soundPlayer.stage_theme, MediaPlayer.INDEFINITE);
-                            constValue.winTime = System.currentTimeMillis();
-                        }
-                        if (keyCheck[KeyCode.DOWN.getCode()] == true) {
-                            textStart.setFill(Color.WHITE);
-                            cnt++;
-                        }
+                        isQuit = true;
                     }
                 } else {
-                    if (constValue.isWin) {
-                        if (System.currentTimeMillis() - constValue.winTime < 14000) {
-                            mainGc.setFill(Color.BLACK);
-                            mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
-                            winGame.setText("VICTORY!");
+                    if (!constValue.isStart) {
+                        mainGc.setFill(Color.CADETBLUE);
+                        mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
+                        textMenu.setText("Bomber Man");
+                        textStart.setText("Start");
+                        textQuit.setText("Quit");
+                        if (cnt > 0) {
+                            textQuit.setFill(Color.YELLOW);
+                            if (keyCheck[KeyCode.ENTER.getCode()] == true) {
+                                textMenu.setText("");
+                                textStart.setText("");
+                                textQuit.setText("");
+                                isQuit = true;
+                            }
+                            if (keyCheck[KeyCode.UP.getCode()] == true) {
+                                textQuit.setFill(Color.WHITE);
+                                cnt--;
+                            }
                         } else {
-                            constValue.isWin = false;
-                            isQuit = true;
+                            textStart.setFill(Color.YELLOW);
+                            if (keyCheck[KeyCode.ENTER.getCode()] == true) {
+                                textMenu.setText("");
+                                textStart.setText("");
+                                textQuit.setText("");
+                                constValue.isStart = true;
+                                soundPlayer.playMusic(soundPlayer.stage_theme, MediaPlayer.INDEFINITE);
+                                constValue.winTime = System.currentTimeMillis();
+                            }
+                            if (keyCheck[KeyCode.DOWN.getCode()] == true) {
+                                textStart.setFill(Color.WHITE);
+                                cnt++;
+                            }
                         }
                     } else {
-                        if (constValue.WIN_LEVEL) {
-                            // So man choi
-                            if (constValue.LEVEL < constValue.DEM_MAN) {
-                                if (System.currentTimeMillis() - constValue.winTime >= 4500) {
-                                    soundPlayer.gameMusic.play();
-                                    textStage.setText("");
-                                    textInGame.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 48));
-                                    textInGame.setX(0);
-                                    textInGame.setY(48);
-                                    constValue.LEVEL++;
-                                    constValue.winTime = 0;
-                                    constValue.WIN_LEVEL = false;
-                                    brickList = new ArrayList<>();
-                                    itemList = new ArrayList<>();
-                                    enemies = new ArrayList<>();
-
-                                    try {
-                                        map.LoadMap(constValue.LEVEL);
-                                    } catch (FileNotFoundException e) {
-                                        throw new RuntimeException(e);
-                                    }
-
-                                } else {
-                                    mainGc.setFill(Color.BLACK);
-                                    mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
-                                    textStage.setText("STAGE " + (constValue.LEVEL + 1));
-                                    //nhac bat dau 1 man choi
-//                                    soundPlayer.gameMusic.pause();
-//                                    soundPlayer.playSoundEffect(soundPlayer.stage_start, 1);
-                                    // render ảnh load map mới
-                                }
+                        if (constValue.isWin) {
+                            if (System.currentTimeMillis() - constValue.winTime < 14000) {
+                                mainGc.setFill(Color.BLACK);
+                                mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
+                                winGame.setText("VICTORY!");
                             } else {
-                                constValue.isWin = true;
+                                constValue.isWin = false;
+                                isQuit = true;
                             }
                         } else {
-                            for (int i = 0; i < 14; i++) {
-                                for (int j = 0; j < 29; j++) {
-                                    if (Map.mapTitle[i][j] == constValue.ENEMY_1) {
-                                        Enemy newEnemy = new Enemy1();
-                                        newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
-                                        enemies.add(newEnemy);
-                                        Map.mapTitle[i][j] = constValue.GRASS;
-                                        constValue.ENEMIES++;
-                                    } else if (Map.mapTitle[i][j] == constValue.ENEMY_2) {
-                                        Enemy newEnemy = new Enemy2();
-                                        newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
-                                        enemies.add(newEnemy);
-                                        Map.mapTitle[i][j] = constValue.GRASS;
-                                        constValue.ENEMIES++;
-                                    } else if (Map.mapTitle[i][j] == constValue.ENEMY_3) {
-                                        Enemy newEnemy = new Enemy3();
-                                        newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
-                                        enemies.add(newEnemy);
-                                        Map.mapTitle[i][j] = constValue.GRASS;
-                                        constValue.ENEMIES++;
-                                    } else if (Map.mapTitle[i][j] == constValue.ENEMY_4) {
-                                        Enemy newEnemy = new Enemy4();
-                                        newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
-                                        enemies.add(newEnemy);
-                                        Map.mapTitle[i][j] = constValue.GRASS;
-                                        constValue.ENEMIES++;
+                            if (constValue.WIN_LEVEL) {
+                                if (constValue.LEVEL < 3) {
+                                    if (System.currentTimeMillis() - constValue.winTime >= 4000) {
+                                        textStage.setText("");
+                                        textInGame.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 48));
+                                        textInGame.setX(0);
+                                        textInGame.setY(48);
+                                        constValue.LEVEL++;
+                                        constValue.winTime = 0;
+                                        constValue.WIN_LEVEL = false;
+                                        constValue.speed = 6;
+                                        constValue.SPEED = constValue.speed;
+                                        constValue.LIFE++;
+                                        constValue.FLAME = 1;
+                                        Bom.superBom = false;
+                                        brickList = new ArrayList<>();
+                                        itemList = new ArrayList<>();
+                                        enemies = new ArrayList<>();
+
+                                        try {
+                                            map.LoadMap(constValue.LEVEL);
+                                        } catch (FileNotFoundException e) {
+                                            throw new RuntimeException(e);
+                                        }
+
+                                    } else {
+                                        mainGc.setFill(Color.BLACK);
+                                        mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
+                                        textStage.setText("STAGE " + (constValue.LEVEL + 1));
+                                    }
+                                } else {
+                                    constValue.isWin = true;
+                                }
+                            } else {
+                                if (constValue.LIFE == 0) {
+                                    constValue.dieTime = System.currentTimeMillis();
+                                    gameOver = true;
+    //                                mainGc.setFill(Color.BLACK);
+    //                                mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
+    //                                textGameOver.setText("GAME OVER!");
+    //                                isQuit = true;
+                                }
+
+                                for (int i = 0; i < 14; i++) {
+                                    for (int j = 0; j < 29; j++) {
+                                        if (Map.mapTitle[i][j] == constValue.ENEMY_1) {
+                                            Enemy newEnemy = new Enemy1();
+                                            newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
+                                            enemies.add(newEnemy);
+                                            Map.mapTitle[i][j] = constValue.GRASS;
+                                            constValue.ENEMIES++;
+                                        } else if (Map.mapTitle[i][j] == constValue.ENEMY_2) {
+                                            Enemy newEnemy = new Enemy2();
+                                            newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
+                                            enemies.add(newEnemy);
+                                            Map.mapTitle[i][j] = constValue.GRASS;
+                                            constValue.ENEMIES++;
+                                        } else if (Map.mapTitle[i][j] == constValue.ENEMY_3) {
+                                            Enemy newEnemy = new Enemy3();
+                                            newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
+                                            enemies.add(newEnemy);
+                                            Map.mapTitle[i][j] = constValue.GRASS;
+                                            constValue.ENEMIES++;
+                                        } else if (Map.mapTitle[i][j] == constValue.ENEMY_4) {
+                                            Enemy newEnemy = new Enemy4();
+                                            newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
+                                            enemies.add(newEnemy);
+                                            Map.mapTitle[i][j] = constValue.GRASS;
+                                            constValue.ENEMIES++;
+                                        }
                                     }
                                 }
-                            }
-                            for (int i = 0; i < Brick.amountBrick; i++) {
-                                Brick brick = new Brick();
-                                brickList.add(brick);
-                            }
-                            Item itemSpeed = new ItemSpeed();
-                            Item itemSuperBom = new ItemSuperBom();
-                            Item itemBomUp = new ItemBomUp();
-                            itemList.add(itemSpeed);
-                            itemList.add(itemSuperBom);
-                            itemList.add(itemBomUp);
 
-                            mainGc.setFill(Color.GREEN);
-                            mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
-                            ////text////
-                            textInGame.setText("🚩 " + constValue.LEVEL + "    ❤ " + constValue.LIFE + "    💵 " + constValue.SCORE
-                                    + "    🔥 " + constValue.FLAME + "    👟 " + constValue.SPEED + "     💣 " + constValue.BOMS
-                                    + "    👻 " + constValue.ENEMIES + "    ⏰ " + constValue.TIME);
-
-                            ///Portal///
-                            if (constValue.ENEMIES == 0) {
-                                itemPortal.drawItem(mainGc);
-                                itemPortal.setPickUp(itemPortal.checkWithBomMan(man.getPosition()));
-                                itemPortal.checkPickUp();
-                            }
-                            ///Bom Man///
-
-                            man.update(mainState[0]);
-
-                            for (Enemy e : enemies) {
-                                man.checkwithEnemy(e);
-                                e.update(man);
-                            }
-                            man.drawBomMan(mainGc);
-
-                            // Fix truong hop chet xog chet tiep
-                            if (mainState[0] == State.DIE) {
-                                mainState[0] = State.STOP;
-                            }
-
-                            for (Enemy e : enemies) {
-                                e.drawEnemy(mainGc);
-                            }
-                            //
-                            if (!bomList.isEmpty()) {
-                                for (int i = 0; i < bomList.size(); i++) {
-//                                    if (mainState[0] != State.DIE) {
-//                                    }
-                                    bomList.get(i).drawBom(mainGc);
-                                    bomList.get(i).checkWithBomMan(man.getPosition());
-                                    if (bomList.get(i).getIsExplode()) {
-                                        map.checkWithBom(bomList.get(i).getPosition());
-                                        if (bomList.get(i).checkWithBomMan(man.getPosition())) {
-                                            //System.out.println("Main DIE");
-                                            mainState[0] = State.DIE;
-
-                                        }
-                                        for (int j = 0; j < bomList.size(); j++) {
-                                            if (j != i) {
-                                                bomList.get(i).checkWithOtherBom(bomList.get(j));
-                                            }
-                                        }
-                                        for (Enemy e : enemies) {
-                                            if (bomList.get(i).checkWithEnemy(e.getPosition())) {
-                                                System.out.println("Enemy1 DIE");
-                                                e.setState(State.DIE);
-
-                                                //enemies.remove(e);
-                                            }
-                                        }
-                                    }
-                                    if (bomList.get(i).getIsExploded()) {
-                                        bomList.remove(i);
-                                    }
-
+                                for (int i = 0; i < Brick.amountBrick; i++) {
+                                    Brick brick = new Brick();
+                                    brickList.add(brick);
                                 }
+                                Item itemSpeed = new ItemSpeed();
+                                Item itemSuperBom = new ItemSuperBom();
+                                Item itemBomUp = new ItemBomUp();
+                                itemList.add(itemSpeed);
+                                itemList.add(itemSuperBom);
+                                itemList.add(itemBomUp);
+
+                                mainGc.setFill(Color.GREEN);
+                                mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
+                                ////text////
+                                textInGame.setText("🚩 " + constValue.LEVEL + "    ❤ " + constValue.LIFE + "    💵 " + constValue.SCORE
+                                        + "    🔥 " + constValue.FLAME + "    👟 " + constValue.SPEED + "     💣 " + constValue.BOMS
+                                        + "    👻 " + constValue.ENEMIES + "    ⏰ " + constValue.TIME);
+
+                                ///Portal///
+                                if (constValue.ENEMIES == 0) {
+                                    itemPortal.drawItem(mainGc);
+                                    itemPortal.setPickUp(itemPortal.checkWithBomMan(man.getPosition()));
+                                    itemPortal.checkPickUp();
+                                }
+                                ///Bom Man///
+
+                                man.update(mainState[0]);
+
+                                for (Enemy e : enemies) {
+                                    man.checkwithEnemy(e);
+                                    e.update(man);
+                                }
+                                man.drawBomMan(mainGc);
+
+                                if (mainState[0] == State.DIE) {
+                                    mainState[0] = State.STOP;
+                                }
+
+                                for (Enemy e : enemies) {
+                                    e.drawEnemy(mainGc);
+                                }
+                                //
+                                if (!bomList.isEmpty()) {
+                                    for (int i = 0; i < bomList.size(); i++) {
+                                        bomList.get(i).drawBom(mainGc);
+                                        bomList.get(i).checkWithBomMan(man.getPosition());
+                                        if (bomList.get(i).getIsExplode()) {
+                                            map.checkWithBom(bomList.get(i).getPosition());
+                                            if (bomList.get(i).checkWithBomMan(man.getPosition())) {
+                                                //System.out.println("Main DIE");
+                                                mainState[0] = State.DIE;
+
+                                            }
+                                            for (int j = 0; j < bomList.size(); j++) {
+                                                if (j != i) {
+                                                    bomList.get(i).checkWithOtherBom(bomList.get(j));
+                                                }
+                                            }
+                                            for (Enemy e : enemies) {
+                                                if (bomList.get(i).checkWithEnemy(e.getPosition())) {
+                                                    System.out.println("Enemy1 DIE");
+                                                    e.setState(State.DIE);
+
+                                                    //enemies.remove(e);
+                                                }
+                                            }
+                                        }
+                                        if (bomList.get(i).getIsExploded()) {
+                                            bomList.remove(i);
+                                        }
+
+                                    }
+                                }
+
+
+                                map.loadImage();
+                                map.DrawMap(mainGc, brickList, itemList, man.getPosition());
+
                             }
-
-
-                            map.loadImage();
-                            map.DrawMap(mainGc, brickList, itemList, man.getPosition());
-
                         }
                     }
                 }
@@ -407,7 +430,7 @@ public class gameMain extends Application {
         }; timer.start();
 
 
-        root.getChildren().addAll(mainGc.getCanvas(),textMenu,textStart,textQuit,textInGame, textStage, winGame);
+        root.getChildren().addAll(mainGc.getCanvas(),textMenu,textStart,textQuit,textInGame, textStage, textGameOver ,winGame);
 
         mainScene.setFill(Color.GREEN);
         mainStage = new Stage();
