@@ -3,6 +3,7 @@ package BomberMan.entities;
 import BomberMan.Map.Map;
 import BomberMan.constValue.State;
 import BomberMan.constValue.constValue;
+import BomberMan.gameSound.soundPlayer;
 import BomberMan.graphics.Sprite;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
@@ -72,6 +73,9 @@ public class Bomber extends Entity {
     public void drawBomMan(GraphicsContext gc) {
         frame++;
         if (!isAlive) {
+            if (frame == 2) {
+                soundPlayer.playSoundEffect(soundPlayer.player_die, 1);
+            }
             SPEED = 0;
             if (frame >=0 && frame < 15){
                 gc.drawImage(Sprite.player_dead1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);

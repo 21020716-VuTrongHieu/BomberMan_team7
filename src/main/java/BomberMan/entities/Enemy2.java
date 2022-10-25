@@ -215,7 +215,6 @@ public class Enemy2 extends Enemy {
             }
             //Xu ly neu quai bi mac nua nguoi
             if (xpos > thisX * constValue.ENTITY_SIZE && (state == State.UP || state == State.DOWN)) {
-
                 temp = State.LEFT;
             } else if (xpos < thisX * constValue.ENTITY_SIZE && (state == State.UP || state == State.DOWN)) {
                 temp = State.RIGHT;
@@ -395,5 +394,4 @@ public class Enemy2 extends Enemy {
             }
         }
     }
-
 }

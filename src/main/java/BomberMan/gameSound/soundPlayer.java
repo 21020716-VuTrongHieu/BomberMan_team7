@@ -17,7 +17,7 @@ public class soundPlayer {
     public static Media game_over = new Media(new File("src/main/resources/assets/sounds/ending.wav").toURI().toString());
     //stage_start: luc hien Stage so may thi chay
     public static Media stage_start = new Media(new File("src/main/resources/assets/sounds/stage_start.wav").toURI().toString());
-
+    public static Media ending = new Media(new File("src/main/resources/assets/sounds/ending.wav").toURI().toString());
     public static MediaPlayer gameMusic;
     public static void playMusic(Media sound,int repeat) {
         gameMusic = new MediaPlayer(sound);

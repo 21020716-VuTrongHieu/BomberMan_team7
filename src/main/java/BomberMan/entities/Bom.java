@@ -54,6 +54,7 @@ public class Bom extends Entity{
                 gc.drawImage(Sprite.bomb.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
             } else if (frame == 50) {
                 isExplode = true;
+                soundPlayer.playSoundEffect(soundPlayer.explosion, 1);
             } else if (frame >= 51 && frame < 54) {
                 gc.drawImage(Sprite.bomb_exploded.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
                 gc.drawImage(Sprite.explosion_vertical_top_last.getFxImage(), this.getPosition().getX(), this.getPosition().getY() - constValue.ENTITY_SIZE, constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
@@ -104,6 +105,7 @@ public class Bom extends Entity{
             }
             else if (frame == 60) {
                 isExplode = true;
+                soundPlayer.playSoundEffect(soundPlayer.explosion, 1);
             }  else if (frame >= 61 && frame < 64) {
                 isExplode = true;
                 gc.drawImage(Sprite.bomb_exploded.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
@@ -178,15 +180,15 @@ public class Bom extends Entity{
         if (this.getIsExplode()) {
             if (superBom) {
                 if (x_ == x && (y_ >= y - 2 && y_ <= y + 2)) {
-                    other.frame = 25;
-                } else if (y == y_ && (x_ >= x - 2 && x_ < x + 2)) {
-                    other.frame = 25;
+                    other.frame = 50;
+                } else if (y == y_ && (x_ >= x - 2 && x_ <= x + 2)) {
+                    other.frame = 50;
                 }
             } else {
                 if (x_ == x && (y_ >= y - 1 && y_ <= y + 1)) {
-                    other.frame = 30;
-                } else if (y == y_ && (x_ >= x - 1 && x_ < x + 1)) {
-                    other.frame = 30;
+                    other.frame = 40;
+                } else if (y == y_ && (x_ >= x - 1 && x_ <= x + 1)) {
+                    other.frame = 40;
                 }
             }
         }
