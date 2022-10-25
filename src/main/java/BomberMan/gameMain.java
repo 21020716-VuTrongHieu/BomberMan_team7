@@ -265,6 +265,7 @@ public class gameMain extends Application {
                             if (System.currentTimeMillis() - constValue.winTime < 14000) {
                                 mainGc.setFill(Color.BLACK);
                                 mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
+                                winGame.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 100));
                                 winGame.setText("VICTORY!");
                             } else {
                                 constValue.isWin = false;
@@ -272,7 +273,7 @@ public class gameMain extends Application {
                             }
                         } else {
                             if (constValue.WIN_LEVEL) {
-                                if (constValue.LEVEL < 3) {
+                                if (constValue.LEVEL < constValue.DEM_MAN) {
                                     if (System.currentTimeMillis() - constValue.winTime >= 4000) {
                                         textStage.setText("");
                                         textInGame.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 48));
@@ -286,6 +287,7 @@ public class gameMain extends Application {
                                         constValue.LIFE++;
                                         constValue.FLAME = 1;
                                         Bom.superBom = false;
+                                        soundPlayer.gameMusic.play();
                                         brickList = new ArrayList<>();
                                         itemList = new ArrayList<>();
                                         enemies = new ArrayList<>();
