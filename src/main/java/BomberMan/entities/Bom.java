@@ -244,15 +244,15 @@ public class Bom extends Entity{
             }
             //Map.mapTitle[y][x] = constValue.GRASS;
         } else if (!superBom && this.isExplode) {
-            if ((this.getPosition().getX() - constValue.ENTITY_SIZE) <= (positionBomMan.getX() + constValue.FRAME_SIZE - 11)
-                    && (this.getPosition().getX() + 2*constValue.ENTITY_SIZE) >= positionBomMan.getX()
-                    && this.getPosition().getY() <= (positionBomMan.getY() + constValue.FRAME_SIZE - 6)
-                    && (this.getPosition().getY() + constValue.ENTITY_SIZE) >= positionBomMan.getY()) {
+            if ((this.getPosition().getX() - constValue.ENTITY_SIZE) < (positionBomMan.getX() + constValue.FRAME_SIZE - 11)
+                    && (this.getPosition().getX() + 2*constValue.ENTITY_SIZE) > positionBomMan.getX()
+                    && this.getPosition().getY() < (positionBomMan.getY() + constValue.FRAME_SIZE - 6)
+                    && (this.getPosition().getY() + constValue.ENTITY_SIZE) > positionBomMan.getY()) {
                 return true;
-            } else if (this.getPosition().getX() <= (positionBomMan.getX() + constValue.FRAME_SIZE - 11)
-                    && (this.getPosition().getX() + constValue.ENTITY_SIZE) >= positionBomMan.getX()
-                    && (this.getPosition().getY() - constValue.ENTITY_SIZE) <= (positionBomMan.getY() + constValue.FRAME_SIZE - 6)
-                    && (this.getPosition().getY() + 2*constValue.ENTITY_SIZE) >= positionBomMan.getY()) {
+            } else if (this.getPosition().getX() < (positionBomMan.getX() + constValue.FRAME_SIZE - 11)
+                    && (this.getPosition().getX() + constValue.ENTITY_SIZE) > positionBomMan.getX()
+                    && (this.getPosition().getY() - constValue.ENTITY_SIZE) < (positionBomMan.getY() + constValue.FRAME_SIZE - 6)
+                    && (this.getPosition().getY() + 2*constValue.ENTITY_SIZE) > positionBomMan.getY()) {
                 return true;
             }
             //Map.mapTitle[y][x] = constValue.GRASS;
