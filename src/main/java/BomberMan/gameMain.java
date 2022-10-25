@@ -28,6 +28,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class gameMain extends Application {
 
     public static final int WIDTH = 29;
@@ -43,7 +45,7 @@ public class gameMain extends Application {
     private Stage mainStage;
     private State[] mainState = new State[1];
 
-    private boolean isQuit = false;
+    public static boolean isQuit = false;
     private boolean gameOver = false;
 
     private List<Brick> brickList = new ArrayList<>();
@@ -59,9 +61,10 @@ public class gameMain extends Application {
     public Text textStart = new Text();
     public Text textQuit = new Text();
     public Text textGameOver = new Text();
+    public Text textRePlay = new Text();
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws Exception {
 
         root = new Group();
         mainCanvas = new Canvas(constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
@@ -85,8 +88,8 @@ public class gameMain extends Application {
         winGame.setFill(Color.GHOSTWHITE);
 
         textGameOver.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 100));
-        textGameOver.setX(constValue.ENTITY_SIZE * 29 / 3);
-        textGameOver.setY(constValue.ENTITY_SIZE * 14 / 2);
+        textGameOver.setX(constValue.ENTITY_SIZE * 29 / 3 - 20);
+        textGameOver.setY(constValue.ENTITY_SIZE * 14 / 2 - 90);
         textGameOver.setFill(Color.GHOSTWHITE);
 
         textMenu.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 100));
@@ -103,6 +106,11 @@ public class gameMain extends Application {
         textQuit.setX(constValue.ENTITY_SIZE * 29 / 2 - 60);
         textQuit.setY(constValue.ENTITY_SIZE * 14 / 2 + 60);
         textQuit.setFill(Color.WHITE);
+
+        textRePlay.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 60));
+        textRePlay.setX(constValue.ENTITY_SIZE * 29 / 2 - 130);
+        textRePlay.setY(constValue.ENTITY_SIZE * 14 / 2 - 30);
+        textRePlay.setFill(Color.WHITE);
         //////////////////////////////////////////////////////////////////////////
         //          SOUND Vi du thoiii         //
 
@@ -127,7 +135,7 @@ public class gameMain extends Application {
 
             @Override
             public void handle(KeyEvent keyEvent_down) {
-                if(mainState[0] != State.DIE) {
+                if (mainState[0] != State.DIE) {
                     if (keyEvent_down.getCode() == KeyCode.ENTER) {
                         keyCheck[KeyCode.ENTER.getCode()] = true;
                     }
@@ -165,6 +173,7 @@ public class gameMain extends Application {
                         }
                     }
                 }
+
             }
         });
 
@@ -217,7 +226,7 @@ public class gameMain extends Application {
                 }
 
                 if (gameOver) {
-                    if (System.currentTimeMillis() - constValue.dieTime < 7000) {
+                    /*if (System.currentTimeMillis() - constValue.dieTime < 7000) {
                         if (cnt == 0){ soundPlayer.playSoundEffect(soundPlayer.game_over,1);}
                         mainGc.setFill(Color.BLACK);
                         mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
@@ -225,8 +234,52 @@ public class gameMain extends Application {
                         cnt++;
                     } else {
                         isQuit = true;
+                    }*/
+                    mainGc.setFill(Color.BLACK);
+                    mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
+                    textGameOver.setText("GAME OVER!");
+                    textRePlay.setText("Play Again");
+                    textQuit.setText("Quit");
+                    if (cnt > 0) {
+                        textQuit.setFill(Color.YELLOW);
+                        if (keyCheck[KeyCode.ENTER.getCode()] == true) {
+                            //textMenu.setText("");
+                            textRePlay.setText("");
+                            textQuit.setText("");
+                            isQuit = true;
+                        }
+                        if (keyCheck[KeyCode.UP.getCode()] == true) {
+                            textQuit.setFill(Color.WHITE);
+                            cnt--;
+                        }
+                    } else {
+                        textRePlay.setFill(Color.YELLOW);
+                        if (keyCheck[KeyCode.ENTER.getCode()] == true) {
+                            //textMenu.setText("");
+                            textRePlay.setText("");
+                            textQuit.setText("");
+                            constValue.isRePlay = true;
+                            gameOver = false;
+                            constValue.LIFE = 4;
+                            constValue.LEVEL = 0;
+                            constValue.SCORE = 0;
+                            constValue.FLAME = 1;
+                            constValue.SPEED = 6;
+                            constValue.ENEMIES = 0;
+                            Bom.superBom = false;
+                            constValue.WIN_LEVEL = true;
+                            textGameOver.setText("");
+                            constValue.winTime = System.currentTimeMillis();
+                        }
+                        if (keyCheck[KeyCode.DOWN.getCode()] == true) {
+                            textRePlay.setFill(Color.WHITE);
+                            cnt++;
+                        }
                     }
-                } else {
+
+
+                }
+                if (!gameOver) {
                     if (!constValue.isStart) {
                         mainGc.setFill(Color.CADETBLUE);
                         mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
@@ -287,11 +340,10 @@ public class gameMain extends Application {
                                         constValue.LIFE++;
                                         constValue.FLAME = 1;
                                         Bom.superBom = false;
-                                        soundPlayer.gameMusic.play();
                                         brickList = new ArrayList<>();
                                         itemList = new ArrayList<>();
                                         enemies = new ArrayList<>();
-
+                                        soundPlayer.gameMusic.play();
                                         try {
                                             map.LoadMap(constValue.LEVEL);
                                         } catch (FileNotFoundException e) {
@@ -310,10 +362,10 @@ public class gameMain extends Application {
                                 if (constValue.LIFE == 0) {
                                     constValue.dieTime = System.currentTimeMillis();
                                     gameOver = true;
-    //                                mainGc.setFill(Color.BLACK);
-    //                                mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
-    //                                textGameOver.setText("GAME OVER!");
-    //                                isQuit = true;
+                                    //                                mainGc.setFill(Color.BLACK);
+                                    //                                mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
+                                    //                                textGameOver.setText("GAME OVER!");
+                                    //                                isQuit = true;
                                 }
 
                                 for (int i = 0; i < 14; i++) {
@@ -433,13 +485,15 @@ public class gameMain extends Application {
         }; timer.start();
 
 
-        root.getChildren().addAll(mainGc.getCanvas(),textMenu,textStart,textQuit,textInGame, textStage, textGameOver ,winGame);
+        root.getChildren().addAll(mainGc.getCanvas(),textMenu,textStart,textQuit,textInGame, textStage, textGameOver ,winGame, textRePlay);
 
         mainScene.setFill(Color.GREEN);
         mainStage = new Stage();
         mainStage.setScene(mainScene);
         mainStage.setTitle(constValue.GAME_TITLE);
         mainStage.show();
+
+
 
 
     }

@@ -45,5 +45,6 @@ public class constValue {
     public static long dieTime = 0;
     public static long ENEMY4_TIME = 0;
     public static boolean isWin = false;
+    public static boolean isRePlay = false;
     public static boolean isStart = false;
 }
