@@ -18,7 +18,12 @@ public class soundPlayer {
     //stage_start: luc hien Stage so may thi chay
     public static Media stage_start = new Media(new File("src/main/resources/assets/sounds/stage_start.wav").toURI().toString());
     public static Media ending = new Media(new File("src/main/resources/assets/sounds/ending.wav").toURI().toString());
-
+    public static Media menu_music = new Media(new File("src/main/resources/assets/music/menu_music.mp3").toURI().toString());
+    public static MediaPlayer menuMusic = new MediaPlayer(menu_music);
+    public static void playMenuMusic() {
+        menuMusic.setCycleCount(MediaPlayer.INDEFINITE);
+        menuMusic.play();
+    }
     public static MediaPlayer gameMusic;
     public static void playMusic(Media sound,int repeat) {
         gameMusic = new MediaPlayer(sound);

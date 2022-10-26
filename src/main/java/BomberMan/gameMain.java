@@ -142,6 +142,8 @@ public class gameMain extends Application {
                 if (mainState[0] != State.DIE) {
                     if (keyEvent_down.getCode() == KeyCode.ENTER) {
                         keyCheck[KeyCode.ENTER.getCode()] = true;
+                        mainState[0] = State.STOP;
+                        soundPlayer.menuMusic.stop();
                     }
                     if (keyEvent_down.getCode() == KeyCode.DOWN) {
                         keyCheck[KeyCode.DOWN.getCode()] = true;
@@ -228,7 +230,7 @@ public class gameMain extends Application {
         });
 
         constValue.winTime = System.currentTimeMillis();
-
+        soundPlayer.playMenuMusic();
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -259,19 +261,19 @@ public class gameMain extends Application {
                     textQuit.setText("Quit");
                     if (cnt > 0) {
                         textQuit.setFill(Color.YELLOW);
-                        if (keyCheck[KeyCode.ENTER.getCode()] == true) {
+                        if (keyCheck[KeyCode.ENTER.getCode()]) {
                             //textMenu.setText("");
                             textRePlay.setText("");
                             textQuit.setText("");
                             isQuit = true;
                         }
-                        if (keyCheck[KeyCode.UP.getCode()] == true) {
+                        if (keyCheck[KeyCode.UP.getCode()]) {
                             textQuit.setFill(Color.WHITE);
                             cnt--;
                         }
                     } else {
                         textRePlay.setFill(Color.YELLOW);
-                        if (keyCheck[KeyCode.ENTER.getCode()] == true) {
+                        if (keyCheck[KeyCode.ENTER.getCode()]) {
 //                            soundPlayer.sou
 
                             //textMenu.setText("");
@@ -308,19 +310,19 @@ public class gameMain extends Application {
                         textQuit.setText("Quit");
                         if (cnt > 0) {
                             textQuit.setFill(Color.YELLOW);
-                            if (keyCheck[KeyCode.ENTER.getCode()] == true) {
+                            if (keyCheck[KeyCode.ENTER.getCode()]) {
                                 textMenu.setText("");
                                 textStart.setText("");
                                 textQuit.setText("");
                                 isQuit = true;
                             }
-                            if (keyCheck[KeyCode.UP.getCode()] == true) {
+                            if (keyCheck[KeyCode.UP.getCode()]) {
                                 textQuit.setFill(Color.WHITE);
                                 cnt--;
                             }
                         } else {
                             textStart.setFill(Color.YELLOW);
-                            if (keyCheck[KeyCode.ENTER.getCode()] == true) {
+                            if (keyCheck[KeyCode.ENTER.getCode()]) {
                                 textMenu.setText("");
                                 textStart.setText("");
                                 textQuit.setText("");
@@ -328,7 +330,7 @@ public class gameMain extends Application {
                                 soundPlayer.playMusic(soundPlayer.stage_theme, MediaPlayer.INDEFINITE);
                                 constValue.winTime = System.currentTimeMillis();
                             }
-                            if (keyCheck[KeyCode.DOWN.getCode()] == true) {
+                            if (keyCheck[KeyCode.DOWN.getCode()]) {
                                 textStart.setFill(Color.WHITE);
                                 cnt++;
                             }
