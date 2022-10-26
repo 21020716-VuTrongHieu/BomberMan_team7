@@ -13,6 +13,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.media.MediaPlayer;
@@ -62,6 +63,7 @@ public class gameMain extends Application {
     public Text textQuit = new Text();
     public Text textGameOver = new Text();
     public Text textRePlay = new Text();
+    Image image = new Image("file:src/main/resources/54929f197a677.png");
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -79,7 +81,7 @@ public class gameMain extends Application {
         textInGame.setY(48);
 
         textStage.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 100));
-        textStage.setX(constValue.ENTITY_SIZE * 29 / 3 + 80);
+        textStage.setX(constValue.ENTITY_SIZE * 29 / 3 + 75);
         textStage.setY(constValue.ENTITY_SIZE * 14 / 2);
         textStage.setFill(Color.GHOSTWHITE);
 
@@ -88,7 +90,7 @@ public class gameMain extends Application {
         winGame.setFill(Color.GHOSTWHITE);
 
         textGameOver.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 100));
-        textGameOver.setX(constValue.ENTITY_SIZE * 29 / 3 - 20);
+        textGameOver.setX(constValue.ENTITY_SIZE * 29 / 3 - 40);
         textGameOver.setY(constValue.ENTITY_SIZE * 14 / 2 - 90);
         textGameOver.setFill(Color.GHOSTWHITE);
 
@@ -97,19 +99,19 @@ public class gameMain extends Application {
         textMenu.setY(constValue.ENTITY_SIZE * 14 / 4 - 30);
         textMenu.setFill(Color.GHOSTWHITE);
 
-        textStart.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 60));
+        textStart.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 55));
         textStart.setX(constValue.ENTITY_SIZE * 29 / 2 - 60);
-        textStart.setY(constValue.ENTITY_SIZE * 14 / 2 - 40);
+        textStart.setY(constValue.ENTITY_SIZE * 14 / 2 + 70);
         textStart.setFill(Color.WHITE);
 
-        textQuit.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 60));
-        textQuit.setX(constValue.ENTITY_SIZE * 29 / 2 - 60);
-        textQuit.setY(constValue.ENTITY_SIZE * 14 / 2 + 60);
+        textQuit.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 55));
+        textQuit.setX(constValue.ENTITY_SIZE * 29 / 2 - 56);
+        textQuit.setY(constValue.ENTITY_SIZE * 14 / 2 + 155);
         textQuit.setFill(Color.WHITE);
 
         textRePlay.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 60));
-        textRePlay.setX(constValue.ENTITY_SIZE * 29 / 2 - 130);
-        textRePlay.setY(constValue.ENTITY_SIZE * 14 / 2 - 30);
+        textRePlay.setX(constValue.ENTITY_SIZE * 29 / 2 - 140);
+        textRePlay.setY(constValue.ENTITY_SIZE * 14 / 2 + 20);
         textRePlay.setFill(Color.WHITE);
         //////////////////////////////////////////////////////////////////////////
         //          SOUND Vi du thoiii         //
@@ -289,9 +291,11 @@ public class gameMain extends Application {
                 }
                 if (!gameOver) {
                     if (!constValue.isStart) {
-                        mainGc.setFill(Color.CADETBLUE);
+                        mainGc.setFill(Color.BLACK);
                         mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
-                        textMenu.setText("Bomber Man");
+                        mainGc.drawImage(image,380,0);
+
+                        //textMenu.setText("Bomber Man");
                         textStart.setText("Start");
                         textQuit.setText("Quit");
                         if (cnt > 0) {
@@ -423,7 +427,7 @@ public class gameMain extends Application {
                                     ////text////
                                     textInGame.setText("🚩 " + constValue.LEVEL + "    ❤ " + constValue.LIFE + "    💵 " + constValue.SCORE
                                             + "    🔥 " + constValue.FLAME + "    👟 " + constValue.SPEED + "     💣 " + constValue.BOMS
-                                            + "    👻 " + constValue.ENEMIES + "    ⏰ " + constValue.TIME);
+                                            + "    👻 " + constValue.ENEMIES);
 
                                     ///Portal///
                                     if (constValue.ENEMIES == 0) {
