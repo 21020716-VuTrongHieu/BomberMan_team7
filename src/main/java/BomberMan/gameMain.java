@@ -414,6 +414,12 @@ public class gameMain extends Application {
                                                 enemies.add(newEnemy);
                                                 Map.mapTitle[i][j] = constValue.GRASS;
                                                 constValue.ENEMIES++;
+                                            } else if (Map.mapTitle[i][j] == constValue.ENEMY_5) {
+                                                Enemy newEnemy = new Enemy5();
+                                                newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
+                                                enemies.add(newEnemy);
+                                                Map.mapTitle[i][j] = constValue.GRASS;
+                                                constValue.ENEMIES++;
                                             }
                                         }
                                     }
@@ -460,9 +466,6 @@ public class gameMain extends Application {
                                         mainState[0] = State.STOP;
                                     }
 
-                                    for (Enemy e : enemies) {
-                                        e.drawEnemy(mainGc);
-                                    }
                                     //
                                     if (!bomList.isEmpty()) {
                                         for (int i = 0; i < bomList.size(); i++) {
@@ -499,7 +502,9 @@ public class gameMain extends Application {
 
                                     map.loadImage();
                                     map.DrawMap(mainGc, brickList, itemList, man.getPosition());
-
+                                    for (Enemy e : enemies) {
+                                        e.drawEnemy(mainGc);
+                                    }
                                 }
                             }
                         }

@@ -25,6 +25,7 @@ public class constValue {
     public static final int ENEMY_2 = 11;
     public static final int ENEMY_3 = 12;
     public static final int ENEMY_4 = 13;
+    public static final int ENEMY_5 = 14;
     public static final String GAME_TITLE = "Bomber Man";
     public static final String GAME_VERSION = "0.1";
     public static final String GAME_FONT_UI = "game_font.ttf";
