@@ -162,6 +162,14 @@ public class gameMain extends Application {
                     if (keyEvent_down.getCode() == KeyCode.Q) {
                         isQuit = true;
                     }
+                    if (keyEvent_down.getCode() == KeyCode.ESCAPE) {
+                        if (constValue.isPause == false) {
+                            constValue.isPause = true;
+                        } else {
+                            constValue.isPause = false;
+                        }
+
+                    }
                     if (keyEvent_down.getCode() == KeyCode.SPACE && man.isAlive) {
                         if (bomList.size() < constValue.BOMS) {
                             //sound dat bom
@@ -367,115 +375,117 @@ public class gameMain extends Application {
                                     //                                textGameOver.setText("GAME OVER!");
                                     //                                isQuit = true;
                                 }
-
-                                for (int i = 0; i < 14; i++) {
-                                    for (int j = 0; j < 29; j++) {
-                                        if (Map.mapTitle[i][j] == constValue.ENEMY_1) {
-                                            Enemy newEnemy = new Enemy1();
-                                            newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
-                                            enemies.add(newEnemy);
-                                            Map.mapTitle[i][j] = constValue.GRASS;
-                                            constValue.ENEMIES++;
-                                        } else if (Map.mapTitle[i][j] == constValue.ENEMY_2) {
-                                            Enemy newEnemy = new Enemy2();
-                                            newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
-                                            enemies.add(newEnemy);
-                                            Map.mapTitle[i][j] = constValue.GRASS;
-                                            constValue.ENEMIES++;
-                                        } else if (Map.mapTitle[i][j] == constValue.ENEMY_3) {
-                                            Enemy newEnemy = new Enemy3();
-                                            newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
-                                            enemies.add(newEnemy);
-                                            Map.mapTitle[i][j] = constValue.GRASS;
-                                            constValue.ENEMIES++;
-                                        } else if (Map.mapTitle[i][j] == constValue.ENEMY_4) {
-                                            Enemy newEnemy = new Enemy4();
-                                            newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
-                                            enemies.add(newEnemy);
-                                            Map.mapTitle[i][j] = constValue.GRASS;
-                                            constValue.ENEMIES++;
+                                if (!constValue.isPause)
+                                {
+                                    for (int i = 0; i < 14; i++) {
+                                        for (int j = 0; j < 29; j++) {
+                                            if (Map.mapTitle[i][j] == constValue.ENEMY_1) {
+                                                Enemy newEnemy = new Enemy1();
+                                                newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
+                                                enemies.add(newEnemy);
+                                                Map.mapTitle[i][j] = constValue.GRASS;
+                                                constValue.ENEMIES++;
+                                            } else if (Map.mapTitle[i][j] == constValue.ENEMY_2) {
+                                                Enemy newEnemy = new Enemy2();
+                                                newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
+                                                enemies.add(newEnemy);
+                                                Map.mapTitle[i][j] = constValue.GRASS;
+                                                constValue.ENEMIES++;
+                                            } else if (Map.mapTitle[i][j] == constValue.ENEMY_3) {
+                                                Enemy newEnemy = new Enemy3();
+                                                newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
+                                                enemies.add(newEnemy);
+                                                Map.mapTitle[i][j] = constValue.GRASS;
+                                                constValue.ENEMIES++;
+                                            } else if (Map.mapTitle[i][j] == constValue.ENEMY_4) {
+                                                Enemy newEnemy = new Enemy4();
+                                                newEnemy.setPosition((j) * constValue.ENTITY_SIZE, (i) * constValue.ENTITY_SIZE);
+                                                enemies.add(newEnemy);
+                                                Map.mapTitle[i][j] = constValue.GRASS;
+                                                constValue.ENEMIES++;
+                                            }
                                         }
                                     }
-                                }
 
-                                for (int i = 0; i < Brick.amountBrick; i++) {
-                                    Brick brick = new Brick();
-                                    brickList.add(brick);
-                                }
-                                Item itemSpeed = new ItemSpeed();
-                                Item itemSuperBom = new ItemSuperBom();
-                                Item itemBomUp = new ItemBomUp();
-                                itemList.add(itemSpeed);
-                                itemList.add(itemSuperBom);
-                                itemList.add(itemBomUp);
-
-                                mainGc.setFill(Color.GREEN);
-                                mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
-                                ////text////
-                                textInGame.setText("🚩 " + constValue.LEVEL + "    ❤ " + constValue.LIFE + "    💵 " + constValue.SCORE
-                                        + "    🔥 " + constValue.FLAME + "    👟 " + constValue.SPEED + "     💣 " + constValue.BOMS
-                                        + "    👻 " + constValue.ENEMIES + "    ⏰ " + constValue.TIME);
-
-                                ///Portal///
-                                if (constValue.ENEMIES == 0) {
-                                    itemPortal.drawItem(mainGc);
-                                    itemPortal.setPickUp(itemPortal.checkWithBomMan(man.getPosition()));
-                                    itemPortal.checkPickUp();
-                                }
-                                ///Bom Man///
-
-                                man.update(mainState[0]);
-
-                                for (Enemy e : enemies) {
-                                    man.checkwithEnemy(e);
-                                    e.update(man);
-                                }
-                                man.drawBomMan(mainGc);
-
-                                if (mainState[0] == State.DIE) {
-                                    mainState[0] = State.STOP;
-                                }
-
-                                for (Enemy e : enemies) {
-                                    e.drawEnemy(mainGc);
-                                }
-                                //
-                                if (!bomList.isEmpty()) {
-                                    for (int i = 0; i < bomList.size(); i++) {
-                                        bomList.get(i).drawBom(mainGc);
-                                        bomList.get(i).checkWithBomMan(man.getPosition());
-                                        if (bomList.get(i).getIsExplode()) {
-                                            map.checkWithBom(bomList.get(i).getPosition());
-                                            if (bomList.get(i).checkWithBomMan(man.getPosition())) {
-                                                //System.out.println("Main DIE");
-                                                mainState[0] = State.DIE;
-
-                                            }
-                                            for (int j = 0; j < bomList.size(); j++) {
-                                                if (j != i) {
-                                                    bomList.get(i).checkWithOtherBom(bomList.get(j));
-                                                }
-                                            }
-                                            for (Enemy e : enemies) {
-                                                if (bomList.get(i).checkWithEnemy(e.getPosition())) {
-                                                    System.out.println("Enemy1 DIE");
-                                                    e.setState(State.DIE);
-
-                                                    //enemies.remove(e);
-                                                }
-                                            }
-                                        }
-                                        if (bomList.get(i).getIsExploded()) {
-                                            bomList.remove(i);
-                                        }
-
+                                    for (int i = 0; i < Brick.amountBrick; i++) {
+                                        Brick brick = new Brick();
+                                        brickList.add(brick);
                                     }
+                                    Item itemSpeed = new ItemSpeed();
+                                    Item itemSuperBom = new ItemSuperBom();
+                                    Item itemBomUp = new ItemBomUp();
+                                    itemList.add(itemSpeed);
+                                    itemList.add(itemSuperBom);
+                                    itemList.add(itemBomUp);
+
+                                    mainGc.setFill(Color.GREEN);
+                                    mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
+                                    ////text////
+                                    textInGame.setText("🚩 " + constValue.LEVEL + "    ❤ " + constValue.LIFE + "    💵 " + constValue.SCORE
+                                            + "    🔥 " + constValue.FLAME + "    👟 " + constValue.SPEED + "     💣 " + constValue.BOMS
+                                            + "    👻 " + constValue.ENEMIES + "    ⏰ " + constValue.TIME);
+
+                                    ///Portal///
+                                    if (constValue.ENEMIES == 0) {
+                                        itemPortal.drawItem(mainGc);
+                                        itemPortal.setPickUp(itemPortal.checkWithBomMan(man.getPosition()));
+                                        itemPortal.checkPickUp();
+                                    }
+                                    ///Bom Man///
+
+                                    man.update(mainState[0]);
+
+                                    for (Enemy e : enemies) {
+                                        man.checkwithEnemy(e);
+                                        e.update(man);
+                                    }
+                                    man.drawBomMan(mainGc);
+
+                                    if (mainState[0] == State.DIE) {
+                                        mainState[0] = State.STOP;
+                                    }
+
+                                    for (Enemy e : enemies) {
+                                        e.drawEnemy(mainGc);
+                                    }
+                                    //
+                                    if (!bomList.isEmpty()) {
+                                        for (int i = 0; i < bomList.size(); i++) {
+                                            bomList.get(i).drawBom(mainGc);
+                                            bomList.get(i).checkWithBomMan(man.getPosition());
+                                            if (bomList.get(i).getIsExplode()) {
+                                                map.checkWithBom(bomList.get(i).getPosition());
+                                                if (bomList.get(i).checkWithBomMan(man.getPosition())) {
+                                                    //System.out.println("Main DIE");
+                                                    mainState[0] = State.DIE;
+
+                                                }
+                                                for (int j = 0; j < bomList.size(); j++) {
+                                                    if (j != i) {
+                                                        bomList.get(i).checkWithOtherBom(bomList.get(j));
+                                                    }
+                                                }
+                                                for (Enemy e : enemies) {
+                                                    if (bomList.get(i).checkWithEnemy(e.getPosition())) {
+                                                        System.out.println("Enemy1 DIE");
+                                                        e.setState(State.DIE);
+
+                                                        //enemies.remove(e);
+                                                    }
+                                                }
+                                            }
+                                            if (bomList.get(i).getIsExploded()) {
+                                                bomList.remove(i);
+                                            }
+
+                                        }
+                                    }
+
+
+                                    map.loadImage();
+                                    map.DrawMap(mainGc, brickList, itemList, man.getPosition());
+
                                 }
-
-
-                                map.loadImage();
-                                map.DrawMap(mainGc, brickList, itemList, man.getPosition());
-
                             }
                         }
                     }

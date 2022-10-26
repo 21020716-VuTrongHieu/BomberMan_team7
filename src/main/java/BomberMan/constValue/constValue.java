@@ -47,4 +47,5 @@ public class constValue {
     public static boolean isWin = false;
     public static boolean isRePlay = false;
     public static boolean isStart = false;
+    public static boolean isPause = false;
 }
