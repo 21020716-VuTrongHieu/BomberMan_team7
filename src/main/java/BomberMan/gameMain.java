@@ -54,6 +54,7 @@ public class gameMain extends Application {
     public static List<Enemy> enemies = new ArrayList<>();
     private List<Bom> bomList = new ArrayList<>();
     int cnt = 0;
+    int count = 0;
 
     public Text textInGame = new Text();
     public Text textStage = new Text();
@@ -80,38 +81,39 @@ public class gameMain extends Application {
         textInGame.setX(0);
         textInGame.setY(48);
 
-        textStage.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 100));
-        textStage.setX(constValue.ENTITY_SIZE * 29 / 3 + 75);
-        textStage.setY(constValue.ENTITY_SIZE * 14 / 2);
+        textStage.setFont(Font.loadFont("file:src/main/resources/assets/ui/fonts/game_font.ttf",60));
+        textStage.setX(constValue.ENTITY_SIZE * 29 / 3 + 25);
+        textStage.setY(constValue.ENTITY_SIZE * 14 / 2 - 20);
         textStage.setFill(Color.GHOSTWHITE);
 
-        winGame.setX(constValue.ENTITY_SIZE * 29 / 3 + 20);
+        winGame.setFont(Font.loadFont("file:src/main/resources/assets/ui/fonts/game_font.ttf",60));
+        winGame.setX(constValue.ENTITY_SIZE * 29 / 3 - 20);
         winGame.setY(constValue.ENTITY_SIZE * 14 / 2);
         winGame.setFill(Color.GHOSTWHITE);
 
-        textGameOver.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 100));
-        textGameOver.setX(constValue.ENTITY_SIZE * 29 / 3 - 40);
-        textGameOver.setY(constValue.ENTITY_SIZE * 14 / 2 - 90);
+        textGameOver.setFont(Font.loadFont("file:src/main/resources/assets/ui/fonts/game_font.ttf",60));
+        textGameOver.setX(constValue.ENTITY_SIZE * 29 / 3 - 55);
+        textGameOver.setY(constValue.ENTITY_SIZE * 14 / 2 - 120);
         textGameOver.setFill(Color.GHOSTWHITE);
 
-        textMenu.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 100));
-        textMenu.setX(constValue.ENTITY_SIZE * 29 / 3 - 40);
-        textMenu.setY(constValue.ENTITY_SIZE * 14 / 4 - 30);
-        textMenu.setFill(Color.GHOSTWHITE);
+//        textMenu.setFont(Font.loadFont("file:src/main/resources/assets/ui/fonts/game_font.ttf",100));
+//        textMenu.setX(constValue.ENTITY_SIZE * 29 / 3 - 40);
+//        textMenu.setY(constValue.ENTITY_SIZE * 14 / 4 - 30);
+//        textMenu.setFill(Color.GHOSTWHITE);
 
-        textStart.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 55));
-        textStart.setX(constValue.ENTITY_SIZE * 29 / 2 - 60);
+        textStart.setFont(Font.loadFont("file:src/main/resources/assets/ui/fonts/game_font.ttf",30));
+        textStart.setX(constValue.ENTITY_SIZE * 29 / 2 - 75);
         textStart.setY(constValue.ENTITY_SIZE * 14 / 2 + 70);
         textStart.setFill(Color.WHITE);
 
-        textQuit.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 55));
+        textQuit.setFont(Font.loadFont("file:src/main/resources/assets/ui/fonts/game_font.ttf",30));
         textQuit.setX(constValue.ENTITY_SIZE * 29 / 2 - 56);
         textQuit.setY(constValue.ENTITY_SIZE * 14 / 2 + 155);
         textQuit.setFill(Color.WHITE);
 
-        textRePlay.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 60));
-        textRePlay.setX(constValue.ENTITY_SIZE * 29 / 2 - 140);
-        textRePlay.setY(constValue.ENTITY_SIZE * 14 / 2 + 20);
+        textRePlay.setFont(Font.loadFont("file:src/main/resources/assets/ui/fonts/game_font.ttf",30));
+        textRePlay.setX(constValue.ENTITY_SIZE * 29 / 2 - 160);
+        textRePlay.setY(constValue.ENTITY_SIZE * 14 / 2 + 30);
         textRePlay.setFill(Color.WHITE);
         //////////////////////////////////////////////////////////////////////////
         //          SOUND Vi du thoiii         //
@@ -245,6 +247,11 @@ public class gameMain extends Application {
                     } else {
                         isQuit = true;
                     }*/
+                    soundPlayer.gameMusic.pause();
+                    if (count == 0) {
+                        soundPlayer.playSoundEffect(soundPlayer.game_over,1);
+                    }
+                    count++;
                     mainGc.setFill(Color.BLACK);
                     mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
                     textGameOver.setText("GAME OVER!");
@@ -265,10 +272,13 @@ public class gameMain extends Application {
                     } else {
                         textRePlay.setFill(Color.YELLOW);
                         if (keyCheck[KeyCode.ENTER.getCode()] == true) {
+//                            soundPlayer.sou
+
                             //textMenu.setText("");
                             textRePlay.setText("");
                             textQuit.setText("");
                             constValue.isRePlay = true;
+                            count = 0;
                             gameOver = false;
                             constValue.LIFE = 4;
                             constValue.LEVEL = 0;
@@ -279,6 +289,7 @@ public class gameMain extends Application {
                             Bom.superBom = false;
                             constValue.WIN_LEVEL = true;
                             textGameOver.setText("");
+                            soundPlayer.gameMusic.play();
                             constValue.winTime = System.currentTimeMillis();
                         }
                         if (keyCheck[KeyCode.DOWN.getCode()] == true) {
@@ -286,8 +297,6 @@ public class gameMain extends Application {
                             cnt++;
                         }
                     }
-
-
                 }
                 if (!gameOver) {
                     if (!constValue.isStart) {
@@ -295,7 +304,6 @@ public class gameMain extends Application {
                         mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
                         mainGc.drawImage(image,380,0);
 
-                        //textMenu.setText("Bomber Man");
                         textStart.setText("Start");
                         textQuit.setText("Quit");
                         if (cnt > 0) {
@@ -330,7 +338,6 @@ public class gameMain extends Application {
                             if (System.currentTimeMillis() - constValue.winTime < 14000) {
                                 mainGc.setFill(Color.BLACK);
                                 mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
-                                winGame.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 100));
                                 winGame.setText("VICTORY!");
                             } else {
                                 constValue.isWin = false;
@@ -342,7 +349,7 @@ public class gameMain extends Application {
                                     if (System.currentTimeMillis() - constValue.winTime >= 4000) {
                                         textStage.setText("");
                                         textInGame.setFont(Font.font("", FontWeight.BOLD, FontPosture.REGULAR, 48));
-                                        textInGame.setX(0);
+                                        textInGame.setX(200);
                                         textInGame.setY(48);
                                         constValue.LEVEL++;
                                         constValue.winTime = 0;
@@ -422,8 +429,12 @@ public class gameMain extends Application {
                                     itemList.add(itemSuperBom);
                                     itemList.add(itemBomUp);
 
+
                                     mainGc.setFill(Color.GREEN);
                                     mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
+
+                                    mainGc.setFill(Color.CADETBLUE);
+                                    mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE);
                                     ////text////
                                     textInGame.setText("🚩 " + constValue.LEVEL + "    ❤ " + constValue.LIFE + "    💵 " + constValue.SCORE
                                             + "    🔥 " + constValue.FLAME + "    👟 " + constValue.SPEED + "     💣 " + constValue.BOMS
