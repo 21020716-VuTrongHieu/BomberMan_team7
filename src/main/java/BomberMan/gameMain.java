@@ -523,6 +523,10 @@ public class gameMain extends Application {
         mainStage = new Stage();
         mainStage.setScene(mainScene);
         mainStage.setTitle(constValue.GAME_TITLE);
+        Image icon = new Image("file:src/main/resources/icon.png");
+        mainStage.setFullScreen(false);
+        mainStage.setResizable(false);
+        mainStage.getIcons().add(icon);
         mainStage.show();
 
 
