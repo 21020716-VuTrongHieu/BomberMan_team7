@@ -143,8 +143,12 @@ public class gameMain extends Application {
                     if (keyEvent_down.getCode() == KeyCode.ENTER) {
                         keyCheck[KeyCode.ENTER.getCode()] = true;
                         mainState[0] = State.STOP;
-                        soundPlayer.menuMusic.stop();
-                        soundPlayer.soundEffect.stop();
+                        if (soundPlayer.menuMusic != null) {
+                            soundPlayer.menuMusic.stop();
+                        }
+                        if (soundPlayer.soundEffect != null) {
+                            soundPlayer.soundEffect.stop();
+                        }
                     }
                     if (keyEvent_down.getCode() == KeyCode.DOWN) {
                         keyCheck[KeyCode.DOWN.getCode()] = true;
