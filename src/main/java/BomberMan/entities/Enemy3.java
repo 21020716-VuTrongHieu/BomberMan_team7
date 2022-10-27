@@ -75,7 +75,7 @@ public class Enemy3 extends Enemy {
             } else if (frame == 60) {
                 constValue.ENEMIES++;
             } else {
-                SCORE += 300;
+                SCORE += 200;
                 Enemy1 em1 = new Enemy1();
                 em1.setPosition(this.getPosition().getX(), this.getPosition().getY());
                 enemies.add(em1);

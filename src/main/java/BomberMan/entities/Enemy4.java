@@ -15,6 +15,8 @@ import static BomberMan.gameMain.enemies;
 public class Enemy4 extends Enemy {
     private int frame = 0;
     private State state;
+    private double speed = ENEMY4_SPEED;
+    private long ENEMY4_TIME = 0;
 
     private Point2D moveXY = new Point2D(0, 0);
 
@@ -38,24 +40,28 @@ public class Enemy4 extends Enemy {
 
         if (System.currentTimeMillis() - ENEMY4_TIME >= 3000) {
             ENEMY4_TIME = System.currentTimeMillis();
-            constValue.ENEMY4_SPEED = 5 + generator.nextInt() % 4;
+            int temp = 4 + generator.nextInt() % 5;
+            while (temp == this.speed) {
+                temp = 4 + generator.nextInt() % 5;
+            }
+            this.speed = temp;
         }
 
         switch (state) {
             case LEFT:
-                this.moveXY = new Point2D(-constValue.ENEMY4_SPEED, 0);
+                this.moveXY = new Point2D(-this.speed, 0);
                 this.move(moveXY);
                 break;
             case RIGHT:
-                this.moveXY = new Point2D(constValue.ENEMY4_SPEED, 0);
+                this.moveXY = new Point2D(this.speed, 0);
                 this.move(moveXY);
                 break;
             case UP:
-                this.moveXY = new Point2D(0, -constValue.ENEMY4_SPEED);
+                this.moveXY = new Point2D(0, -this.speed);
                 this.move(moveXY);
                 break;
             case DOWN:
-                moveXY = new Point2D(0, constValue.ENEMY4_SPEED);
+                moveXY = new Point2D(0, this.speed);
                 this.move(moveXY);
                 break;
             default:
@@ -79,7 +85,7 @@ public class Enemy4 extends Enemy {
             } else if (frame >= 45 && frame < 60) {
                 gc.drawImage(Sprite.mob_dead3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
             } else if (frame == 60) {
-                SCORE += 200;
+                SCORE += 300;
                 constValue.ENEMIES--;
             }
             return;
@@ -138,17 +144,24 @@ public class Enemy4 extends Enemy {
 
     public void calculateState() {
         Random generator = new Random();
-        int cal = generator.nextInt();
-//        switch (cal % 99) {
-//            case 0 -> {
-//                moveXY = new Point2D(0, 0);
-///                break;
+        int cal;
+
+
+//        if (xx1 % ENTITY_SIZE == 0 && yy1 % ENTITY_SIZE == 0) {
+//            System.out.println(xx1 + " " + yy1);
+//            cal = generator.nextInt();
+//            switch (cal % 10) {
+//                case 0 -> {
+//                    moveXY = new Point2D(0, 0);
+//                    break;
+//                }
 //            }
 //        }
 
         int x1 = (int) ((this.getPosition().getX()) / constValue.ENTITY_SIZE);
-        int x2 = (int) ((this.getPosition().getX() + constValue.ENTITY_SIZE - 1) / constValue.ENTITY_SIZE); // Frame_size - 10) / ...
         int y1 = (int) ((this.getPosition().getY()) / constValue.ENTITY_SIZE);
+
+        int x2 = (int) ((this.getPosition().getX() + constValue.ENTITY_SIZE - 1) / constValue.ENTITY_SIZE); // Frame_size - 10) / ...
         int y2 = (int) ((this.getPosition().getY() + constValue.ENTITY_SIZE - 1) / constValue.ENTITY_SIZE);
 
         if (moveXY.getX() > 0) {
@@ -170,6 +183,19 @@ public class Enemy4 extends Enemy {
             if (Map.mapTitle[y1][x1] != constValue.GRASS || Map.mapTitle[y1][x2] != constValue.GRASS) {
                 this.setPosition((float) (this.getPosition().getX()), (float) ((y1 + 1) * constValue.ENTITY_SIZE));
                 moveXY = new Point2D(0, 0);
+            }
+        }
+
+        int xx1 = (int) (this.getPosition().getX());
+        int yy1 = (int) (this.getPosition().getY());
+
+        if (xx1 % ENTITY_SIZE == 0 && yy1 % ENTITY_SIZE == 0) {
+            //System.out.println(xx1 + " " + yy1);
+            cal = generator.nextInt();
+            switch (cal % 10) {
+                case 0 -> {
+                    moveXY = new Point2D(0, 0);
+                }
             }
         }
 

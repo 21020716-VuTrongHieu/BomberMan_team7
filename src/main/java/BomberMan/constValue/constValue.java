@@ -41,10 +41,9 @@ public class constValue {
     public static double TIME = 300;
 
     public static boolean WIN_LEVEL = true;
-    public static int DEM_MAN = 3;
+    public static int DEM_MAN = 5;
     public static long winTime = 0;
     public static long dieTime = 0;
-    public static long ENEMY4_TIME = 0;
     public static boolean isWin = false;
     public static boolean isRePlay = false;
     public static boolean isStart = false;

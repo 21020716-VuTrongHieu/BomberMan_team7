@@ -84,7 +84,7 @@ public class Enemy5 extends Enemy {
             } else if (frame >= 45 && frame < 60) {
                 gc.drawImage(Sprite.mob_dead3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
             } else if (frame == 60) {
-                SCORE += 400;
+                SCORE += 600;
                 constValue.ENEMIES--;
             }
             return;
