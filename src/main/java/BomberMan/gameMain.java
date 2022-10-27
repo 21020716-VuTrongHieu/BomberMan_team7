@@ -122,7 +122,7 @@ public class gameMain extends Application {
 
             @Override
             public void handle(KeyEvent keyEvent_down) {
-                if (mainState[0] != State.DIE) {
+                if (mainState[0] != State.DIE && !constValue.isPause) {
                     if (keyEvent_down.getCode() == KeyCode.ENTER) {
                         keyCheck[KeyCode.ENTER.getCode()] = true;
                         mainState[0] = State.STOP;
@@ -156,26 +156,18 @@ public class gameMain extends Application {
                     if (keyEvent_down.getCode() == KeyCode.Q) {
                         isQuit = true;
                     }
-                    if (keyEvent_down.getCode() == KeyCode.ESCAPE) {
-                        if (constValue.isPause == false) {
-                            constValue.isPause = true;
-                        } else {
-                            constValue.isPause = false;
-                        }
-
-                    }
                     if (keyEvent_down.getCode() == KeyCode.SPACE && man.isAlive) {
                         if (bomList.size() < constValue.BOMS) {
-                            //sound dat bom
                             soundPlayer.playSoundEffect(soundPlayer.place_bomb, 1);
                             Bom bom = new Bom(man.getPositionBom());
-                            //bom.setIsPut(true);
                             bom.setIsExplode(false);
                             bomList.add(bom);
                         }
                     }
                 }
-
+                if (keyEvent_down.getCode() == KeyCode.ESCAPE) {
+                    constValue.isPause = !constValue.isPause;
+                }
             }
         });
 
@@ -270,7 +262,7 @@ public class gameMain extends Application {
                             soundPlayer.gameMusic.play();
                             constValue.winTime = System.currentTimeMillis();
                         }
-                        if (keyCheck[KeyCode.DOWN.getCode()] == true) {
+                        if (keyCheck[KeyCode.DOWN.getCode()]) {
                             textRePlay.setFill(Color.WHITE);
                             cnt++;
                         }

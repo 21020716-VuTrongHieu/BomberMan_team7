@@ -59,24 +59,6 @@ public class Map {
             }
         }
 
-        /*for (int i = 0; i < 13; i++) {
-            for (int j = 0; j < 29; j++) {
-                Entity object;
-                if (mapTitle[i][j] == 0) {
-                    object = new Brick(j, i, Sprite.brick.getFxImage());
-                    stillObjects.add(object);
-                } else if (mapTitle[i][j] == 1) {
-                    object = new Grass(j, i, Sprite.grass.getFxImage());
-                    stillObjects.add(object);
-                } else if (mapTitle[i][j] == 2) {
-                    object = new Wall(j, i, Sprite.wall.getFxImage());
-                    stillObjects.add(object);
-                } else {
-                    object = new Grass(j, i, Sprite.grass.getFxImage());
-                    stillObjects.add(object);
-                }
-            }
-        }*/
 
 
     }

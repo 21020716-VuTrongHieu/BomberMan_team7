@@ -15,8 +15,6 @@ public class soundPlayer {
     // power_up: khi an item
     public static Media power_up = new Media(new File("src/main/resources/assets/sounds/powerup.wav").toURI().toString());
     public static Media game_over = new Media(new File("src/main/resources/assets/sounds/GameOver.mp3").toURI().toString());
-    //stage_start: luc hien Stage so may thi chay
-    public static Media stage_start = new Media(new File("src/main/resources/assets/sounds/stage_start.wav").toURI().toString());
     public static Media ending = new Media(new File("src/main/resources/assets/sounds/ending.wav").toURI().toString());
     public static Media menu_music = new Media(new File("src/main/resources/assets/music/menu_music.mp3").toURI().toString());
     public static MediaPlayer menuMusic = new MediaPlayer(menu_music);
