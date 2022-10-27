@@ -341,7 +341,7 @@ public class Enemy2 extends Enemy {
         // Tim duong bang A*
         double dISTANCE = this.getPosition().distance(man.getPosition());
         if (dISTANCE <= 4 * constValue.ENTITY_SIZE) {
-            this.speed = 6;
+//            this.speed = 6;
             step = 0;
             System.out.println("------------------");
             System.out.println("Finding");
@@ -356,7 +356,7 @@ public class Enemy2 extends Enemy {
 //            }
         } else {
             goalReached = false;
-            this.speed = 4;
+//            this.speed = 4;
         }
         if (moveXY.getX() == 0 && moveXY.getY() == 0 && !goalReached) { // Random vi tri di chuyen
             State temp = null;

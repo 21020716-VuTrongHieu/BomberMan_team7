@@ -8,7 +8,7 @@ public class constValue {
     public static final double FRAME_SIZE = 40;
 
     public static double ENEMY1_SPEED = 4;
-    public static double ENEMY2_SPEED = 4;
+    public static double ENEMY2_SPEED = 6;
     public static double ENEMY3_SPEED = 6;
     public static double ENEMY4_SPEED = 4;
 

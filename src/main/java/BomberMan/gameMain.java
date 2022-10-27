@@ -129,7 +129,7 @@ public class gameMain extends Application {
         man.setPosition(constValue.ENTITY_SIZE, 2*constValue.ENTITY_SIZE);
 
         Item itemPortal = new ItemPortal();
-        itemPortal.setPosition(constValue.ENTITY_SIZE, 2*constValue.ENTITY_SIZE);
+        itemPortal.setPosition(2*constValue.ENTITY_SIZE, 2*constValue.ENTITY_SIZE);
 
         boolean[] keyCheck = new boolean[120]; // Check xem con phim nao dang an khong, neu khong con thi moi dung nhan vat.
         for (int i = 0; i < 120; i++) {
@@ -286,6 +286,7 @@ public class gameMain extends Application {
                             constValue.LEVEL = 0;
                             constValue.SCORE = 0;
                             constValue.FLAME = 1;
+                            constValue.BOMS = 1;
                             constValue.SPEED = 6;
                             constValue.ENEMIES = 0;
                             Bom.superBom = false;
