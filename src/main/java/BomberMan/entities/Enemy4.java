@@ -10,10 +10,9 @@ import javafx.scene.canvas.GraphicsContext;
 import java.util.Random;
 
 import static BomberMan.constValue.constValue.*;
-import static BomberMan.gameMain.enemies;
 
 public class Enemy4 extends Enemy {
-    private int frame = 0;
+    private int frame;
     private State state;
     private double speed = ENEMY4_SPEED;
     private long ENEMY4_TIME = 0;
@@ -26,17 +25,12 @@ public class Enemy4 extends Enemy {
         state = State.LEFT;
     }
 
-    public void setFrame(int val) {
-        frame = val;
-    }
-
     public void update(Bomber man) {
         if (!isAlive) {
             return;
         }
 
         Random generator = new Random();
-        int cal = 0;
 
         if (System.currentTimeMillis() - ENEMY4_TIME >= 3000) {
             ENEMY4_TIME = System.currentTimeMillis();
@@ -146,18 +140,6 @@ public class Enemy4 extends Enemy {
         Random generator = new Random();
         int cal;
 
-
-//        if (xx1 % ENTITY_SIZE == 0 && yy1 % ENTITY_SIZE == 0) {
-//            System.out.println(xx1 + " " + yy1);
-//            cal = generator.nextInt();
-//            switch (cal % 10) {
-//                case 0 -> {
-//                    moveXY = new Point2D(0, 0);
-//                    break;
-//                }
-//            }
-//        }
-
         int x1 = (int) ((this.getPosition().getX()) / constValue.ENTITY_SIZE);
         int y1 = (int) ((this.getPosition().getY()) / constValue.ENTITY_SIZE);
 
@@ -190,7 +172,6 @@ public class Enemy4 extends Enemy {
         int yy1 = (int) (this.getPosition().getY());
 
         if (xx1 % ENTITY_SIZE == 0 && yy1 % ENTITY_SIZE == 0) {
-            //System.out.println(xx1 + " " + yy1);
             cal = generator.nextInt();
             switch (cal % 10) {
                 case 0 -> {

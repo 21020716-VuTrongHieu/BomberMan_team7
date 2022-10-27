@@ -25,19 +25,12 @@ import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 
 public class gameMain extends Application {
-
-    public static final int WIDTH = 29;
-    public static final int HEIGHT = 13;
-
-
-    private List<Entity> stillObjects = new ArrayList<>();
 
     private Canvas mainCanvas;
     private GraphicsContext mainGc;
@@ -67,7 +60,7 @@ public class gameMain extends Application {
     Image image = new Image("file:src/main/resources/54929f197a677.png");
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
 
         root = new Group();
         mainCanvas = new Canvas(constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
@@ -96,11 +89,6 @@ public class gameMain extends Application {
         textGameOver.setY(constValue.ENTITY_SIZE * 14 / 2 - 120);
         textGameOver.setFill(Color.GHOSTWHITE);
 
-//        textMenu.setFont(Font.loadFont("file:src/main/resources/assets/ui/fonts/game_font.ttf",100));
-//        textMenu.setX(constValue.ENTITY_SIZE * 29 / 3 - 40);
-//        textMenu.setY(constValue.ENTITY_SIZE * 14 / 4 - 30);
-//        textMenu.setFill(Color.GHOSTWHITE);
-
         textStart.setFont(Font.loadFont("file:src/main/resources/assets/ui/fonts/game_font.ttf",30));
         textStart.setX(constValue.ENTITY_SIZE * 29 / 2 - 75);
         textStart.setY(constValue.ENTITY_SIZE * 14 / 2 + 70);
@@ -115,11 +103,6 @@ public class gameMain extends Application {
         textRePlay.setX(constValue.ENTITY_SIZE * 29 / 2 - 160);
         textRePlay.setY(constValue.ENTITY_SIZE * 14 / 2 + 30);
         textRePlay.setFill(Color.WHITE);
-        //////////////////////////////////////////////////////////////////////////
-        //          SOUND Vi du thoiii         //
-
-        //   soundPlayer.playMusic(soundPlayer.stage_theme, MediaPlayer.INDEFINITE);
-
         //////////////////////////////////////////////////////////////////////////
         //      tao NV            //
         Map map = new Map();
@@ -245,15 +228,6 @@ public class gameMain extends Application {
                 }
 
                 if (gameOver) {
-                    /*if (System.currentTimeMillis() - constValue.dieTime < 7000) {
-                        if (cnt == 0){ soundPlayer.playSoundEffect(soundPlayer.game_over,1);}
-                        mainGc.setFill(Color.BLACK);
-                        mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
-                        textGameOver.setText("GAME OVER!");
-                        cnt++;
-                    } else {
-                        isQuit = true;
-                    }*/
                     soundPlayer.gameMusic.pause();
                     if (count == 0) {
                         soundPlayer.playSoundEffect(soundPlayer.game_over,1);
@@ -267,7 +241,6 @@ public class gameMain extends Application {
                     if (cnt > 0) {
                         textQuit.setFill(Color.YELLOW);
                         if (keyCheck[KeyCode.ENTER.getCode()]) {
-                            //textMenu.setText("");
                             textRePlay.setText("");
                             textQuit.setText("");
                             isQuit = true;
@@ -279,9 +252,6 @@ public class gameMain extends Application {
                     } else {
                         textRePlay.setFill(Color.YELLOW);
                         if (keyCheck[KeyCode.ENTER.getCode()]) {
-//                            soundPlayer.sou
-
-                            //textMenu.setText("");
                             textRePlay.setText("");
                             textQuit.setText("");
                             constValue.isRePlay = true;
@@ -389,10 +359,6 @@ public class gameMain extends Application {
                                 if (constValue.LIFE == 0) {
                                     constValue.dieTime = System.currentTimeMillis();
                                     gameOver = true;
-                                    //                                mainGc.setFill(Color.BLACK);
-                                    //                                mainGc.fillRect(0, 0, constValue.ENTITY_SIZE * 29, constValue.ENTITY_SIZE * 14);
-                                    //                                textGameOver.setText("GAME OVER!");
-                                    //                                isQuit = true;
                                 }
                                 if (!constValue.isPause)
                                 {
@@ -482,7 +448,6 @@ public class gameMain extends Application {
                                             if (bomList.get(i).getIsExplode()) {
                                                 map.checkWithBom(bomList.get(i).getPosition());
                                                 if (bomList.get(i).checkWithBomMan(man.getPosition())) {
-                                                    //System.out.println("Main DIE");
                                                     mainState[0] = State.DIE;
 
                                                 }
@@ -495,8 +460,6 @@ public class gameMain extends Application {
                                                     if (bomList.get(i).checkWithEnemy(e.getPosition())) {
                                                         System.out.println("Enemy1 DIE");
                                                         e.setState(State.DIE);
-
-                                                        //enemies.remove(e);
                                                     }
                                                 }
                                             }

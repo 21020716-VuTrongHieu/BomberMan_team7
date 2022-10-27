@@ -10,12 +10,11 @@ import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 
 public class Bom extends Entity{
-//chim chim
 
-    private boolean isExplode = false;
-    private boolean isExploded = false;
+    private boolean isExplode;
+    private boolean isExploded;
     //private boolean isPut = false;
-    private int frame = 0;
+    private int frame;
     public static boolean superBom = false;
     public Bom(Point2D point) {
         super();
@@ -202,21 +201,9 @@ public class Bom extends Entity{
         return this.isExplode;
     }
 
-    public void setIsExploded(boolean a) {
-        this.isExploded = a;
-    }
-
     public boolean getIsExploded() {
         return this.isExploded;
     }
-
-    /*public void setIsPut(boolean a) {
-        this.isPut = a;
-    }
-
-    public boolean getIsPut() {
-        return this.isPut;
-    }*/
 
     public boolean checkWithBomMan(Point2D positionBomMan) {
         int x = (int) (this.getPosition().getX() / constValue.ENTITY_SIZE);
@@ -279,13 +266,13 @@ public class Bom extends Entity{
             int x_ = (int) (positionEnemy.getX() / constValue.ENTITY_SIZE);
             int y_ = (int) (positionEnemy.getY() / constValue.ENTITY_SIZE);
 
-            int tmp1 = 0;
+            int tmp1;
             if (x_ < x ) {
                 tmp1 = x - 1;
             } else {
                 tmp1 = x + 1;
             }
-            int tmp2 = 0;
+            int tmp2;
             if (y_ < y) {
                 tmp2 = y - 1;
             } else {

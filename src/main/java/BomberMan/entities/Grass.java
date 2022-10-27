@@ -7,8 +7,4 @@ public class Grass extends Entity {
         super();
     }
 
-    /*@Override
-    public void update() {
-
-    }*/
 }

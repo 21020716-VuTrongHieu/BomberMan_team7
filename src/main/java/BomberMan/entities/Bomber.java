@@ -14,7 +14,7 @@ import static BomberMan.constValue.constValue.SPEED;
 
 public class Bomber extends Entity {
 
-    protected boolean isMoving = true;
+    protected boolean isMoving;
 
     protected static int frame = 0;
 
@@ -28,16 +28,6 @@ public class Bomber extends Entity {
 
     private Point2D moveXY = new Point2D(0,0);
 
-    /**
-     * hàm này return true tạm đã rồi sau làm xong check va chạm thì chim dùng.
-     * @return
-     */
-    public boolean canMove() {
-        return true;
-    }
-    public void setFrame(int val) {
-        frame = val;
-    }
     public void update(State sta) {
         state = sta;
         if (isMoving) {
@@ -113,17 +103,6 @@ public class Bomber extends Entity {
                 case DIE:
                     frame = 0;
                     isAlive = false;
-//                    if (frame >=0 && frame < 3){
-//                        gc.drawImage(Sprite.player_dead1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-//                    } else if (frame >= 3 && frame < 6) {
-//                        gc.drawImage(Sprite.player_dead2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-//                    } else if (frame >= 6 && frame < 9) {
-//                        gc.drawImage(Sprite.player_dead3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.FRAME_SIZE, constValue.FRAME_SIZE);
-//                    } else {
-//                        gc.drawImage(Sprite.player_dead3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.FRAME_SIZE, constValue.FRAME_SIZE);
-//                        LIFE--;
-//                        this.setPosition(constValue.ENTITY_SIZE, 2 * constValue.ENTITY_SIZE);
-//                    }
                     break;
             }
         } else {
@@ -170,17 +149,6 @@ public class Bomber extends Entity {
                 case DIE:
                     frame = 0;
                     isAlive = false;
-//                    if (frame >=0 && frame < 3){
-//                        gc.drawImage(Sprite.player_dead1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-//                    } else if (frame >= 3 && frame < 6) {
-//                        gc.drawImage(Sprite.player_dead2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.FRAME_SIZE,constValue.FRAME_SIZE);
-//                    } else if (frame >= 6 && frame < 9) {
-//                        gc.drawImage(Sprite.player_dead3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.FRAME_SIZE, constValue.FRAME_SIZE);
-//                    } else {
-//                        gc.drawImage(Sprite.player_dead3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.FRAME_SIZE, constValue.FRAME_SIZE);
-//                        LIFE--;
-//                        this.setPosition(constValue.ENTITY_SIZE, 2 * constValue.ENTITY_SIZE);
-//                    }
                     break;
             }
         }
@@ -189,10 +157,10 @@ public class Bomber extends Entity {
     }
 
     public void checkToMap(){
-        int x1 = 0;
-        int x2 = 0;
-        int y1 = 0;
-        int y2 = 0;
+        int x1;
+        int x2;
+        int y1;
+        int y2;
 
         x1 = (int) ((this.getPosition().getX()) / constValue.ENTITY_SIZE);
         x2 = (int) ((this.getPosition().getX() + constValue.FRAME_SIZE - 10) / constValue.ENTITY_SIZE);
@@ -264,22 +232,11 @@ public class Bomber extends Entity {
     public Point2D getPositionBom() {
         int x1 = (int) ((this.getPosition().getX()+constValue.FRAME_SIZE/2) / constValue.ENTITY_SIZE);
         int y1 = (int) ((this.getPosition().getY()+constValue.FRAME_SIZE/2) / constValue.ENTITY_SIZE);
-        Point2D p = new Point2D(x1*constValue.ENTITY_SIZE,y1*constValue.ENTITY_SIZE);
-        return p;
+        return new Point2D(x1*constValue.ENTITY_SIZE,y1*constValue.ENTITY_SIZE);
     }
 
     public void setIsMoving(boolean isMoving) {
         this.isMoving = isMoving;
     }
 
-    /*private State state;
-    private static int frame = 0;
-    public Bomber(int x, int y, Image img) {
-        super( x, y, img);
-    }
-
-    @Override
-    public void update() {
-
-    }*/
 }

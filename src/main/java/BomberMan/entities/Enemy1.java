@@ -10,10 +10,9 @@ import javafx.scene.canvas.GraphicsContext;
 import java.util.Random;
 
 import static BomberMan.constValue.constValue.SCORE;
-import static BomberMan.gameMain.enemies;
 
 public class Enemy1 extends Enemy {
-    private int frame = 0;
+    private int frame;
     private State state;
 
     private Point2D moveXY = new Point2D(0, 0);
@@ -22,10 +21,6 @@ public class Enemy1 extends Enemy {
         super();
         frame = 0;
         state = State.LEFT;
-    }
-
-    public void setFrame(int val) {
-        frame = val;
     }
 
     public void update(Bomber Man) {
@@ -127,98 +122,9 @@ public class Enemy1 extends Enemy {
         this.state = state;
     }
 
-    public void drawEnemy1Die(GraphicsContext gc) { // Ve quai luc chet
-        frame++;
-        if (frame >= 0 && frame < 15) {
-            gc.drawImage(Sprite.balloom_dead.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-        } else if (frame >= 15 && frame < 30) {
-            gc.drawImage(Sprite.mob_dead1.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-        } else if (frame >= 30 && frame < 45) {
-            gc.drawImage(Sprite.mob_dead2.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-        } else if (frame >= 45 && frame < 60) {
-            gc.drawImage(Sprite.mob_dead3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-        }
-    }
-
-    public void drawEnemy1(GraphicsContext gc) {
-        frame++;
-        if(frame>=12) frame = 0;
-        if (!isAlive) {
-            if (frame >= 0 && frame < 15) {
-                gc.drawImage(Sprite.balloom_dead.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-            } else if (frame >= 15 && frame < 30) {
-                gc.drawImage(Sprite.mob_dead1.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-            } else if (frame >= 30 && frame < 45) {
-                gc.drawImage(Sprite.mob_dead2.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-            } else if (frame >= 45 && frame < 60) {
-                gc.drawImage(Sprite.mob_dead3.getFxImage(), this.getPosition().getX(), this.getPosition().getY(), constValue.ENTITY_SIZE, constValue.ENTITY_SIZE);
-            }
-            return;
-        }
-        switch (state) {
-            case STOP:
-                gc.drawImage(Sprite.balloom_left1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-                break;
-            case UP:
-                if (frame >=0 && frame < 4){
-                    gc.drawImage(Sprite.balloom_left1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-                } else if (frame >= 4 && frame <8) {
-                    gc.drawImage(Sprite.balloom_left2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-                } else if (frame >=8 && frame < 12) {
-                    gc.drawImage(Sprite.balloom_left3.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-                }
-                break;
-            case DOWN:
-                if (frame >=0 && frame < 4){
-                    gc.drawImage(Sprite.balloom_right1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-                } else if (frame >= 4 && frame < 8) {
-                    gc.drawImage(Sprite.balloom_right2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-                } else if (frame >= 8 && frame < 12) {
-                    gc.drawImage(Sprite.balloom_right3.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-                }
-                break;
-            case LEFT:
-                if (frame >=0 && frame < 4){
-                    gc.drawImage(Sprite.balloom_left1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-                } else if (frame >= 4 && frame < 8) {
-                    gc.drawImage(Sprite.balloom_left2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-                } else if (frame >=8 && frame < 12) {
-                    gc.drawImage(Sprite.balloom_left3.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-                }
-                break;
-            case RIGHT:
-                if (frame >=0 && frame < 4){
-                    gc.drawImage(Sprite.balloom_right1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-                } else if (frame >= 4 && frame < 8) {
-                    gc.drawImage(Sprite.balloom_right2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-                } else if (frame >= 8 && frame < 12) {
-                    gc.drawImage(Sprite.balloom_right3.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-                }
-                break;
-            case DIE:
-//                if (frame >=0 && frame < 2){
-//                    gc.drawImage(Sprite.balloom_dead.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-//                } else if (frame >= 2 && frame < 4) {
-//                    gc.drawImage(Sprite.mob_dead1.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-//                } else if (frame >= 4 && frame < 6) {
-//                    gc.drawImage(Sprite.mob_dead2.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-//                } else if (frame >= 6) {
-//                    gc.drawImage(Sprite.mob_dead3.getFxImage(), this.getPosition().getX(),this.getPosition().getY(),constValue.ENTITY_SIZE,constValue.ENTITY_SIZE);
-//                }
-                isAlive = false;
-                break;
-        }
-    }
-
     public void calculateState() {
         Random generator = new Random();
-        int cal = generator.nextInt();
-//        switch (cal % 99) {
-//            case 0 -> {
-//                moveXY = new Point2D(0, 0);
-///                break;
-//            }
-//        }
+        int cal;
 
         int x1 = (int) ((this.getPosition().getX()) / constValue.ENTITY_SIZE);
         int x2 = (int) ((this.getPosition().getX() + constValue.ENTITY_SIZE - 1) / constValue.ENTITY_SIZE); // Frame_size - 10) / ...

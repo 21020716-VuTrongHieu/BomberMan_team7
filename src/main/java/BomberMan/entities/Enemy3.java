@@ -9,12 +9,11 @@ import javafx.scene.canvas.GraphicsContext;
 
 import java.util.Random;
 
-import static BomberMan.constValue.constValue.ENTITY_SIZE;
 import static BomberMan.constValue.constValue.SCORE;
 import static BomberMan.gameMain.enemies;
 
 public class Enemy3 extends Enemy {
-    private int frame = 0;
+    private int frame;
     private State state;
 
     private Point2D moveXY = new Point2D(0, 0);
@@ -23,10 +22,6 @@ public class Enemy3 extends Enemy {
         super();
         frame = 0;
         state = State.LEFT;
-    }
-
-    public void setFrame(int val) {
-        frame = val;
     }
 
     public void update(Bomber man) {
@@ -141,7 +136,7 @@ public class Enemy3 extends Enemy {
 
     public void calculateState() {
         Random generator = new Random();
-        int cal = generator.nextInt();
+        int cal;
 //        switch (cal % 99) {
 //            case 0 -> {
 //                moveXY = new Point2D(0, 0);

@@ -59,11 +59,7 @@ public class Enemy2 extends Enemy {
             default:
                 break;
         }
-//        int thisX = (int) ((this.getPosition().getX() + constValue.ENTITY_SIZE / 2) / constValue.ENTITY_SIZE);
-//        int thisY = (int) ((this.getPosition().getY() + constValue.ENTITY_SIZE / 2) / constValue.ENTITY_SIZE);
-//        System.out.println("Start: " + thisX + " " + thisY);
         if (state != State.DIE) calculateState(man);
-//            this.checkToMap();
     }
 
     public void setState(State state) {
@@ -232,7 +228,7 @@ public class Enemy2 extends Enemy {
      * A* algorithm.
      */
     public void autoSearch() {
-        while (goalReached == false && step <= 300) {
+        while (!goalReached && step <= 300) {
             int x = currentNode.xNode;
             int y = currentNode.yNode;
             currentNode.setAsChecked();
@@ -289,7 +285,7 @@ public class Enemy2 extends Enemy {
      * @param node node to be checked
      */
     public void openNode(Node node) {
-        if (node.open == false && node.checked == false
+        if (!node.open && !node.checked
                 && Map.mapTitle[node.yNode][node.xNode] == constValue.GRASS) {
             //If this node is opend yet, add it to the open list
             node.setAsOpen();
@@ -311,7 +307,7 @@ public class Enemy2 extends Enemy {
 
     public void calculateState(Bomber man) {
         Random generator = new Random();
-        int cal = generator.nextInt();
+        int cal;
 
         int x1 = (int) ((this.getPosition().getX() + 4) / constValue.ENTITY_SIZE);
         int x2 = (int) ((this.getPosition().getX() + constValue.ENTITY_SIZE - 4) / constValue.ENTITY_SIZE); // Frame_size - 10) / ...
@@ -341,22 +337,12 @@ public class Enemy2 extends Enemy {
         // Tim duong bang A*
         double dISTANCE = this.getPosition().distance(man.getPosition());
         if (dISTANCE <= 4 * constValue.ENTITY_SIZE) {
-//            this.speed = 6;
             step = 0;
             System.out.println("------------------");
             System.out.println("Finding");
             findRoad(man);
-//            System.out.println(state);
-//            try {
-//                findRoad(man);
-//            } catch (Exception e) {
-//                int thisX = (int) ((this.getPosition().getX() + constValue.ENTITY_SIZE / 2) / constValue.ENTITY_SIZE);
-//                int thisY = (int) ((this.getPosition().getY() + constValue.ENTITY_SIZE / 2) / constValue.ENTITY_SIZE);
-////                System.out.println(thisY + " " + thisX);
-//            }
         } else {
             goalReached = false;
-//            this.speed = 4;
         }
         if (moveXY.getX() == 0 && moveXY.getY() == 0 && !goalReached) { // Random vi tri di chuyen
             State temp = null;
