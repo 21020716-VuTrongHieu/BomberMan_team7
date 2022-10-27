@@ -82,7 +82,7 @@ public class gameMain extends Application {
         textInGame.setY(48);
 
         textStage.setFont(Font.loadFont("file:src/main/resources/assets/ui/fonts/game_font.ttf",60));
-        textStage.setX(constValue.ENTITY_SIZE * 29 / 3 + 25);
+        textStage.setX(constValue.ENTITY_SIZE * 29 / 3 + 15);
         textStage.setY(constValue.ENTITY_SIZE * 14 / 2 - 20);
         textStage.setFill(Color.GHOSTWHITE);
 
@@ -528,10 +528,6 @@ public class gameMain extends Application {
         mainStage.setResizable(false);
         mainStage.getIcons().add(icon);
         mainStage.show();
-
-
-
-
     }
     public static void main(String[] args) {
         launch();

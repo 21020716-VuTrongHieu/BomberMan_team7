@@ -20,7 +20,7 @@ public class Enemy2 extends Enemy {
     private State temp;
     private Point2D moveXY = new Point2D(0, 0);
     public Node[][] nodes = new Node[14][29];
-
+    private double speed = constValue.ENEMY2_SPEED;
     public Enemy2() {
         super();
         frame = 0;
@@ -41,19 +41,19 @@ public class Enemy2 extends Enemy {
         }
         switch (state) {
             case LEFT:
-                this.moveXY = new Point2D(-constValue.ENEMY2_SPEED, 0);
+                this.moveXY = new Point2D(-this.speed, 0);
                 this.move(moveXY);
                 break;
             case RIGHT:
-                this.moveXY = new Point2D(constValue.ENEMY2_SPEED, 0);
+                this.moveXY = new Point2D(this.speed, 0);
                 this.move(moveXY);
                 break;
             case UP:
-                this.moveXY = new Point2D(0, -constValue.ENEMY2_SPEED);
+                this.moveXY = new Point2D(0, -this.speed);
                 this.move(moveXY);
                 break;
             case DOWN:
-                moveXY = new Point2D(0, constValue.ENEMY2_SPEED);
+                moveXY = new Point2D(0, this.speed);
                 this.move(moveXY);
                 break;
             default:
@@ -341,6 +341,7 @@ public class Enemy2 extends Enemy {
         // Tim duong bang A*
         double dISTANCE = this.getPosition().distance(man.getPosition());
         if (dISTANCE <= 4 * constValue.ENTITY_SIZE) {
+            this.speed = 6;
             step = 0;
             System.out.println("------------------");
             System.out.println("Finding");
@@ -355,6 +356,7 @@ public class Enemy2 extends Enemy {
 //            }
         } else {
             goalReached = false;
+            this.speed = 4;
         }
         if (moveXY.getX() == 0 && moveXY.getY() == 0 && !goalReached) { // Random vi tri di chuyen
             State temp = null;
