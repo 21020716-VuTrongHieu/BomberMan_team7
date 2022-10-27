@@ -328,6 +328,7 @@ public class gameMain extends Application {
                                         constValue.SPEED = constValue.speed;
                                         constValue.LIFE++;
                                         constValue.FLAME = 1;
+                                        man.setPosition(constValue.ENTITY_SIZE, 2*constValue.ENTITY_SIZE);
                                         Bom.superBom = false;
                                         brickList = new ArrayList<>();
                                         itemList = new ArrayList<>();
