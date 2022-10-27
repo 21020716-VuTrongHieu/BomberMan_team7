@@ -226,23 +226,33 @@ public class Bom extends Entity{
                 && this.getPosition().getY() <= (positionBomMan.getY() + constValue.FRAME_SIZE - 5)
                 && (this.getPosition().getY() + constValue.ENTITY_SIZE) >= positionBomMan.getY()+ 1) ) {
             Map.mapTitle[y][x] = -2;
-//            System.out.println("chimco");
         }
         if (superBom && this.isExplode) {
-            //int x_ = (int) (positionBomMan.getX() / constValue.ENTITY_SIZE);
-            //int y_ = (int) (positionBomMan.getY() / constValue.ENTITY_SIZE);
             if ((this.getPosition().getX() - 2*constValue.ENTITY_SIZE) < (positionBomMan.getX() + constValue.FRAME_SIZE - 11)
+                    && (this.getPosition().getX() + constValue.ENTITY_SIZE) > positionBomMan.getX()
+                    && this.getPosition().getY() < (positionBomMan.getY() + constValue.FRAME_SIZE - 6)
+                    && (this.getPosition().getY() + constValue.ENTITY_SIZE) > positionBomMan.getY()
+                    && Map.mapTitle[y][x-1] == constValue.GRASS) {
+                return true;
+            } else if (this.getPosition().getX()  < (positionBomMan.getX() + constValue.FRAME_SIZE - 11)
                     && (this.getPosition().getX() + 3*constValue.ENTITY_SIZE) > positionBomMan.getX()
                     && this.getPosition().getY() < (positionBomMan.getY() + constValue.FRAME_SIZE - 6)
-                    && (this.getPosition().getY() + constValue.ENTITY_SIZE) > positionBomMan.getY()) {
+                    && (this.getPosition().getY() + constValue.ENTITY_SIZE) > positionBomMan.getY()
+                    && Map.mapTitle[y][x+1] == constValue.GRASS) {
                 return true;
             } else if (this.getPosition().getX() < (positionBomMan.getX() + constValue.FRAME_SIZE - 11)
                     && (this.getPosition().getX() + constValue.ENTITY_SIZE) > positionBomMan.getX()
                     && (this.getPosition().getY() - 2*constValue.ENTITY_SIZE) < (positionBomMan.getY() + constValue.FRAME_SIZE - 6)
-                    && (this.getPosition().getY() + 3*constValue.ENTITY_SIZE) > positionBomMan.getY()) {
+                    && (this.getPosition().getY() + constValue.ENTITY_SIZE) > positionBomMan.getY()
+                    && Map.mapTitle[y-1][x] == constValue.GRASS) {
+                return true;
+            } else if (this.getPosition().getX() < (positionBomMan.getX() + constValue.FRAME_SIZE - 11)
+                    && (this.getPosition().getX() + constValue.ENTITY_SIZE) > positionBomMan.getX()
+                    && this.getPosition().getY()  < (positionBomMan.getY() + constValue.FRAME_SIZE - 6)
+                    && (this.getPosition().getY() + 3*constValue.ENTITY_SIZE) > positionBomMan.getY()
+                    && Map.mapTitle[y+1][x] == constValue.GRASS) {
                 return true;
             }
-            //Map.mapTitle[y][x] = constValue.GRASS;
         } else if (!superBom && this.isExplode) {
             if ((this.getPosition().getX() - constValue.ENTITY_SIZE) < (positionBomMan.getX() + constValue.FRAME_SIZE - 11)
                     && (this.getPosition().getX() + 2*constValue.ENTITY_SIZE) > positionBomMan.getX()
@@ -255,13 +265,11 @@ public class Bom extends Entity{
                     && (this.getPosition().getY() + 2*constValue.ENTITY_SIZE) > positionBomMan.getY()) {
                 return true;
             }
-            //Map.mapTitle[y][x] = constValue.GRASS;
         }
 
-
-        System.out.println(Map.mapTitle[y][x]);
         return false;
     }
+
 
     public boolean checkWithEnemy(Point2D positionEnemy) {
         int x = (int) (this.getPosition().getX() / constValue.ENTITY_SIZE);
